@@ -1,0 +1,13 @@
+﻿<Application x:Class="LIBSVM_GUI_Template_test.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:LIBSVM_GUI_Template_test"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <BitmapImage x:Key="link_unselected" UriSource="assets\link_unselected.png"></BitmapImage>
+            <BitmapImage x:Key="link_selected" UriSource="assets\link_selected.png"></BitmapImage>
+            <FontFamily x:Key="Hindsiliguri_Regular">pack://application:,,,/Resources/HindSiliguri_Regular.ttf#HindSiliguri_Regular"</FontFamily>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
