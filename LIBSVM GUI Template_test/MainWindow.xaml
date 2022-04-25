@@ -315,26 +315,14 @@
                                               VerticalAlignment="Center" HorizontalAlignment="Left"/>
 
                                     <Button x:Name="Convert_Button" Click="Convert_Button_Click"
-                                            Grid.Row="10" Grid.Column="1" Grid.ColumnSpan="1" Margin="1,3,1,1"
-                                            Padding="0 1 0 0">
+                                            Grid.Row="10" Grid.Column="1" Grid.ColumnSpan="1" Margin="1,3,1,1">
                                         <Button.Resources>
                                             <Style TargetType="Border">
                                                 <Setter Property="CornerRadius" Value="5"/>
                                             </Style>
                                         </Button.Resources>
-                                        <Grid>
-                                            <Image x:Name="Convert_gif1" Height="50" VerticalAlignment="Center"
-                                                   gif:ImageBehavior.AnimatedSource="assets\Ellipsis_gif3.gif"
-                                                   Margin="50 1 0 0" HorizontalAlignment="Left" Visibility="Hidden">
-                                                <Image.RenderTransform>
-                                                    <ScaleTransform ScaleX="-1"/>
-                                                </Image.RenderTransform>
-                                            </Image>
-                                            <Image x:Name="Convert_gif2" Height="50" VerticalAlignment="Center"
-                                                   gif:ImageBehavior.AnimatedSource="assets\Ellipsis_gif3.gif" 
-                                                   Margin="200 1 0 0" HorizontalAlignment="Right" Visibility="Hidden"/>
-                                            <TextBlock x:Name="Convert_Button_text" Text="Convert to LIBSVM-Ready File" TextAlignment="Center"/>
-                                        </Grid>
+                                        <TextBlock x:Name="Convert_Button_text"
+                                                       Text="Convert to LIBSVM-Ready File" TextAlignment="Center"/>
                                     </Button>
 
                                     <TextBlock Text="Prepared File" Grid.Row="11" Grid.Column="0" Padding="5 2 0 2"/>
@@ -397,22 +385,8 @@
                                                 <Setter Property="CornerRadius" Value="5"/>
                                             </Style>
                                         </Button.Resources>
-                                        <Grid>
-                                            <Image x:Name="Split_gif1" Grid.Row="8" Grid.Column="2" Width="193" 
-                                                   Height="50" VerticalAlignment="Center" Visibility="Hidden"
-                                                   gif:ImageBehavior.AnimatedSource="assets\Ellipsis_gif3.gif" 
-                                                   Margin="0 1 45 0" HorizontalAlignment="Right">
-                                                <Image.RenderTransform>
-                                                    <ScaleTransform ScaleX="-1"/>
-                                                </Image.RenderTransform>
-                                            </Image>
-                                            <Image x:Name="Split_gif2" Grid.Row="8" Grid.Column="2" Width="193" 
-                                                   Height="50" VerticalAlignment="Center" Visibility="Hidden"
-                                                   gif:ImageBehavior.AnimatedSource="assets\Ellipsis_gif3.gif"
-                                                   Margin="0 1 0 0" HorizontalAlignment="Right"/>
-                                            <TextBlock x:Name="Split_Button_text" Text="Split" 
+                                        <TextBlock x:Name="Split_Button_text" Text="Split" 
                                                        TextAlignment="Center"/>
-                                        </Grid>
                                     </Button>
 
                                     <TextBlock Text="First Portion" Grid.Row="16" Grid.Column="0" Padding="0" 
@@ -860,7 +834,7 @@
                                                           Grid.Row="4" Grid.Column="0" Margin="0 0 0 0"
                                                           VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
-                                                <Button Click="Run_Search_Button_Click" x:Name="Run_Selection_Button"
+                                                <Button Click="Run_Search_Button_Click" x:Name="Run_Search_Button"
                                                         Grid.Row="8" Grid.Column="1" Width="193" HorizontalAlignment="Left" 
                                                         Margin="1" Padding="0 0 0 1">
                                                     <Button.Resources>
@@ -868,22 +842,8 @@
                                                             <Setter Property="CornerRadius" Value="5"/>
                                                         </Style>
                                                     </Button.Resources>
-                                                    <Grid>
-                                                        <Image x:Name="Run_gif1" Grid.Row="8" Grid.Column="2" Width="193" 
-                                                               Height="50" VerticalAlignment="Center" Visibility="Hidden"
-                                                               gif:ImageBehavior.AnimatedSource="assets\Ellipsis_gif3.gif" 
-                                                               Margin="0 1 91 0" HorizontalAlignment="Right">
-                                                            <Image.RenderTransform>
-                                                                <ScaleTransform ScaleX="-1"/>
-                                                            </Image.RenderTransform>
-                                                        </Image>
-                                                        <Image x:Name="Run_gif2" Grid.Row="8" Grid.Column="2" Width="193" 
-                                                               Height="50" VerticalAlignment="Center" Visibility="Hidden"
-                                                               gif:ImageBehavior.AnimatedSource="assets\Ellipsis_gif3.gif"
-                                                               Margin="0 1 0 0" HorizontalAlignment="Right"/>
-                                                        <TextBlock x:Name="Run_Search_text" Text="Run Search" 
+                                                    <TextBlock x:Name="Run_Search_text" Text="Run Search" 
                                                                    TextAlignment="Center"/>
-                                                    </Grid>
                                                 </Button>
 
                                                 <TextBlock Text="Grid Search Results" 
@@ -1029,22 +989,8 @@
                                                 <Setter Property="CornerRadius" Value="5"/>
                                             </Style>
                                         </Button.Resources>
-                                        <Grid>
-                                            <Image x:Name="Train_gif1" Grid.Row="8" Grid.Column="2" Width="193" 
-                                                   Height="50" VerticalAlignment="Center" Visibility="Hidden"
-                                                   gif:ImageBehavior.AnimatedSource="assets\Ellipsis_gif3.gif" 
-                                                   Margin="0 1 45 0" HorizontalAlignment="Right">
-                                                <Image.RenderTransform>
-                                                    <ScaleTransform ScaleX="-1"/>
-                                                </Image.RenderTransform>
-                                            </Image>
-                                            <Image x:Name="Train_gif2" Grid.Row="8" Grid.Column="2" Width="193" 
-                                                   Height="50" VerticalAlignment="Center" Visibility="Hidden"
-                                                   gif:ImageBehavior.AnimatedSource="assets\Ellipsis_gif3.gif"
-                                                   Margin="0 1 0 0" HorizontalAlignment="Right"/>
-                                            <TextBlock x:Name="Train_Model_text" Text="Train Model" 
+                                        <TextBlock x:Name="Train_Model_text" Text="Train Model" 
                                                        Grid.Row="8" Grid.Column="1" TextAlignment="Center"/>
-                                        </Grid>
                                     </Button>
                                     
                                     <Button x:Name="Train_and_Test_Button" Click="Train_and_Test_Button_Click"
@@ -1066,19 +1012,7 @@
                                                 <Setter Property="CornerRadius" Value="5"/>
                                             </Style>
                                         </Button.Resources>
-                                        <Grid>
-                                            <Image x:Name="Test_gif1" Height="50" VerticalAlignment="Center"
-                                                   gif:ImageBehavior.AnimatedSource="assets\Ellipsis_gif3.gif" Visibility="Hidden"
-                                                   Margin="50 1 0 0" HorizontalAlignment="Left">
-                                                <Image.RenderTransform>
-                                                    <ScaleTransform ScaleX="-1"/>
-                                                </Image.RenderTransform>
-                                            </Image>
-                                            <Image x:Name="Test_gif2" Height="50" VerticalAlignment="Center"
-                                                   gif:ImageBehavior.AnimatedSource="assets\Ellipsis_gif3.gif" Visibility="Hidden"
-                                                   Margin="200 1 0 0" HorizontalAlignment="Right"/>
-                                            <TextBlock x:Name="Test_Model_text" Text="Test Model" TextAlignment="Center"/>
-                                        </Grid>
+                                        <TextBlock x:Name="Test_Model_text" Text="Test Model" TextAlignment="Center"/>
                                     </Button>
 
                                     <TextBlock Text="Model" Margin="5 0 0 0"
