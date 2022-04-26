@@ -27,7 +27,7 @@
                     <ControlTemplate TargetType="{x:Type CheckBox}">
                         <DockPanel DockPanel.Dock="Left">
                             <Border x:Name="Border" CornerRadius="0" VerticalAlignment="Top">
-                                <Image Height="16" Width="16" Name="CheckMark" />
+                                <Image Height="20" Width="20" Name="CheckMark" />
                             </Border>
                         </DockPanel>
                         <ControlTemplate.Triggers>
@@ -46,18 +46,8 @@
             <Setter Property="Background" Value="DarkTurquoise"/>
             <Setter Property="Padding" Value="0 0 0 1"/>
         </Style>
+        <FontFamily x:Key="Regular">pack://Window:,,,/Fonts/#Regular</FontFamily>
     </Window.Resources>
-    <!--<Window.Style>
-        <Style TargetType="{x:Type Window}">
-            <Setter Property="FontSize" Value="12"/>
-            <Setter Property="FontFamily" Value="{StaticResource Hindsiliguri_Regular}"/>
-        </Style>
-    </Window.Style>-->
-    <!--
-    <Window.DataContext>
-        <local:MainWindow/>
-    </Window.DataContext>
-    -->
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="26"/>
@@ -532,10 +522,11 @@
                                                    Grid.Column="0" Grid.ColumnSpan="4" Padding="0 2 5 0"/>
 
 
-                                            <CheckBox x:Name="Link_CheckBox" Checked="Link_CheckBox_Checked" 
-                                                  Unchecked="Link_CheckBox_Unchecked"
+                                            <CheckBox x:Name="Link_CheckBox" Checked="Link_CheckBox_Checked"
+                                                      ToolTip="Link to set the number of features per&#x0a;attribute for the testing data to be the&#x0a;same as that of the testing data"
+                                                  Unchecked="Link_CheckBox_Unchecked" Width="26"
                                                   Style="{StaticResource ElementCheckbox}" 
-                                                  Grid.Row="3" Grid.Column="3" Margin="10 2 0 0 ">
+                                                  Grid.Row="3" Grid.Column="3" Margin="6 2 0 0 ">
                                                 <CheckBox.Resources>
                                                     <Style TargetType="Border">
                                                         <Setter Property="CornerRadius" Value="3"/>
@@ -1180,7 +1171,7 @@
                                     </Grid>
 
 
-                                    <Button x:Name="Stop_Button" Click="Stop_Button_Click" Content="Stop" 
+                                    <!--<Button x:Name="Stop_Button" Click="Stop_Button_Click" Content="Stop" 
                                             Grid.Row="10" Grid.RowSpan="2" Grid.Column="2" Margin="1 1 1 1" 
                                             Background="Purple" Foreground="White">
                                         <Button.Resources>
@@ -1188,7 +1179,7 @@
                                                 <Setter Property="CornerRadius" Value="5"/>
                                             </Style>
                                         </Button.Resources>
-                                    </Button>
+                                    </Button>-->
 
                                 </Grid>
                             </Grid>

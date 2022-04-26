@@ -222,7 +222,6 @@ namespace LIBSVM_GUI_Template_test
 
             #endregion
 
-
             //Grant Access to Directory Folder
             DirectoryInfo dInfo = new DirectoryInfo(Saves_Directory.Text);
             DirectorySecurity dSecurity = dInfo.GetAccessControl();
@@ -230,12 +229,7 @@ namespace LIBSVM_GUI_Template_test
                 FileSystemRights.FullControl, InheritanceFlags.ObjectInherit | InheritanceFlags.ContainerInherit, 
                 PropagationFlags.NoPropagateInherit, AccessControlType.Allow));
             dInfo.SetAccessControl(dSecurity);
-
-            
-
         }
-
-
 
         #region ComboBoxes
 
@@ -483,7 +477,10 @@ namespace LIBSVM_GUI_Template_test
             else
             {
 
-            #endregion
+                #endregion
+
+                // Set Up Convert + Button
+                #region Set Up Convert
 
                 ConvertRunning = 1;
                 ColorAnimation animation;
@@ -495,8 +492,9 @@ namespace LIBSVM_GUI_Template_test
                 animation.AutoReverse = true;
                 Convert_Button.Background = new SolidColorBrush(Colors.DarkTurquoise);
                 Convert_Button.Background.BeginAnimation(SolidColorBrush.ColorProperty, animation);
-
                 Convert_Button_text.Text = "Converting";
+
+                #endregion
 
                 // Create Saves folder if it doesn't exist
                 Directory.CreateDirectory(Saves_Directory.Text + "\\Saves");
@@ -672,7 +670,10 @@ namespace LIBSVM_GUI_Template_test
             else
             {
 
-            #endregion
+                #endregion
+
+                // Set Up Split + Button
+                #region Set Up Split
 
                 SplitRunning = 1;
                 ColorAnimation animation;
@@ -685,6 +686,8 @@ namespace LIBSVM_GUI_Template_test
                 Split_Button.Background = new SolidColorBrush(Colors.DarkTurquoise);
                 Split_Button.Background.BeginAnimation(SolidColorBrush.ColorProperty, animation);
                 Split_Button_text.Text = "Splitting";
+
+                #endregion
 
                 // Create Saves folder if it doesn't exist
                 Directory.CreateDirectory(Saves_Directory.Text + "\\Saves");
@@ -889,6 +892,9 @@ namespace LIBSVM_GUI_Template_test
 
             else
             {
+                // Set Up Grid Search + Button
+                #region Set Up Grid Search
+
                 GridSearchRunning = 1;
                 ColorAnimation animation;
                 animation = new ColorAnimation();
@@ -900,6 +906,8 @@ namespace LIBSVM_GUI_Template_test
                 Run_Search_Button.Background = new SolidColorBrush(Colors.DarkTurquoise);
                 Run_Search_Button.Background.BeginAnimation(SolidColorBrush.ColorProperty, animation);
                 Run_Search_text.Text = "Searching";
+
+                #endregion
 
                 // Create Plots folder if it doesn't exist
                 Directory.CreateDirectory(Saves_Directory.Text + "\\Plots");
@@ -1086,7 +1094,7 @@ namespace LIBSVM_GUI_Template_test
                 // Update Grid Search Results
                 #region Update Grid Search Results
 
-                    if (Parameter_Selected.IsChecked == true)
+                if (Parameter_Selected.IsChecked == true)
                 {
                     using (TextReader reader = File.OpenText(Assembly_Location + "\\Required_Files\\MatlabOutputText\\Best_CandG"))
                     {
@@ -1157,10 +1165,13 @@ namespace LIBSVM_GUI_Template_test
             {
                 System.Windows.Forms.MessageBox.Show("Please select a valid saves directory");
             }
+
+                #endregion
+
             else
             {
-
-            #endregion
+                // Set Up Training + Button
+                #region Set Up Training
 
                 TrainRunning = 1;
                 ColorAnimation animation;
@@ -1173,6 +1184,8 @@ namespace LIBSVM_GUI_Template_test
                 Train_Model_Button.Background = new SolidColorBrush(Colors.DarkTurquoise);
                 Train_Model_Button.Background.BeginAnimation(SolidColorBrush.ColorProperty, animation);
                 Train_Model_text.Text = "Training";
+
+                #endregion
 
                 // Create Saves folder if it doesn't exist
                 Directory.CreateDirectory(Saves_Directory.Text + "\\Saves");
@@ -1418,6 +1431,9 @@ namespace LIBSVM_GUI_Template_test
 
             else
             {
+                // Set Up Testing + Button
+                #region Set Up Testing
+
                 TestRunning = 1;
                 ColorAnimation animation;
                 animation = new ColorAnimation();
@@ -1429,6 +1445,8 @@ namespace LIBSVM_GUI_Template_test
                 Test_Model_Button.Background = new SolidColorBrush(Colors.DarkTurquoise);
                 Test_Model_Button.Background.BeginAnimation(SolidColorBrush.ColorProperty, animation);
                 Test_Model_text.Text = "Testing";
+
+                #endregion
 
                 // Create Saves and Plots folders if they don't exist
                 Directory.CreateDirectory(Saves_Directory.Text + "\\Saves");
@@ -1539,38 +1557,34 @@ namespace LIBSVM_GUI_Template_test
                 Prediction_File_Location.Text = Saves_Directory.Text + "\\Saves\\" + File_Name.Text + "_Prediction";
                 Prediction_File_Location.ScrollToHorizontalOffset(double.PositiveInfinity);
 
-                // Update the image for prediction
-                #region Display Plot
+                // Update Plot and Accuracy Text
+                #region Display Plot + Text
 
-                    Plot_Image.Source = null;
-                    Plot_Image.UpdateLayout();
+                Plot_Image.Source = null;
+                Plot_Image.UpdateLayout();
+                GC.Collect();
+
+                if (File.Exists(Saves_Directory.Text + "\\Plots\\" + File_Name.Text + "_Plot.jpg") == true)
+                {
+                    File.Delete(Saves_Directory.Text + "\\Plots\\" + File_Name.Text + "_Plot.jpg");
+                }
+                if (File.Exists(Saves_Directory.Text + "\\Plots\\" + File_Name.Text + "_Plot_cache.jpg") == true)
+                {
+                    File.Move(Saves_Directory.Text + "\\Plots\\" + File_Name.Text + "_Plot_cache.jpg", Saves_Directory.Text + "\\Plots\\" + File_Name.Text + "_Plot.jpg");
+                    string Plot_Location = Saves_Directory.Text + "\\Plots\\" + File_Name.Text + "_Plot.jpg";
+                    BitmapImage bitmap = new BitmapImage();
+                    bitmap.BeginInit();
+                    bitmap.CacheOption = BitmapCacheOption.OnLoad;
+                    bitmap.UriSource = new Uri(Plot_Location);
+                    bitmap.EndInit();
+                    Plot_Image.Source = bitmap;
+                    bitmap.UriSource = null;
                     GC.Collect();
 
-                    if (File.Exists(Saves_Directory.Text + "\\Plots\\" + File_Name.Text + "_Plot.jpg") == true)
-                    {
-                        File.Delete(Saves_Directory.Text + "\\Plots\\" + File_Name.Text + "_Plot.jpg");
-                    }
-                    if (File.Exists(Saves_Directory.Text + "\\Plots\\" + File_Name.Text + "_Plot_cache.jpg") == true)
-                    {
-                        File.Move(Saves_Directory.Text + "\\Plots\\" + File_Name.Text + "_Plot_cache.jpg", Saves_Directory.Text + "\\Plots\\" + File_Name.Text + "_Plot.jpg");
-                        string Plot_Location = Saves_Directory.Text + "\\Plots\\" + File_Name.Text + "_Plot.jpg";
-                        BitmapImage bitmap = new BitmapImage();
-                        bitmap.BeginInit();
-                        bitmap.CacheOption = BitmapCacheOption.OnLoad;
-                        bitmap.UriSource = new Uri(Plot_Location);
-                        bitmap.EndInit();
-                        Plot_Image.Source = bitmap;
-                        bitmap.UriSource = null;
-                        GC.Collect();
 
-                        #endregion
-
-                    // Update the accuracy text
-                    #region Import Accuracy Stats
-
-                    string Accuracy_Lines = System.IO.File.ReadAllText(Assembly_Location + "\\Required_Files\\MatlabOutputText\\" + "Accuracy");
-                    MSE_text.Text = Helper.ReadLine(Accuracy_Lines, 2);
-                    SCC_text.Text = Helper.ReadLine(Accuracy_Lines, 3);
+                string Accuracy_Lines = System.IO.File.ReadAllText(Assembly_Location + "\\Required_Files\\MatlabOutputText\\" + "Accuracy");
+                MSE_text.Text = Helper.ReadLine(Accuracy_Lines, 2);
+                SCC_text.Text = Helper.ReadLine(Accuracy_Lines, 3);
 
                 }
                 else
@@ -1588,7 +1602,6 @@ namespace LIBSVM_GUI_Template_test
 
         public async void Train_and_Test_Button_Click(object sender, RoutedEventArgs e)
         {
-
             #region Prerequesite Checks
             // Check if training or testing are already running
             if (TrainRunning == 1)
@@ -1617,12 +1630,15 @@ namespace LIBSVM_GUI_Template_test
             {
                 System.Windows.Forms.MessageBox.Show("Please select a valid saves directory");
             }
+
+                #endregion
+
             else
             {
-
-            #endregion
-
                 #region Training 
+
+                // Set Up Training + Button
+                #region Set Up Training 
 
                 TrainRunning = 1;
                 ColorAnimation animation;
@@ -1635,6 +1651,8 @@ namespace LIBSVM_GUI_Template_test
                 Train_Model_Button.Background = new SolidColorBrush(Colors.DarkTurquoise);
                 Train_Model_Button.Background.BeginAnimation(SolidColorBrush.ColorProperty, animation);
                 Train_Model_text.Text = "Training";
+
+                #endregion
 
                 // Create Saves folder if it doesn't exist
                 Directory.CreateDirectory(Saves_Directory.Text + "\\Saves");
@@ -1788,7 +1806,7 @@ namespace LIBSVM_GUI_Template_test
                 Train_Model_Button.Background = new SolidColorBrush(Colors.DarkTurquoise);
                 Train_Model_text.Text = "Train Model";
 
-
+                // Update Model File Location
                 Model_File_Location.Text = Saves_Directory.Text + "\\Saves\\" + File_Name.Text + "_Model";
                 Model_File_Location.ScrollToHorizontalOffset(double.PositiveInfinity);
 
@@ -1796,10 +1814,15 @@ namespace LIBSVM_GUI_Template_test
 
                 #region Testing
 
+                // Set Up Testing + Button
+                #region Set Up Testing
+
                 TestRunning = 1;
                 Test_Model_Button.Background = new SolidColorBrush(Colors.DarkTurquoise);
                 Test_Model_Button.Background.BeginAnimation(SolidColorBrush.ColorProperty, animation);
                 Test_Model_text.Text = "Testing";
+
+                #endregion
 
                 // Create Saves and Plots folders if they don't exist
                 Directory.CreateDirectory(Saves_Directory.Text + "\\Saves");
@@ -1910,8 +1933,8 @@ namespace LIBSVM_GUI_Template_test
                 Prediction_File_Location.Text = Saves_Directory.Text + "\\Saves\\" + File_Name.Text + "_Prediction";
                 Prediction_File_Location.ScrollToHorizontalOffset(double.PositiveInfinity);
 
-                // Update the image for prediction
-                #region Display Plot
+                // Update Plot and Accuracy Text
+                #region Display Plot + Text
 
                 Plot_Image.Source = null;
                 Plot_Image.UpdateLayout();
@@ -1934,11 +1957,7 @@ namespace LIBSVM_GUI_Template_test
                     bitmap.UriSource = null;
                     GC.Collect();
 
-                    #endregion
-
-                    // Update the accuracy text
-                    #region Import Accuracy Stats
-
+                    // Accuracy Text
                     string Accuracy_Lines = System.IO.File.ReadAllText(Assembly_Location + "\\Required_Files\\MatlabOutputText\\" + "Accuracy");
                     MSE_text.Text = Helper.ReadLine(Accuracy_Lines, 2);
                     SCC_text.Text = Helper.ReadLine(Accuracy_Lines, 3);
@@ -2412,6 +2431,10 @@ namespace LIBSVM_GUI_Template_test
             Model_File_Location.UpdateLayout();
         }
 
+        #endregion
+
+        #region Inclass Helpers
+
         public void Folder_File_Create()
         {
             Directory.CreateDirectory(Assembly_Location + "\\Required_Files");
@@ -2427,10 +2450,6 @@ namespace LIBSVM_GUI_Template_test
             Helper.CreateEmptyFileIfNotThere(Assembly_Location + "\\Required_Files\\MatlabOutputText\\Model_Stats.txt");
             Helper.CreateEmptyFileIfNotThere(Assembly_Location + "\\Required_Files\\MatlabOutputText\\Parameter_Cross.txt");
         }
-
-        #endregion
-
-        #region Inclass Helpers
 
         public void IfTAttributeIndexVisibility()
         {
@@ -3245,7 +3264,7 @@ class DataManagementSample1
     }
 }
 
-class ForGUI_GridSearchSample1 : System.ComponentModel.Component, IDisposable
+class ForGUI_GridSearchSample1
 {
 
     static ForGUI_GridSearch.Class1 class1Instance;
@@ -3347,27 +3366,3 @@ class SplitSample1
 }
 
 #endregion
-
-// To Do:
-// Force quit function
-// Write a README.txt
-// Check if all the numbers are numbers and not invalid characters or empty
-// Make a flowchart for using the app
-// Add ToolTips for everything that needs it in app
-// Initialise saves directory
-
-
-
-// What I Would Do In The Future:
-// Allow CSV files and not just matlab files to be put in the training data and testing data slots
-// Add cross-platform
-// Allow files to be imported that have incomplete data i.e. if some columns have fewer data points than others
-// Remake the backend so that it either doen't use MATLAB at all, or use the MATLAB coder so that the MATLAB
-// runtime isn't needed for the client
-// Allow an unrestricted number of attributes be used in testing and training
-// Exported the converted data as CSV files
-// make the plots interactive 
-// Output more informative result when not working such as "not enough data for requested length"
-// Implement the .NET or C# wrappers of LIBSVM if possible
-// Add a preview of the exported files to the Data Management window
-// Add MATLAB command window text to dropdown
