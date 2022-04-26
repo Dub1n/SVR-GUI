@@ -64,3 +64,8 @@ Make sure there are no whitespaces in your application install path, saves direc
 When [Scale Data] is selected, the each attribute's data is scaled proportionally between 0 and 1. After being used for
 predictions, the testing data and predicted data are scaled up (or down) by the same factor they were scaled down (or up)
 This is then used in the plots and in the predicted data file.
+
+Hover over a piece of text to bring up a tooltip to show what the input does.
+
+Do not close the plots before they automatically close, otherwise they might not be able to be saved to your computer
+and displayed in the app
