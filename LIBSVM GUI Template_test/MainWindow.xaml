@@ -152,7 +152,7 @@
                             <TextBlock Text="File Name"
                                    Grid.Row="1" Grid.Column="0" Padding="5 0 5 0"/>
 
-                            <TextBox x:Name="Saves_Directory" Text="C:\Users\gabri\Documents\Bristol\Research_Project\GUI"
+                            <TextBox x:Name="Saves_Directory" Text=""
                                  Grid.Row="0" Grid.Column="1" Margin="1 1 27 1" Grid.ColumnSpan="2" Background="Azure"/>
                             <Button x:Name="Saves_Directory_Button" Click="Saves_Directory_Button_Click"
                                 Grid.Row="0" Grid.Column="2" Width="20"  Background="PowderBlue"
@@ -210,7 +210,7 @@
 
                                     <TextBlock Text="Data File Source"
                                                Grid.Row="1" Grid.Column="0" Padding="5 2 5 0"/>
-                                    <TextBox x:Name="Data_File_Source" Text="C:\Users\gabri\Documents\Bristol\Research_Project\GUI\Sample_Data\39001_data.csv" 
+                                    <TextBox x:Name="Data_File_Source" Text="" 
                                                Grid.Row="1" Grid.Column="1" Margin="1,1,23,1" Background="Azure"/>
                                     <Button x:Name="Data_File_Source_Button" Click="Data_File_Source_Button_Click"
                                             Grid.Row="1" Grid.Column="1" Width="20" HorizontalAlignment="Right" 
@@ -366,7 +366,7 @@
                                     <TextBlock Text="Data to split"
                                            Grid.Row="14" Grid.Column="0" Padding="5 2 5 0"/>
                                     <TextBox x:Name="Data_Split_Location" HorizontalAlignment="Left" Background="Azure"
-                                             Text="C:\Users\gabri\Documents\Bristol\Research_Project\GUI\Saves\File_Name_Data_Converted.mat"
+                                             Text="" Width="276"
                                              Grid.Row="14" Grid.Column="1" Margin="1,1,23,1" TextAlignment="Right"/>
                                     <Button x:Name="Data_To_Split_Button" Click="Data_To_Split_Button_Click"
                                             Grid.Row="14" Grid.Column="1" Width="20" HorizontalAlignment="Right" 
@@ -946,7 +946,7 @@
                                     <TextBlock Text="Training Data"
                                            Grid.Row="1" Grid.Column="0" Padding="5 0 0 0"/>
                                     <TextBox x:Name="Training_Data_Location" Background="Azure"
-                                             Text="C:\Users\gabri\Documents\Bristol\Research_Project\GUI\Saves\File_Name_Data_Converted.mat"
+                                             Text=""
                                              Grid.Row="1" Grid.Column="1" Margin="1 1 23 1"
                                              Loaded="Training_Data_Location_Loaded"/>
                                     <Button x:Name="Training_Data_Button" Click="Training_Data_Button_Click"
@@ -960,7 +960,7 @@
                                     <TextBlock Text="Testing Data"
                                            Grid.Row="6" Grid.Column="0" Padding="5 2 5 0"/>
                                     <TextBox x:Name="Testing_Data_Location"  Background="Azure"
-                                             Text="C:\Users\gabri\Documents\Bristol\Research_Project\GUI\Saves\File_Name_Data_Converted"
+                                             Text=""
                                              Grid.Row="6" Grid.Column="1" Margin="1 1 23 1 " Loaded="Testing_Data_Location_Loaded"/>
                                     <Button x:Name="Testing_Data_Button" Click="Testing_Data_Button_Click" 
                                             Grid.Row="6" Grid.Column="1" Width="20" HorizontalAlignment="Right" 
@@ -1018,7 +1018,7 @@
                                     <TextBlock Text="Model" Margin="5 0 0 0"
                                            Grid.Row="7" Grid.Column="0" Padding="0 2"/>
                                     <TextBox x:Name="Model_File_Location"  Loaded="Model_File_Location_Loaded" Background="Azure"
-                                             Text="C:\Users\gabri\Documents\Bristol\Research_Project\GUI\Saves\File_Name_Model"
+                                             Text=""
                                              Grid.Row="7" Grid.Column="1" Margin="1 1 23 1"/>
                                     <Button x:Name="Model_Location_Button" Click="Model_Location_Button_Click"
                                             Grid.Row="7" Grid.Column="1" Width="20" HorizontalAlignment="Right" 
@@ -1253,6 +1253,33 @@
                                         <ComboBoxItem Content="CSV" IsSelected="True"></ComboBoxItem>
                                         <ComboBoxItem Content="MATLAB Array"></ComboBoxItem>
                                     </ComboBox>
+
+                                    <TextBlock Text="Presets" Grid.Row="6" FontWeight="Medium" />
+
+                                    <TextBlock Text="Preset Name" Grid.Row="7"/>
+                                    <TextBox x:Name="Preset_Name" Text="Preset_1"
+                                             Grid.Row="7" Grid.Column="2" Grid.ColumnSpan="2" Margin="1" Padding="1 0" Width="98"
+                                             HorizontalAlignment="Left"/>
+                                    
+                                    <TextBlock Text="Save Preset" Grid.Row="8" />
+                                    <Button Content="Save" x:Name="Save_Preset" Click="Save_Preset_Click"
+                                            Grid.Row="8" Grid.Column="2" Grid.ColumnSpan="2" Margin="1" Background="LightCyan">
+                                        <Button.Resources>
+                                            <Style TargetType="Border">
+                                                <Setter Property="CornerRadius" Value="5"/>
+                                            </Style>
+                                        </Button.Resources>
+                                    </Button>
+
+                                    <TextBlock Text="Load Preset" Grid.Row="9" />
+                                    <Button Content="Load" x:Name="Load_Preset" Click="Load_Preset_Click"
+                                            Grid.Row="9" Grid.Column="2" Grid.ColumnSpan="2" Margin="1" Background="LightCyan">
+                                        <Button.Resources>
+                                            <Style TargetType="Border">
+                                                <Setter Property="CornerRadius" Value="5"/>
+                                            </Style>
+                                        </Button.Resources>
+                                    </Button>
 
                                 </Grid>
                             </Border>

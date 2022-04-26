@@ -94,6 +94,8 @@ namespace LIBSVM_GUI_Template_test
         public int TestRunning = 0;
         private int MatlabPID;
         public string Assembly_Location = System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase.Remove(0,8));
+        public string preset_location { get; set; }
+        public int Success { get; set; }
 
 
         #endregion
@@ -190,7 +192,6 @@ namespace LIBSVM_GUI_Template_test
             R.Visibility = Visibility.Hidden;
             R_Text.Visibility = Visibility.Hidden;
 
-            //Column1.Visibility = Visibility.Visible;
             Column2.Visibility = Visibility.Visible;
             Column3.Visibility = Visibility.Collapsed;
             Column4.Visibility = Visibility.Collapsed;
@@ -214,10 +215,10 @@ namespace LIBSVM_GUI_Template_test
             Grid_Search_Prediction_Image.Source = ImageSourceFromBitmap(Properties.Resources.Plot_Template);
             Plot_Image.Source = ImageSourceFromBitmap(Properties.Resources.Plot_Template);
 
-
-            Console.WriteLine(Assembly_Location);
-
             Folder_File_Create();
+
+            Saves_Directory.Text = Assembly_Location + "\\Saves";
+
 
             #endregion
 
@@ -452,108 +453,7 @@ namespace LIBSVM_GUI_Template_test
         public void ColumnPlus_Click(object sender, RoutedEventArgs e)
         {
             ColumnIndex += 1;
-            if (ColumnIndex == 1)
-            {
-                //Column1.Visibility = Visibility.Visible;
-                Column2.Visibility = Visibility.Collapsed;
-                Column3.Visibility = Visibility.Collapsed;
-                Column4.Visibility = Visibility.Collapsed;
-                Column5.Visibility = Visibility.Collapsed;
-                Column6.Visibility = Visibility.Collapsed;
-                Column1Text.Visibility = Visibility.Visible;
-                Column2Text.Visibility = Visibility.Collapsed; 
-                Column3Text.Visibility = Visibility.Collapsed; 
-                Column4Text.Visibility = Visibility.Collapsed; 
-                Column5Text.Visibility = Visibility.Collapsed; 
-                Column6Text.Visibility = Visibility.Collapsed;
-                ColumnMinus.IsEnabled = false;
-                ColumnPlus.IsEnabled = true;
-            }
-            if (ColumnIndex == 2)
-            {
-                //Column1.Visibility = Visibility.Visible;
-                Column2.Visibility = Visibility.Visible;
-                Column3.Visibility = Visibility.Collapsed;
-                Column4.Visibility = Visibility.Collapsed;
-                Column5.Visibility = Visibility.Collapsed;
-                Column6.Visibility = Visibility.Collapsed;
-                Column1Text.Visibility = Visibility.Visible;
-                Column2Text.Visibility = Visibility.Visible;
-                Column3Text.Visibility = Visibility.Collapsed;
-                Column4Text.Visibility = Visibility.Collapsed;
-                Column5Text.Visibility = Visibility.Collapsed;
-                Column6Text.Visibility = Visibility.Collapsed;
-                ColumnMinus.IsEnabled = true;
-                ColumnPlus.IsEnabled = true;
-            }
-            if (ColumnIndex == 3)
-            {
-                //Column1.Visibility = Visibility.Visible;
-                Column2.Visibility = Visibility.Visible;
-                Column3.Visibility = Visibility.Visible;
-                Column4.Visibility = Visibility.Collapsed;
-                Column5.Visibility = Visibility.Collapsed;
-                Column6.Visibility = Visibility.Collapsed;
-                Column1Text.Visibility = Visibility.Visible;
-                Column2Text.Visibility = Visibility.Visible;
-                Column3Text.Visibility = Visibility.Visible;
-                Column4Text.Visibility = Visibility.Collapsed;
-                Column5Text.Visibility = Visibility.Collapsed;
-                Column6Text.Visibility = Visibility.Collapsed;
-                ColumnMinus.IsEnabled = true;
-                ColumnPlus.IsEnabled = true;
-            }
-            if (ColumnIndex == 4)
-            {
-                //Column1.Visibility = Visibility.Visible;
-                Column2.Visibility = Visibility.Visible;
-                Column3.Visibility = Visibility.Visible;
-                Column4.Visibility = Visibility.Visible;
-                Column5.Visibility = Visibility.Collapsed;
-                Column6.Visibility = Visibility.Collapsed;
-                Column1Text.Visibility = Visibility.Visible;
-                Column2Text.Visibility = Visibility.Visible;
-                Column3Text.Visibility = Visibility.Visible;
-                Column4Text.Visibility = Visibility.Visible;
-                Column5Text.Visibility = Visibility.Collapsed;
-                Column6Text.Visibility = Visibility.Collapsed;
-                ColumnMinus.IsEnabled = true;
-                ColumnPlus.IsEnabled = true;
-            }
-            if (ColumnIndex == 5)
-            {
-                //Column1.Visibility = Visibility.Visible;
-                Column2.Visibility = Visibility.Visible;
-                Column3.Visibility = Visibility.Visible;
-                Column4.Visibility = Visibility.Visible;
-                Column5.Visibility = Visibility.Visible;
-                Column6.Visibility = Visibility.Collapsed;
-                Column1Text.Visibility = Visibility.Visible;
-                Column2Text.Visibility = Visibility.Visible;
-                Column3Text.Visibility = Visibility.Visible;
-                Column4Text.Visibility = Visibility.Visible;
-                Column5Text.Visibility = Visibility.Visible;
-                Column6Text.Visibility = Visibility.Collapsed;
-                ColumnMinus.IsEnabled = true;
-                ColumnPlus.IsEnabled = true;
-            }
-            if (ColumnIndex == 6)
-            {
-                //Column1.Visibility = Visibility.Visible;
-                Column2.Visibility = Visibility.Visible;
-                Column3.Visibility = Visibility.Visible;
-                Column4.Visibility = Visibility.Visible;
-                Column5.Visibility = Visibility.Visible;
-                Column6.Visibility = Visibility.Visible;
-                Column1Text.Visibility = Visibility.Visible;
-                Column2Text.Visibility = Visibility.Visible;
-                Column3Text.Visibility = Visibility.Visible;
-                Column4Text.Visibility = Visibility.Visible;
-                Column5Text.Visibility = Visibility.Visible;
-                Column6Text.Visibility = Visibility.Visible;
-                ColumnMinus.IsEnabled = true;
-                ColumnPlus.IsEnabled = false;
-            }
+            IfColumnIndex();
             UpdateLayout();
         }
 
@@ -1725,7 +1625,6 @@ namespace LIBSVM_GUI_Template_test
                 #region Training 
 
                 TrainRunning = 1;
-                TrainRunning = 1;
                 ColorAnimation animation;
                 animation = new ColorAnimation();
                 animation.From = Colors.Silver;
@@ -2302,6 +2201,197 @@ namespace LIBSVM_GUI_Template_test
 
         }
 
+        private void Save_Preset_Click(object sender, RoutedEventArgs e)
+        {
+            string PresetPath = Assembly_Location + "\\Required_Files\\Presets\\" + Preset_Name.Text;
+            string[] PresetLines =
+            {
+                Saves_Directory.Text,
+                File_Name.Text,
+                Data_File_Source.Text,
+                Column1Text.Text,
+                Column2Text.Text,
+                Column3Text.Text,
+                Column4Text.Text,
+                Column5Text.Text,
+                Column6Text.Text,
+                Date_Column.Text,
+                TopToBottom.IsChecked.ToString(),
+                Has_Labels.IsChecked.ToString(),
+                Scale_Selected.IsChecked.ToString(),
+                Prepared_File_Location.Text,
+                Data_Split_Location.Text,
+                Percentage_Split.Text,
+                First_Portion_Location.Text,
+                Second_Portion_Location.Text,
+                Start_Text.Text,
+                Length_Text.Text,
+                ProjectionTrain.Text,
+                Step_Text.Text,
+                Attribute1Text.Text,
+                Attribute2Text.Text,
+                Attribute3Text.Text,
+                Attribute4Text.Text,
+                Attribute5Text.Text,
+                Attribute6Text.Text,
+                Accuracy_ComboBox.SelectedIndex.ToString(),
+                SVM_ComboBox.SelectedIndex.ToString(),
+                Cost_Text.Text,
+                Ee_Text.Text,
+                Ep_Text.Text,
+                Nu_Text.Text,
+                Kernel_ComboBox.SelectedIndex.ToString(),
+                Gamma_Text.Text,
+                R_Text.Text,
+                Degree_Text.Text,
+                Parameter_Selected.IsChecked.ToString(),
+                CLower_Text.Text,
+                CUpper_Text.Text,
+                CStep_Text.Text,
+                GLower_Text.Text,
+                GUpper_Text.Text,
+                GStep_Text.Text,
+                Feature_Selected.IsChecked.ToString(),
+                Att1Lower_Text.Text,
+                Att1Upper_Text.Text,
+                Att1Step_Text.Text,
+                Att2Lower_Text.Text,
+                Att2Upper_Text.Text,
+                Att2Step_Text.Text,
+                C_Result_Text.Text,
+                G_Result_Text.Text,
+                Att1_Result_Text.Text,
+                Att2_Result_Text.Text,
+                Training_Data_Location.Text,
+                Model_Output_Location.Text,
+                Testing_Data_Location.Text,
+                Model_File_Location.Text,
+                TAttribute1Text.Text,
+                TAttribute2Text.Text,
+                TAttribute3Text.Text,
+                TAttribute4Text.Text,
+                TAttribute5Text.Text,
+                TAttribute6Text.Text,
+                TStart_Text.Text,
+                TLength_Text.Text,
+                ProjectionTest.Text,
+                TStep_Text.Text,
+                Prediction_File_Location.Text,
+                Link_CheckBox.IsChecked.ToString(),
+                ColumnIndex.ToString(),
+                AttributeIndex.ToString(),
+                TAttributeIndex.ToString(),
+                Shrinking_Selected.IsChecked.ToString(),
+                Cache_text.Text,
+                Split_Preference.Text,
+                File_Type.SelectedIndex.ToString(),
+            };
+            File.WriteAllLines(PresetPath, PresetLines);
+        }
+
+        private void Load_Preset_Click(object sender, RoutedEventArgs e)
+        {
+            FilePicker main = new FilePicker();
+            var results = main.PRESET();
+            if (results.Item1 == "1")
+            {
+                string Preset_Lines = System.IO.File.ReadAllText(results.Item2);
+                Saves_Directory.Text = Helper.ReadLine(Preset_Lines, 1);
+                File_Name.Text = Helper.ReadLine(Preset_Lines, 2);
+                Data_File_Source.Text = Helper.ReadLine(Preset_Lines, 3);
+                Column1Text.Text = Helper.ReadLine(Preset_Lines, 4);
+                Column2Text.Text = Helper.ReadLine(Preset_Lines, 5);
+                Column3Text.Text = Helper.ReadLine(Preset_Lines, 6);
+                Column4Text.Text = Helper.ReadLine(Preset_Lines, 7);
+                Column5Text.Text = Helper.ReadLine(Preset_Lines, 8);
+                Column6Text.Text = Helper.ReadLine(Preset_Lines, 9);
+                Date_Column.Text = Helper.ReadLine(Preset_Lines, 10);
+                TopToBottom.IsChecked = Convert.ToBoolean(Helper.ReadLine(Preset_Lines, 11));
+                Has_Labels.IsChecked = Convert.ToBoolean(Helper.ReadLine(Preset_Lines, 12));
+                Scale_Selected.IsChecked = Convert.ToBoolean(Helper.ReadLine(Preset_Lines, 13));
+                Prepared_File_Location.Text = Helper.ReadLine(Preset_Lines, 14);
+                Data_Split_Location.Text = Helper.ReadLine(Preset_Lines, 15);
+                Percentage_Split.Text = Helper.ReadLine(Preset_Lines, 16);
+                First_Portion_Location.Text = Helper.ReadLine(Preset_Lines, 17);
+                Second_Portion_Location.Text = Helper.ReadLine(Preset_Lines, 18);
+                Start_Text.Text = Helper.ReadLine(Preset_Lines, 19);
+                Length_Text.Text = Helper.ReadLine(Preset_Lines, 20);
+                ProjectionTrain.Text = Helper.ReadLine(Preset_Lines, 21);
+                Step_Text.Text = Helper.ReadLine(Preset_Lines, 22);
+                Attribute1Text.Text = Helper.ReadLine(Preset_Lines, 23);
+                Attribute2Text.Text = Helper.ReadLine(Preset_Lines, 24);
+                Attribute3Text.Text = Helper.ReadLine(Preset_Lines, 25);
+                Attribute4Text.Text = Helper.ReadLine(Preset_Lines, 26);
+                Attribute5Text.Text = Helper.ReadLine(Preset_Lines, 27);
+                Attribute6Text.Text = Helper.ReadLine(Preset_Lines, 28);
+                Accuracy_ComboBox.SelectedIndex = Int32.Parse(Helper.ReadLine(Preset_Lines, 29));
+                SVM_ComboBox.SelectedIndex = Int32.Parse(Helper.ReadLine(Preset_Lines, 30));
+                Cost_Text.Text = Helper.ReadLine(Preset_Lines, 31);
+                Ee_Text.Text = Helper.ReadLine(Preset_Lines, 32);
+                Ep_Text.Text = Helper.ReadLine(Preset_Lines, 33);
+                Nu_Text.Text = Helper.ReadLine(Preset_Lines, 34);
+                Kernel_ComboBox.SelectedIndex = Int32.Parse(Helper.ReadLine(Preset_Lines, 35));
+                Gamma_Text.Text = Helper.ReadLine(Preset_Lines, 36);
+                R_Text.Text = Helper.ReadLine(Preset_Lines, 37);
+                Degree_Text.Text = Helper.ReadLine(Preset_Lines, 38);
+                Parameter_Selected.IsChecked = Convert.ToBoolean(Helper.ReadLine(Preset_Lines, 39));
+                CLower_Text.Text = Helper.ReadLine(Preset_Lines, 40);
+                CUpper_Text.Text = Helper.ReadLine(Preset_Lines, 41);
+                CStep_Text.Text = Helper.ReadLine(Preset_Lines, 42);
+                GLower_Text.Text = Helper.ReadLine(Preset_Lines, 43);
+                GUpper_Text.Text = Helper.ReadLine(Preset_Lines, 44);
+                GStep_Text.Text = Helper.ReadLine(Preset_Lines, 45);
+                Feature_Selected.IsChecked = Convert.ToBoolean(Helper.ReadLine(Preset_Lines, 46));
+                Att1Lower_Text.Text = Helper.ReadLine(Preset_Lines, 47);
+                Att1Upper_Text.Text = Helper.ReadLine(Preset_Lines, 48);
+                Att1Step_Text.Text = Helper.ReadLine(Preset_Lines, 49);
+                Att2Lower_Text.Text = Helper.ReadLine(Preset_Lines, 50);
+                Att2Upper_Text.Text = Helper.ReadLine(Preset_Lines, 51);
+                Att2Step_Text.Text = Helper.ReadLine(Preset_Lines, 52);
+                C_Result_Text.Text = Helper.ReadLine(Preset_Lines, 53);
+                G_Result_Text.Text = Helper.ReadLine(Preset_Lines, 54);
+                Att1_Result_Text.Text = Helper.ReadLine(Preset_Lines, 55);
+                Att2_Result_Text.Text = Helper.ReadLine(Preset_Lines, 56);
+                Training_Data_Location.Text = Helper.ReadLine(Preset_Lines, 57);
+                Model_Output_Location.Text = Helper.ReadLine(Preset_Lines, 58);
+                Testing_Data_Location.Text = Helper.ReadLine(Preset_Lines, 59);
+                Model_File_Location.Text = Helper.ReadLine(Preset_Lines, 60);
+                TAttribute1Text.Text = Helper.ReadLine(Preset_Lines, 61);
+                TAttribute2Text.Text = Helper.ReadLine(Preset_Lines, 62);
+                TAttribute3Text.Text = Helper.ReadLine(Preset_Lines, 63);
+                TAttribute4Text.Text = Helper.ReadLine(Preset_Lines, 64);
+                TAttribute5Text.Text = Helper.ReadLine(Preset_Lines, 65);
+                TAttribute6Text.Text = Helper.ReadLine(Preset_Lines, 66);
+                TStart_Text.Text = Helper.ReadLine(Preset_Lines, 67);
+                TLength_Text.Text = Helper.ReadLine(Preset_Lines, 68);
+                ProjectionTest.Text = Helper.ReadLine(Preset_Lines, 69);
+                TStep_Text.Text = Helper.ReadLine(Preset_Lines, 70);
+                Prediction_File_Location.Text = Helper.ReadLine(Preset_Lines, 71);
+                Link_CheckBox.IsChecked = Convert.ToBoolean(Helper.ReadLine(Preset_Lines, 72));
+                ColumnIndex = Int32.Parse(Helper.ReadLine(Preset_Lines, 73));
+                AttributeIndex = Int32.Parse(Helper.ReadLine(Preset_Lines, 74));
+                TAttributeIndex = Int32.Parse(Helper.ReadLine(Preset_Lines, 75));
+                Shrinking_Selected.IsChecked = Convert.ToBoolean(Helper.ReadLine(Preset_Lines, 76));
+                Cache_text.Text = Helper.ReadLine(Preset_Lines, 77);
+                Split_Preference.Text = Helper.ReadLine(Preset_Lines, 78);
+                File_Type.SelectedIndex = Int32.Parse(Helper.ReadLine(Preset_Lines, 79));
+
+                string preset_path_ = System.IO.Path.GetFileName(results.Item2);
+                System.Windows.Forms.MessageBox.Show("Loaded " + preset_path_);
+
+                IfColumnIndex();
+                IfAttributeIndexAll();
+                IfTAttributeIndexVisibility();
+                IfTAttributeIndexPlusMinusIsEnabled();
+
+                UpdateLayout();
+            }
+            else
+            {
+                System.Windows.Forms.MessageBox.Show("Preset not found");
+            }
+        }
+
         #region On Loaded
 
         public void Training_Data_Location_Loaded(object sender, RoutedEventArgs e)
@@ -2327,6 +2417,8 @@ namespace LIBSVM_GUI_Template_test
             Directory.CreateDirectory(Assembly_Location + "\\Required_Files");
             Directory.CreateDirectory(Assembly_Location + "\\Required_Files\\Settings");
             Directory.CreateDirectory(Assembly_Location + "\\Required_Files\\MatlabOutputText");
+            Directory.CreateDirectory(Assembly_Location + "\\Required_Files\\Presets");
+            Directory.CreateDirectory(Assembly_Location + "\\Saves");
             Helper.CreateEmptyFileIfNotThere(Assembly_Location + "\\Required_Files\\MatlabOutputText\\Accuracy.txt");
             Helper.CreateEmptyFileIfNotThere(Assembly_Location + "\\Required_Files\\MatlabOutputText\\Best_CandG.txt");
             Helper.CreateEmptyFileIfNotThere(Assembly_Location + "\\Required_Files\\MatlabOutputText\\Best_Features.txt");
@@ -2548,7 +2640,107 @@ namespace LIBSVM_GUI_Template_test
                 Attribute6Text.Visibility = Visibility.Visible;
                 AttributeMinus.IsEnabled = true;
                 AttributePlus.IsEnabled = false;
-            };
+            }
+        }
+
+        public void IfColumnIndex()
+        {
+            if (ColumnIndex == 1)
+            {
+                Column2.Visibility = Visibility.Collapsed;
+                Column3.Visibility = Visibility.Collapsed;
+                Column4.Visibility = Visibility.Collapsed;
+                Column5.Visibility = Visibility.Collapsed;
+                Column6.Visibility = Visibility.Collapsed;
+                Column1Text.Visibility = Visibility.Visible;
+                Column2Text.Visibility = Visibility.Collapsed;
+                Column3Text.Visibility = Visibility.Collapsed;
+                Column4Text.Visibility = Visibility.Collapsed;
+                Column5Text.Visibility = Visibility.Collapsed;
+                Column6Text.Visibility = Visibility.Collapsed;
+                ColumnMinus.IsEnabled = false;
+                ColumnPlus.IsEnabled = true;
+            }
+            if (ColumnIndex == 2)
+            {
+                Column2.Visibility = Visibility.Visible;
+                Column3.Visibility = Visibility.Collapsed;
+                Column4.Visibility = Visibility.Collapsed;
+                Column5.Visibility = Visibility.Collapsed;
+                Column6.Visibility = Visibility.Collapsed;
+                Column1Text.Visibility = Visibility.Visible;
+                Column2Text.Visibility = Visibility.Visible;
+                Column3Text.Visibility = Visibility.Collapsed;
+                Column4Text.Visibility = Visibility.Collapsed;
+                Column5Text.Visibility = Visibility.Collapsed;
+                Column6Text.Visibility = Visibility.Collapsed;
+                ColumnMinus.IsEnabled = true;
+                ColumnPlus.IsEnabled = true;
+            }
+            if (ColumnIndex == 3)
+            {
+                Column2.Visibility = Visibility.Visible;
+                Column3.Visibility = Visibility.Visible;
+                Column4.Visibility = Visibility.Collapsed;
+                Column5.Visibility = Visibility.Collapsed;
+                Column6.Visibility = Visibility.Collapsed;
+                Column1Text.Visibility = Visibility.Visible;
+                Column2Text.Visibility = Visibility.Visible;
+                Column3Text.Visibility = Visibility.Visible;
+                Column4Text.Visibility = Visibility.Collapsed;
+                Column5Text.Visibility = Visibility.Collapsed;
+                Column6Text.Visibility = Visibility.Collapsed;
+                ColumnMinus.IsEnabled = true;
+                ColumnPlus.IsEnabled = true;
+            }
+            if (ColumnIndex == 4)
+            {
+                Column2.Visibility = Visibility.Visible;
+                Column3.Visibility = Visibility.Visible;
+                Column4.Visibility = Visibility.Visible;
+                Column5.Visibility = Visibility.Collapsed;
+                Column6.Visibility = Visibility.Collapsed;
+                Column1Text.Visibility = Visibility.Visible;
+                Column2Text.Visibility = Visibility.Visible;
+                Column3Text.Visibility = Visibility.Visible;
+                Column4Text.Visibility = Visibility.Visible;
+                Column5Text.Visibility = Visibility.Collapsed;
+                Column6Text.Visibility = Visibility.Collapsed;
+                ColumnMinus.IsEnabled = true;
+                ColumnPlus.IsEnabled = true;
+            }
+            if (ColumnIndex == 5)
+            {
+                Column2.Visibility = Visibility.Visible;
+                Column3.Visibility = Visibility.Visible;
+                Column4.Visibility = Visibility.Visible;
+                Column5.Visibility = Visibility.Visible;
+                Column6.Visibility = Visibility.Collapsed;
+                Column1Text.Visibility = Visibility.Visible;
+                Column2Text.Visibility = Visibility.Visible;
+                Column3Text.Visibility = Visibility.Visible;
+                Column4Text.Visibility = Visibility.Visible;
+                Column5Text.Visibility = Visibility.Visible;
+                Column6Text.Visibility = Visibility.Collapsed;
+                ColumnMinus.IsEnabled = true;
+                ColumnPlus.IsEnabled = true;
+            }
+            if (ColumnIndex == 6)
+            {
+                Column2.Visibility = Visibility.Visible;
+                Column3.Visibility = Visibility.Visible;
+                Column4.Visibility = Visibility.Visible;
+                Column5.Visibility = Visibility.Visible;
+                Column6.Visibility = Visibility.Visible;
+                Column1Text.Visibility = Visibility.Visible;
+                Column2Text.Visibility = Visibility.Visible;
+                Column3Text.Visibility = Visibility.Visible;
+                Column4Text.Visibility = Visibility.Visible;
+                Column5Text.Visibility = Visibility.Visible;
+                Column6Text.Visibility = Visibility.Visible;
+                ColumnMinus.IsEnabled = true;
+                ColumnPlus.IsEnabled = false;
+            }
         }
 
         public void SetMatlabPID(int pid)
@@ -2570,7 +2762,22 @@ namespace LIBSVM_GUI_Template_test
 
         private void Close_Button_Click(object sender, RoutedEventArgs e)
         {
-            Close();
+            if (ConvertRunning == 1 | SplitRunning == 1 | GridSearchRunning == 1 | TrainRunning == 1 | TestRunning == 1) 
+            {
+
+                const string message = "Are you sure that you would like to close while program is running?";
+                const string caption = "Close Program";
+                var result = System.Windows.Forms.MessageBox.Show(message, caption,
+                                 MessageBoxButtons.YesNo,
+                                 MessageBoxIcon.Question);
+
+                if (result == System.Windows.Forms.DialogResult.Yes)
+                    Close();
+            }
+            else
+            {
+                Close();
+            }
         }
 
         private void Minimise_Click(object sender, RoutedEventArgs e)
@@ -2967,6 +3174,24 @@ class FilePicker
             TextBox.Text = openFileDialog1.FileName;
         }
     }
+    public (string, string) PRESET()
+    {
+        LIBSVM_GUI_Template_test.MainWindow main = new LIBSVM_GUI_Template_test.MainWindow();
+        Microsoft.Win32.OpenFileDialog openFileDialog1 = new Microsoft.Win32.OpenFileDialog
+        {
+            Title = "Browse Presets",
+            RestoreDirectory = true,
+            InitialDirectory = main.Assembly_Location + "\\Required_Files\\Presets\\",
+        };
+        if (openFileDialog1.ShowDialog() == Convert.ToBoolean(DialogResult.OK))
+        {
+            return ("1", openFileDialog1.FileName);
+        }
+        else
+        {
+            return ("0", openFileDialog1.FileName);
+        }
+    }
 }
 
 class clearmexSample1
@@ -3129,11 +3354,7 @@ class SplitSample1
 // Check if all the numbers are numbers and not invalid characters or empty
 // Make a flowchart for using the app
 // Add ToolTips for everything that needs it in app
-
-
-
-
-// README.txt
+// Initialise saves directory
 
 
 
@@ -3148,7 +3369,5 @@ class SplitSample1
 // make the plots interactive 
 // Output more informative result when not working such as "not enough data for requested length"
 // Implement the .NET or C# wrappers of LIBSVM if possible
-// Add saving and using app presets to quickly load settings and directories
 // Add a preview of the exported files to the Data Management window
-// Ask if the user is sure they want to close the window during training/testing if they click the close button
 // Add MATLAB command window text to dropdown
