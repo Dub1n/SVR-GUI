@@ -7,7 +7,6 @@
         <ResourceDictionary>
             <BitmapImage x:Key="link_unselected" UriSource="assets\link_unselected.png"></BitmapImage>
             <BitmapImage x:Key="link_selected" UriSource="assets\link_selected.png"></BitmapImage>
-            <FontFamily x:Key="Hindsiliguri_Regular">pack://application:,,,/Resources/HindSiliguri_Regular.ttf#HindSiliguri_Regular"</FontFamily>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

@@ -716,16 +716,10 @@
                                                        Grid.Row="0" Grid.Column="1" Padding="0 5 0 2" 
                                                        Grid.ColumnSpan="2" FontWeight="Medium"/>
 
-                                                <!--<CheckBox x:Name="Optimise_None" Checked="None_Checked"
-                                                      Grid.Row="1" Grid.Column="0" Margin="0 0 0 0"
-                                                      VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                                                <TextBlock Text="None"
-                                                       Grid.Row="1" Grid.Column="1" Padding="0 2 5 0"/>-->
-
                                                 <CheckBox x:Name="Parameter_Selected" Checked="Parameter_Checked"
                                                       Grid.Row="1" Grid.Column="0" Margin="0 0 0 0"
                                                       VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                                                <TextBlock Text="Parameter Selection"
+                                                <TextBlock Text="Parameter Selection" ToolTip="Run through the given C and G values to&#x0a;find the best values for the given accuracy"
                                                        Grid.Row="1" Grid.Column="1" Padding="0 2 5 0"/>
 
                                                 <Grid Grid.Row="2" Grid.RowSpan="6" Grid.Column="1">
@@ -750,77 +744,77 @@
                                                     <TextBlock Text="log(C)"
                                                            Grid.Row="0" Grid.Column="0" Padding="0 2 5 0"/>
                                                     <TextBox x:Name="CLower_Text" Text="-2" 
-                                                         Grid.Row="0" Grid.Column="1" Margin="1" Padding="1 0" 
-                                                         Width="25" HorizontalAlignment="Left"/>
+                                                             Grid.Row="0" Grid.Column="1" Margin="1" Padding="1 0" 
+                                                             Width="25" HorizontalAlignment="Left"/>
                                                     <TextBlock Text="to"
                                                            Grid.Row="0" Grid.Column="2" Padding="0 2 5 0"/>
                                                     <TextBox x:Name="CUpper_Text" Text="2" 
-                                                         Grid.Row="0" Grid.Column="3" Margin="1" Padding="1 0" 
-                                                         Width="25" HorizontalAlignment="Left"/>
+                                                             Grid.Row="0" Grid.Column="3" Margin="1" Padding="1 0" 
+                                                             Width="25" HorizontalAlignment="Left"/>
                                                     <TextBlock Text="step"
                                                            Grid.Row="0" Grid.Column="4" Padding="0 2 5 0"/>
                                                     <TextBox x:Name="CStep_Text" Text="1" 
-                                                         Grid.Row="0" Grid.Column="5" Margin="1" Padding="1 0" 
-                                                         Width="25" HorizontalAlignment="Left"/>
+                                                             Grid.Row="0" Grid.Column="5" Margin="1" Padding="1 0" 
+                                                             Width="25" HorizontalAlignment="Left"/>
 
                                                     <TextBlock Text="log(G)"
                                                            Grid.Row="1" Grid.Column="0" Padding="0 2 5 0"/>
                                                     <TextBox x:Name="GLower_Text" Text="-2" 
-                                                         Grid.Row="1" Grid.Column="1" Margin="1" Padding="1 0" 
-                                                         Width="25" HorizontalAlignment="Left"/>
+                                                             Grid.Row="1" Grid.Column="1" Margin="1" Padding="1 0" 
+                                                             Width="25" HorizontalAlignment="Left"/>
                                                     <TextBlock Text="to"
-                                                           Grid.Row="1" Grid.Column="2" Padding="0 2 5 0"/>
+                                                               Grid.Row="1" Grid.Column="2" Padding="0 2 5 0"/>
                                                     <TextBox x:Name="GUpper_Text" Text="2" 
-                                                         Grid.Row="1" Grid.Column="3" Margin="1" Padding="1 0" 
-                                                         Width="25" HorizontalAlignment="Left"/>
+                                                             Grid.Row="1" Grid.Column="3" Margin="1" Padding="1 0" 
+                                                             Width="25" HorizontalAlignment="Left"/>
                                                     <TextBlock Text="step"
-                                                           Grid.Row="1" Grid.Column="4" Padding="0 2 5 0"/>
+                                                               Grid.Row="1" Grid.Column="4" Padding="0 2 5 0"/>
                                                     <TextBox x:Name="GStep_Text" Text="1" 
-                                                         Grid.Row="1" Grid.Column="5" Margin="1" Padding="1 0" 
-                                                         Width="25" HorizontalAlignment="Left"/>
+                                                             Grid.Row="1" Grid.Column="5" Margin="1" Padding="1 0" 
+                                                             Width="25" HorizontalAlignment="Left"/>
 
-                                                    <TextBlock Text="Feature Quantity Selection"
-                                                           Grid.Row="2" Grid.Column="0" Padding="0 2 5 0"
-                                                           Grid.ColumnSpan="6"/>
+                                                    <TextBlock Text="Feature Quantity Selection" 
+                                                               ToolTip="Run through the given number of features to&#x0a;find the best number of features for Attribute 1 and 2&#x0a;for the given accuracy"
+                                                               Grid.Row="2" Grid.Column="0" Padding="0 2 5 0"
+                                                               Grid.ColumnSpan="6"/>
 
                                                     <TextBlock Text="Attribute 1"
-                                                           Grid.Row="3" Grid.Column="0" Padding="0 2 5 0"/>
+                                                               Grid.Row="3" Grid.Column="0" Padding="0 2 5 0"/>
                                                     <TextBox x:Name="Att1Lower_Text" Text="0" 
-                                                         Grid.Row="3" Grid.Column="1" Margin="1" Padding="1 0" 
-                                                         Width="25" HorizontalAlignment="Left"/>
+                                                             Grid.Row="3" Grid.Column="1" Margin="1" Padding="1 0" 
+                                                             Width="25" HorizontalAlignment="Left"/>
                                                     <TextBlock Text="to"
-                                                           Grid.Row="3" Grid.Column="2" Padding="0 2 5 0"/>
+                                                               Grid.Row="3" Grid.Column="2" Padding="0 2 5 0"/>
                                                     <TextBox x:Name="Att1Upper_Text" Text="5" 
-                                                         Grid.Row="3" Grid.Column="3" Margin="1" Padding="1 0" 
-                                                         Width="25" HorizontalAlignment="Left"/>
+                                                             Grid.Row="3" Grid.Column="3" Margin="1" Padding="1 0" 
+                                                             Width="25" HorizontalAlignment="Left"/>
                                                     <TextBlock Text="step"
-                                                           Grid.Row="3" Grid.Column="4" Padding="0 2 5 0"/>
+                                                               Grid.Row="3" Grid.Column="4" Padding="0 2 5 0"/>
                                                     <TextBox x:Name="Att1Step_Text" Text="1" 
-                                                         Grid.Row="3" Grid.Column="5" Margin="1" Padding="1 0" 
-                                                         Width="25" HorizontalAlignment="Left"/>
+                                                             Grid.Row="3" Grid.Column="5" Margin="1" Padding="1 0" 
+                                                             Width="25" HorizontalAlignment="Left"/>
 
                                                     <TextBlock Text="Attribute 2"
-                                                           Grid.Row="4" Grid.Column="0" Padding="0 2 5 0"/>
+                                                               Grid.Row="4" Grid.Column="0" Padding="0 2 5 0"/>
                                                     <TextBox x:Name="Att2Lower_Text" Text="0" 
-                                                         Grid.Row="4" Grid.Column="1" Margin="1" Padding="1 0" 
-                                                         Width="25" HorizontalAlignment="Left"/>
+                                                             Grid.Row="4" Grid.Column="1" Margin="1" Padding="1 0" 
+                                                             Width="25" HorizontalAlignment="Left"/>
                                                     <TextBlock Text="to"
-                                                           Grid.Row="4" Grid.Column="2" Padding="0 2 5 0"/>
+                                                               Grid.Row="4" Grid.Column="2" Padding="0 2 5 0"/>
                                                     <TextBox x:Name="Att2Upper_Text" Text="5" 
-                                                         Grid.Row="4" Grid.Column="3" Margin="1" Padding="1 0" 
-                                                         Width="25" HorizontalAlignment="Left"/>
+                                                             Grid.Row="4" Grid.Column="3" Margin="1" Padding="1 0" 
+                                                             Width="25" HorizontalAlignment="Left"/>
                                                     <TextBlock Text="step"
-                                                           Grid.Row="4" Grid.Column="4" Padding="0 2 5 0"/>
+                                                               Grid.Row="4" Grid.Column="4" Padding="0 2 5 0"/>
                                                     <TextBox x:Name="Att2Step_Text" Text="1" 
-                                                         Grid.Row="4" Grid.Column="5" Margin="1" Padding="1 0" 
-                                                         Width="25" HorizontalAlignment="Left"/>
+                                                             Grid.Row="4" Grid.Column="5" Margin="1" Padding="1 0" 
+                                                             Width="25" HorizontalAlignment="Left"/>
 
                                                     <TextBlock Text="Cross-Validation n-fold Value"
-                                                           Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="6" Padding="0 2 5 0"/>
+                                                               Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="6" Padding="0 2 5 0"/>
                                                     <TextBox x:Name="n_fold_Text" Text="4" 
-                                                         Grid.Row="5" Grid.Column="5" Margin="1" Padding="1 0" 
-                                                         Width="25" HorizontalAlignment="Left"/>
-
+                                                             Grid.Row="5" Grid.Column="5" Margin="1" Padding="1 0" 
+                                                             Width="25" HorizontalAlignment="Left"/>
                                                 </Grid>
 
                                                 <CheckBox x:Name="Feature_Selected" Checked="Feature_Checked"

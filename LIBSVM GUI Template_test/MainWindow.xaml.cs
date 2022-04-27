@@ -93,7 +93,7 @@ namespace LIBSVM_GUI_Template_test
         public int TrainRunning = 0;
         public int TestRunning = 0;
         private int MatlabPID;
-        public string Assembly_Location = System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase.Remove(0,8));
+        public string Assembly_Location = AppDomain.CurrentDomain.BaseDirectory.TrimEnd('\\');
         public string preset_location { get; set; }
         public int Success { get; set; }
 
@@ -116,7 +116,7 @@ namespace LIBSVM_GUI_Template_test
             }
             finally { DeleteObject(handle); }
         }
-        
+
         public MainWindow()
         {
             InitializeComponent();
@@ -215,20 +215,22 @@ namespace LIBSVM_GUI_Template_test
             Grid_Search_Prediction_Image.Source = ImageSourceFromBitmap(Properties.Resources.Plot_Template);
             Plot_Image.Source = ImageSourceFromBitmap(Properties.Resources.Plot_Template);
 
-            Folder_File_Create();
-
             Saves_Directory.Text = Assembly_Location + "\\Saves";
 
+            Folder_File_Create();
 
             #endregion
 
             //Grant Access to Directory Folder
-            DirectoryInfo dInfo = new DirectoryInfo(Saves_Directory.Text);
+            DirectoryInfo dInfo = new DirectoryInfo(Assembly_Location);
             DirectorySecurity dSecurity = dInfo.GetAccessControl();
             dSecurity.AddAccessRule(new FileSystemAccessRule(new SecurityIdentifier(WellKnownSidType.WorldSid, null),
                 FileSystemRights.FullControl, InheritanceFlags.ObjectInherit | InheritanceFlags.ContainerInherit, 
                 PropagationFlags.NoPropagateInherit, AccessControlType.Allow));
             dInfo.SetAccessControl(dSecurity);
+
+            Console.WriteLine(Assembly_Location);
+            Console.WriteLine(System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase.Remove(0, 8)));
         }
 
         #region ComboBoxes
@@ -1614,24 +1616,37 @@ namespace LIBSVM_GUI_Template_test
             }
 
             // Check if the testing and training data and save directory folder exist
+            else if (File.Exists(Helper.AddExtension(Training_Data_Location.Text, ".mat")) == false & File.Exists(Helper.AddExtension(Testing_Data_Location.Text, ".mat")) == false
+                & Directory.Exists(Saves_Directory.Text) == false)
+            {
+                System.Windows.Forms.MessageBox.Show("Please select a valid saves directory, training data, and testing data");
+            }
+            else if (File.Exists(Helper.AddExtension(Training_Data_Location.Text, ".mat")) == false & File.Exists(Helper.AddExtension(Testing_Data_Location.Text, ".mat")) == false)
+            {
+                System.Windows.Forms.MessageBox.Show("Please select valid training and testing data");
+            }
+            else if (File.Exists(Helper.AddExtension(Training_Data_Location.Text, ".mat")) == false & Directory.Exists(Saves_Directory.Text) == false)
+            {
+                System.Windows.Forms.MessageBox.Show("Please select a valid saves directory and training data");
+            }
             else if (File.Exists(Helper.AddExtension(Testing_Data_Location.Text, ".mat")) == false & Directory.Exists(Saves_Directory.Text) == false)
             {
-                System.Windows.Forms.MessageBox.Show("Please select a valid saves directory, testing data, and model file");
+                System.Windows.Forms.MessageBox.Show("Please select a valid saves directory and testing data");
+            }
+            else if (File.Exists(Helper.AddExtension(Training_Data_Location.Text, ".mat")) == false)
+            {
+                System.Windows.Forms.MessageBox.Show("Please select valid training data");
             }
             else if (File.Exists(Helper.AddExtension(Testing_Data_Location.Text, ".mat")) == false)
             {
                 System.Windows.Forms.MessageBox.Show("Please select valid testing data");
-            }
-            else if (File.Exists(Helper.AddExtension(Model_File_Location.Text, ".mat")) == false)
-            {
-                System.Windows.Forms.MessageBox.Show("Please select a valid model file");
             }
             else if (Directory.Exists(Saves_Directory.Text) == false)
             {
                 System.Windows.Forms.MessageBox.Show("Please select a valid saves directory");
             }
 
-                #endregion
+            #endregion
 
             else
             {
@@ -1968,7 +1983,7 @@ namespace LIBSVM_GUI_Template_test
                     System.Windows.Forms.MessageBox.Show("Error");
                 }
 
-                    #endregion
+                #endregion
 
                 TestRunning = 0;
                 Test_Model_Button.Background = new SolidColorBrush(Colors.DarkTurquoise);
