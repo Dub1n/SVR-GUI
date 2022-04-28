@@ -1,14 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-
-namespace LIBSVM_GUI_Template_test
+﻿namespace LIBSVM_GUI_Template_test
 {
     public class Features : ObservableObject
     {

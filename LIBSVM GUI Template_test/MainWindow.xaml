@@ -17,7 +17,6 @@
         </DataTemplate>-->
 
         <src:Features x:Key="featuresDataSource" x:Name="featuresDataSource"/>
-        <src:VisibilityClass x:Key="visibilityDataSource"/>
         <Style TargetType="CheckBox" x:Key="ElementCheckbox" >
             <Setter Property="IsChecked" Value="{Binding IsChecked ,Mode=TwoWay}"  />
             <Setter Property="Margin" Value="100 3 0 0"/>
