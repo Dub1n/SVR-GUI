@@ -58,7 +58,7 @@ https://uk.mathworks.com/products/compiler/matlab-runtime.html
 Using the Application
 =====================
 
-	- Recommended Procedure -
+## Recommended Procedure
 
 The recommended use of the app is based on the procedure described in 
 "A Practical Guide to Support Vector Classification":
@@ -72,7 +72,7 @@ The recommended use of the app is based on the procedure described in
 7. Use the best parameters found to train a training set
 8. Test the model
 
-	- Setup -
+## Setup
 
 When run, the app will create two folders to store data in the same folder the 
 .exe is in, these are 'Required_Files' and 'Saves'. You will not need to open or 
@@ -85,7 +85,7 @@ The File Name input is used to set a prefix for all the useful output from the
 app, for example if set to File1 then the predicted data is stored as 
 File1_Prediction.
 
-	- Data Management -
+## Data Management
 
 In the Data Management tab, select your timeseries data to be predicted in 
 'Data File Source'. Tell the app which column in the csv table is the predicted 
@@ -123,7 +123,7 @@ model. This is to reduce overfitting and ensure the model will work with data
 that it has not seen before. To implement this, send a portion of the data 
 (around 75-80%) to training and the rest to testing.
 
-	- Training Settings -
+## Training Settings
 
 These settings determine which subset of the data is used in the training and 
 gridsearch and how it is arranged.
@@ -163,7 +163,7 @@ although having a different projection will only shift the true timeseries along
 from the predicted timeseries and give a different accuracy but the predicted 
 results remain the same.
 
-	- SVM Options -
+## SVM Options
 
 These options determine which type of SVM is used in training the model, the 
 Kernel Type used, and the parameters for both.
@@ -175,7 +175,7 @@ The 'Kernel Type' allows the choices of kernel to be used by the SVM. Options
 are: linear, polynomial, radial basis (RBF), and sigmoid. The RBF kernel is 
 recommended. The parameters for each are shown when that kernel is selected.
 
-	- Grid Search - 
+## Grid Search
 
 The Grid Search uses the data stored in 'Training Data' and performs 
 cross-validation on that data using the settings in Testing Data and Parameters 
@@ -204,7 +204,7 @@ It may be better to use the whole data set for this as the use of
 cross-validation reduces the problems associated with using the same data for 
 training and testing.
 
-	- Training -
+## Training
 
 To train a model, click the 'Train Model' button. It will use the settings in the 
 'Training Settings' section and the parameters in the 'SVM Options' section to 
@@ -216,7 +216,7 @@ sent to use in prediction with 'Send to Test' next to it.
 Information about the model and its generation produced by LIBSVM is displayed 
 under the Model Output.
 
-	- Testing -
+## Testing
 
 To produce predictions for the timeseries stored in the 'Testing Data' location, 
 click the 'Test Model' button. 
@@ -235,7 +235,7 @@ Mean Squared Error and Squared Correlation Coefficient.
 The 'Train and Test' button does the same as pressing the 'Train Model', 'Send to 
 Test', and 'Test Model' buttons in sequence so as to save time.
 
-	- Other -
+## Other
 
 Do not close the plots before they automatically close, otherwise they might not 
 be able to be saved or displayed in the app
@@ -285,19 +285,14 @@ LIBSVM requires data in to be in the format of an Instance Matrix and Label
 Vector. This is the case for both training and testing. The indexes of the 
 timeseries values are arranged as:
 
-    V      1.1 1.2 ... 1.i 2.1 2.2 ... 2.j ... n.1 n.2 ... n.k
-  +---+   +---+---+---+---+---+---+---+---+   +---+---+---+---+
+  | V |   |1.1|1.2|...|1.i|2.1|2.2|...|2.j|...|n.1|n.2|...|n.k|
+  |:-:| - |:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
   |p-1|   |-1 |-2 |...|0-i|-1 |-2 |...|0-j|...|-1 |-2 |...|0-k|
-  +---+   +---+---+---+---+---+---+---+---+   +---+---+---+---+
   |p+0|   | 0 |-1 |...|1-i| 0 |-1 |...|1-j|...| 0 |-1 |...|1-k|
-  +---+   +---+---+---+---+---+---+---+---+   +---+---+---+---+
   |p+1|   | 1 | 0 |...|2-i| 1 | 0 |...|2-j|...| 1 | 0 |...|2-k|
-  +---+   +---+---+---+---+---+---+---+---+   +---+---+---+---+
   |p+2|   | 2 | 1 |...|3-i| 2 | 1 |...|3-j|...| 2 | 1 |...|3-k|
-  +---+   +---+---+---+---+---+---+---+---+   +---+---+---+---+
   |p+3|   | 3 | 2 |...|4-i| 3 | 2 |...|4-j|...| 3 | 2 |...|4-k|
-  +---+   +---+---+---+---+---+---+---+---+   +---+---+---+---+
-    :       :   :   :   :   :   :   :   :   :   :   :   :   :
+  |:|&ensp;&ensp;&ensp;|:|:|:|:|:|:|: | : | : | : | : | : | : |
 
   key:	V: Label Vector values from Attribute 1
 	1.1: First feature from Attribute 1's values
@@ -323,18 +318,13 @@ i.e., x -> x*step - start(step - 1)
 
 A complete version would be:
 
-       V            n.1      n.2      ...      n.i
-  +----------+   +--------+--------+-------+----------+
+  |V|&ensp;&ensp;&ensp;&ensp;&ensp;|n.1|n.2|...|n.i   |
+  |:--------:| - |:------:|:------:|:-----:|:--------:|
   |a+(m+p-1)s|   |a+(m-1)s|a+(m-2)s|  ...  |a+(m-i+0)s|
-  +----------+   +--------+--------+-------+----------+
   |a+(m+p+0)s|   |a+(m+0)s|a+(m-1)s|  ...  |a+(m-i+1)s|
-  +----------+   +--------+--------+-------+----------+
   |a+(m+p+1)s|   |a+(m+1)s|a+(m+0)s|  ...  |a+(m-i+2)s|
-  +----------+   +--------+--------+-------+----------+
   |a+(m+p+2)s|   |a+(m+2)s|a+(m+1)s|  ...  |a+(m-i+3)s|
-  +----------+   +--------+--------+-------+----------+
   |a+(m+p+3)s|   |a+(m+3)s|a+(m+2)s|  ...  |a+(m-i+4)s|
-  +----------+   +--------+--------+-------+----------+
 
 The number of rows created is equal to the input Length.
 
@@ -343,20 +333,14 @@ and Step = 7, applying this arrangement two attributes, each containing the
 integers 1 to 100 (1:1:100), with the first attribute assigned 2 features and
 the second assigned 4 features, the result would be:
 
-    V       1.1  1.2  2.1  2.2  2.3  2.4
-  +----+   +----+----+----+----+----+----+
-  | 45 |   | 31 | 24 | 31 | 24 | 17 | 10 |
-  +----+   +----+----+----+----+----+----+
-  | 52 |   | 38 | 31 | 38 | 31 | 24 | 17 |
-  +----+   +----+----+----+----+----+----+
-  | 59 |   | 45 | 38 | 45 | 38 | 31 | 24 |
-  +----+   +----+----+----+----+----+----+
-  | 66 |   | 52 | 45 | 52 | 45 | 38 | 31 |
-  +----+   +----+----+----+----+----+----+
-  | 73 |   | 59 | 62 | 59 | 52 | 45 | 38 |
-  +----+   +----+----+----+----+----+----+
-  | 80 |   | 66 | 59 | 66 | 59 | 52 | 45 |
-  +----+   +----+----+----+----+----+----+
+  | V  |    |1.1 |1.2 |2.1 |2.2 |2.3 |2.4 |
+  |:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
+  | 45 |    | 31 | 24 | 31 | 24 | 17 | 10 |
+  | 52 |    | 38 | 31 | 38 | 31 | 24 | 17 |
+  | 59 |    | 45 | 38 | 45 | 38 | 31 | 24 |
+  | 66 |    | 52 | 45 | 52 | 45 | 38 | 31 |
+  | 73 |    | 59 | 62 | 59 | 52 | 45 | 38 |
+  |80|&ensp;&ensp;&ensp;|66|59|66|59|52|45|
 
 The Label Vector is displayed on the left and the instance matrix is displayed on 
 the right. This shows which of the attribute's values are used with the 
