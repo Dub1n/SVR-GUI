@@ -192,6 +192,7 @@ namespace LIBSVM_GUI_Template_test
             Plot_Image.Source = ImageSourceFromBitmap(Properties.Resources.Plot_Template);
 
             Saves_Directory.Text = assemblyLocation + "\\Saves";
+            SamplePresetDataLocation.Text = assemblyLocation + "\\Sample_Data\\39001_data.csv";
 
             Folder_File_Create();
 
@@ -439,10 +440,11 @@ namespace LIBSVM_GUI_Template_test
             {
                 System.Windows.Forms.MessageBox.Show(@"Please select a valid saves directory");
             }
+
+            #endregion
+
             else
             {
-
-                #endregion
 
                 // Set Up Convert + Button
                 #region Set Up Convert
@@ -943,7 +945,7 @@ namespace LIBSVM_GUI_Template_test
                 {
                     "Start- 01, " + Start_Text.Text + " ,",
                     "Length 02, " + lengthTextExport + " ,",
-                    "AccTyp 03, " + Accuracy_ComboBox.SelectedIndex + " ,",
+                    "AccTyp 03, " + AccuracyComboBox.SelectedIndex + " ,",
                     "Att1Ft 04, " + A1Export + " ,",
                     "Att2Ft 05, " + A2Export + " ,",
                     "Att3Ft 06, " + A3Export + " ,",
@@ -1219,7 +1221,7 @@ namespace LIBSVM_GUI_Template_test
                 {
                     "Start- 01, " + Start_Text.Text + " ,",
                     "Length 02, " + lengthTextExport + " ,",
-                    "AccTyp 03, " + Accuracy_ComboBox.SelectedIndex + " ,",
+                    "AccTyp 03, " + AccuracyComboBox.SelectedIndex + " ,",
                     "Att1Ft 04, " + A1Export + " ,",
                     "Att2Ft 05, " + A2Export + " ,",
                     "Att3Ft 06, " + A3Export + " ,",
@@ -1696,7 +1698,7 @@ namespace LIBSVM_GUI_Template_test
                 {
                     "Start- 01, " + Start_Text.Text + " ,",
                     "Length 02, " + lengthTextExport + " ,",
-                    "AccTyp 03, " + Accuracy_ComboBox.SelectedIndex + " ,",
+                    "AccTyp 03, " + AccuracyComboBox.SelectedIndex + " ,",
                     "Att1Ft 04, " + A1Export + " ,",
                     "Att2Ft 05, " + A2Export + " ,",
                     "Att3Ft 06, " + A3Export + " ,",
@@ -1777,11 +1779,11 @@ namespace LIBSVM_GUI_Template_test
                 Train_Model_Button.Background = new SolidColorBrush(Colors.DarkTurquoise);
                 Train_Model_text.Text = "Train Model";
 
+                #endregion
+
                 // Update Model File Location
                 Model_File_Location.Text = Saves_Directory.Text + "\\Saves\\" + File_Name.Text + "_Model";
                 Model_File_Location.ScrollToHorizontalOffset(double.PositiveInfinity);
-
-                #endregion
 
                 #region Testing
 
@@ -2116,7 +2118,7 @@ namespace LIBSVM_GUI_Template_test
                 Attribute4Text.Text,
                 Attribute5Text.Text,
                 Attribute6Text.Text,
-                Accuracy_ComboBox.SelectedIndex.ToString(),
+                AccuracyComboBox.SelectedIndex.ToString(),
                 SVM_ComboBox.SelectedIndex.ToString(),
                 Cost_Text.Text,
                 Ee_Text.Text,
@@ -2169,6 +2171,8 @@ namespace LIBSVM_GUI_Template_test
                 File_Type.SelectedIndex.ToString(),
             };
             File.WriteAllLines(presetPath, presetLines);
+
+            System.Windows.Forms.MessageBox.Show(@"Saved Preset " + Preset_Name.Text);
         }
 
         private void Load_Preset_Click(object sender, RoutedEventArgs e)
@@ -2206,7 +2210,7 @@ namespace LIBSVM_GUI_Template_test
                 Attribute4Text.Text = Helper.ReadLine(presetLines, 26);
                 Attribute5Text.Text = Helper.ReadLine(presetLines, 27);
                 Attribute6Text.Text = Helper.ReadLine(presetLines, 28);
-                Accuracy_ComboBox.SelectedIndex = int.Parse(Helper.ReadLine(presetLines, 29));
+                AccuracyComboBox.SelectedIndex = int.Parse(Helper.ReadLine(presetLines, 29));
                 SVM_ComboBox.SelectedIndex = int.Parse(Helper.ReadLine(presetLines, 30));
                 Cost_Text.Text = Helper.ReadLine(presetLines, 31);
                 Ee_Text.Text = Helper.ReadLine(presetLines, 32);
@@ -2273,6 +2277,110 @@ namespace LIBSVM_GUI_Template_test
                 System.Windows.Forms.MessageBox.Show(@"Preset not found");
             }
         }
+        
+        private void SamplePresetDataLocationButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            FilePicker.Csv(Data_File_Source);
+            Data_File_Source.ScrollToHorizontalOffset(double.PositiveInfinity);
+        }
+
+        private void CreateSamplePreset_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (File.Exists(Helper.AddExtension(SamplePresetDataLocation.Text, ".csv")) == false)
+            {
+                System.Windows.Forms.MessageBox.Show(@"Please select valid data file");
+            }
+            else
+            {
+
+                var presetPath = assemblyLocation + "\\Required_Files\\Presets\\SamplePreset";
+                string[] presetLines =
+                {
+                    assemblyLocation + "\\Saves",
+                    "File_Name",
+                    SamplePresetDataLocation.Text,
+                    "6",
+                    "2",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "1",
+                    "True",
+                    "True",
+                    "True",
+                    "",
+                    "",
+                    "75",
+                    "",
+                    "",
+                    "1",
+                    "1000",
+                    "1",
+                    "1",
+                    "1",
+                    "2",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "1",
+                    "0.001",
+                    "0.1",
+                    "0.",
+                    "2",
+                    "0.5",
+                    "0",
+                    "3",
+                    "True",
+                    "-1",
+                    "3",
+                    "1",
+                    "-2",
+                    "2",
+                    "1",
+                    "False",
+                    "0",
+                    "5",
+                    "1",
+                    "0",
+                    "5",
+                    "1",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "1",
+                    "2",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "1",
+                    "200",
+                    "1",
+                    "1",
+                    "",
+                    "True",
+                    "2",
+                    "2",
+                    "2",
+                    "True",
+                    "40",
+                    "80",
+                    "0",
+                };
+                File.WriteAllLines(presetPath, presetLines);
+
+                System.Windows.Forms.MessageBox.Show(@"Created Sample Preset");
+            }
+        }
 
         #region On Loaded
 
@@ -2305,13 +2413,6 @@ namespace LIBSVM_GUI_Template_test
             Directory.CreateDirectory(assemblyLocation + "\\Required_Files\\MatlabOutputText");
             Directory.CreateDirectory(assemblyLocation + "\\Required_Files\\Presets");
             Directory.CreateDirectory(assemblyLocation + "\\Saves");
-            Helper.CreateEmptyFileIfNotThere(assemblyLocation + "\\Required_Files\\MatlabOutputText\\Accuracy.txt");
-            Helper.CreateEmptyFileIfNotThere(assemblyLocation + "\\Required_Files\\MatlabOutputText\\Best_CandG.txt");
-            Helper.CreateEmptyFileIfNotThere(assemblyLocation + "\\Required_Files\\MatlabOutputText\\Best_Features.txt");
-            Helper.CreateEmptyFileIfNotThere(assemblyLocation + "\\Required_Files\\MatlabOutputText\\Feature_Cross.txt");
-            Helper.CreateEmptyFileIfNotThere(assemblyLocation + "\\Required_Files\\MatlabOutputText\\Grid_Search_Accuracy.txt");
-            Helper.CreateEmptyFileIfNotThere(assemblyLocation + "\\Required_Files\\MatlabOutputText\\Model_Stats.txt");
-            Helper.CreateEmptyFileIfNotThere(assemblyLocation + "\\Required_Files\\MatlabOutputText\\Parameter_Cross.txt");
         }
 
         public void IfTAttributeIndexVisibility()
@@ -2659,12 +2760,30 @@ namespace LIBSVM_GUI_Template_test
                                  MessageBoxButtons.YesNo,
                                  MessageBoxIcon.Question);
 
-                if (result == System.Windows.Forms.DialogResult.Yes)
-                    Close();
+                if (result != System.Windows.Forms.DialogResult.Yes) return;
+                if (System.Windows.Forms.Application.MessageLoop) 
+                {
+                    // WinForms app
+                    System.Windows.Forms.Application.Exit();
+                }
+                else
+                {
+                    // Console app
+                    Environment.Exit(1);
+                }
             }
             else
             {
-                Close();
+                if (System.Windows.Forms.Application.MessageLoop) 
+                {
+                    // WinForms app
+                    System.Windows.Forms.Application.Exit();
+                }
+                else
+                {
+                    // Console app
+                    Environment.Exit(1);
+                }
             }
         }
 
@@ -2674,6 +2793,7 @@ namespace LIBSVM_GUI_Template_test
         }
 
         #endregion
+
     }
 }
 
