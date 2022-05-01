@@ -158,15 +158,15 @@ namespace LIBSVM_GUI_Template_test
             TAttributeMinus.Visibility = Visibility.Visible;
             TAttributePlus.Visibility = Visibility.Visible;
             Ep.Visibility = Visibility.Visible;
-            Ep_Text.Visibility = Visibility.Visible;
+            EpText.Visibility = Visibility.Visible;
             Nu.Visibility = Visibility.Hidden;
-            Nu_Text.Visibility = Visibility.Hidden;
+            NuTextInput.Visibility = Visibility.Hidden;
             Gamma.Visibility = Visibility.Visible;
-            Gamma_Text.Visibility = Visibility.Visible;
+            GammaText.Visibility = Visibility.Visible;
             Degree.Visibility = Visibility.Hidden;
-            Degree_Text.Visibility = Visibility.Hidden;
+            DegreeText.Visibility = Visibility.Hidden;
             R.Visibility = Visibility.Hidden;
-            R_Text.Visibility = Visibility.Hidden;
+            RText.Visibility = Visibility.Hidden;
 
             Column2.Visibility = Visibility.Visible;
             Column3.Visibility = Visibility.Collapsed;
@@ -182,16 +182,16 @@ namespace LIBSVM_GUI_Template_test
             ColumnMinus.IsEnabled = true;
             ColumnPlus.IsEnabled = true;
 
-            Has_Labels.IsChecked = true;
-            Scale_Selected.IsChecked = true;
+            HasLabels.IsChecked = true;
+            ScaleSelected.IsChecked = true;
             TopToBottom.IsChecked = true;
             initialized = 1;
 
-            Grid_Search_Contour_Image.Source = ImageSourceFromBitmap(Properties.Resources.Contour_Template);
-            Grid_Search_Prediction_Image.Source = ImageSourceFromBitmap(Properties.Resources.Plot_Template);
-            Plot_Image.Source = ImageSourceFromBitmap(Properties.Resources.Plot_Template);
+            GridSearchContourImage.Source = ImageSourceFromBitmap(Properties.Resources.Contour_Template);
+            GridSearchPredictionImage.Source = ImageSourceFromBitmap(Properties.Resources.Plot_Template);
+            PlotImage.Source = ImageSourceFromBitmap(Properties.Resources.Plot_Template);
 
-            Saves_Directory.Text = assemblyLocation + "\\Saves";
+            SavesDirectory.Text = assemblyLocation + "\\Saves";
 
             Folder_File_Create();
 
@@ -213,58 +213,58 @@ namespace LIBSVM_GUI_Template_test
         public void SVM_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (initialized != 1) return;
-            if (SVM_ComboBox.SelectedIndex == 0)
+            if (SvmComboBox.SelectedIndex == 0)
             {
                 Ep.Visibility = Visibility.Visible;
-                Ep_Text.Visibility = Visibility.Visible;
+                EpText.Visibility = Visibility.Visible;
                 Nu.Visibility = Visibility.Hidden;
-                Nu_Text.Visibility = Visibility.Hidden;
+                NuTextInput.Visibility = Visibility.Hidden;
             }
             else
             {
                 Ep.Visibility = Visibility.Hidden;
-                Ep_Text.Visibility = Visibility.Hidden;
+                EpText.Visibility = Visibility.Hidden;
                 Nu.Visibility = Visibility.Visible;
-                Nu_Text.Visibility = Visibility.Visible;
+                NuTextInput.Visibility = Visibility.Visible;
             }
         }
 
         private void Kernel_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (initialized != 1) return;
-            switch (Kernel_ComboBox.SelectedIndex)
+            switch (KernelComboBox.SelectedIndex)
             {
             case 0:
                 Gamma.Visibility = Visibility.Hidden;
-                Gamma_Text.Visibility = Visibility.Hidden;
+                GammaText.Visibility = Visibility.Hidden;
                 Degree.Visibility = Visibility.Hidden;
-                Degree_Text.Visibility = Visibility.Hidden;
+                DegreeText.Visibility = Visibility.Hidden;
                 R.Visibility = Visibility.Hidden;
-                R_Text.Visibility = Visibility.Hidden;
+                RText.Visibility = Visibility.Hidden;
                 break;
             case 1:
                 Gamma.Visibility = Visibility.Visible;
-                Gamma_Text.Visibility = Visibility.Visible;
+                GammaText.Visibility = Visibility.Visible;
                 Degree.Visibility = Visibility.Visible;
-                Degree_Text.Visibility = Visibility.Visible;
+                DegreeText.Visibility = Visibility.Visible;
                 R.Visibility = Visibility.Visible;
-                R_Text.Visibility = Visibility.Visible;
+                RText.Visibility = Visibility.Visible;
                 break;
             case 2:
                 Gamma.Visibility = Visibility.Visible;
-                Gamma_Text.Visibility = Visibility.Visible;
+                GammaText.Visibility = Visibility.Visible;
                 Degree.Visibility = Visibility.Hidden;
-                Degree_Text.Visibility = Visibility.Hidden;
+                DegreeText.Visibility = Visibility.Hidden;
                 R.Visibility = Visibility.Hidden;
-                R_Text.Visibility = Visibility.Hidden;
+                RText.Visibility = Visibility.Hidden;
                 break;
             default:
                 Gamma.Visibility = Visibility.Visible;
-                Gamma_Text.Visibility = Visibility.Visible;
+                GammaText.Visibility = Visibility.Visible;
                 Degree.Visibility = Visibility.Hidden;
-                Degree_Text.Visibility = Visibility.Hidden;
+                DegreeText.Visibility = Visibility.Hidden;
                 R.Visibility = Visibility.Visible;
-                R_Text.Visibility = Visibility.Visible;
+                RText.Visibility = Visibility.Visible;
                 break;
             }
         }
@@ -276,13 +276,13 @@ namespace LIBSVM_GUI_Template_test
         public void Parameter_Checked(object sender, RoutedEventArgs e)
         {
             optimiseValue = 1;
-            Feature_Selected.IsChecked = false;
+            FeatureSelected.IsChecked = false;
         }
 
         private void Feature_Checked(object sender, RoutedEventArgs e)
         {
             optimiseValue = 2;
-            Parameter_Selected.IsChecked = false;
+            ParameterSelected.IsChecked = false;
         }
 
         #endregion  
@@ -291,14 +291,14 @@ namespace LIBSVM_GUI_Template_test
         {
             var dlg = new FolderPicker();
             if (dlg.ShowFolderDialog(IntPtr.Zero) == true)
-            { Saves_Directory.Text = dlg.ResultPath; }
-            Saves_Directory.ScrollToHorizontalOffset(double.PositiveInfinity);
+            { SavesDirectory.Text = dlg.ResultPath; }
+            SavesDirectory.ScrollToHorizontalOffset(double.PositiveInfinity);
         }
 
         public void Data_File_Source_Button_Click(object sender, RoutedEventArgs e)
         {
-            FilePicker.Csv(Data_File_Source);
-            Data_File_Source.ScrollToHorizontalOffset(double.PositiveInfinity);
+            FilePicker.Csv(DataFileSource);
+            DataFileSource.ScrollToHorizontalOffset(double.PositiveInfinity);
         }
 
         public void ColumnMinus_Click(object sender, RoutedEventArgs e)
@@ -427,15 +427,15 @@ namespace LIBSVM_GUI_Template_test
             }
 
             // Check if the input data and save directory folder exist
-            else if (File.Exists(Helper.AddExtension(Data_File_Source.Text, ".csv")) == false & Directory.Exists(Saves_Directory.Text) == false)
+            else if (File.Exists(Helper.AddExtension(DataFileSource.Text, ".csv")) == false & Directory.Exists(SavesDirectory.Text) == false)
             {
                 System.Windows.Forms.MessageBox.Show(@"Please select a valid saves directory and data to convert");
             }
-            else if (File.Exists(Helper.AddExtension(Data_File_Source.Text, ".csv")) == false)
+            else if (File.Exists(Helper.AddExtension(DataFileSource.Text, ".csv")) == false)
             {
                 System.Windows.Forms.MessageBox.Show(@"Please select valid data to convert");
             }
-            else if (Directory.Exists(Saves_Directory.Text) == false)
+            else if (Directory.Exists(SavesDirectory.Text) == false)
             {
                 System.Windows.Forms.MessageBox.Show(@"Please select a valid saves directory");
             }
@@ -456,14 +456,14 @@ namespace LIBSVM_GUI_Template_test
                     RepeatBehavior = RepeatBehavior.Forever,
                     AutoReverse = true
                 };
-                Convert_Button.Background = new SolidColorBrush(Colors.DarkTurquoise);
-                Convert_Button.Background.BeginAnimation(SolidColorBrush.ColorProperty, animation);
-                Convert_Button_text.Text = "Converting";
+                ConvertButton.Background = new SolidColorBrush(Colors.DarkTurquoise);
+                ConvertButton.Background.BeginAnimation(SolidColorBrush.ColorProperty, animation);
+                ConvertButtonText.Text = "Converting";
 
                 #endregion
 
                 // Create Saves folder if it doesn't exist
-                Directory.CreateDirectory(Saves_Directory.Text + "\\Saves");
+                Directory.CreateDirectory(SavesDirectory.Text + "\\Saves");
 
                 // Exports Directories
                 #region Export Convert Directories
@@ -520,17 +520,17 @@ namespace LIBSVM_GUI_Template_test
                         break;
                 }
 
-                if (Date_Column.Text == "" || Date_Column.Text == " ")
+                if (DateColumn.Text == "" || DateColumn.Text == " ")
                 { DateExport = "0"; }
                 else
-                { DateExport = Date_Column.Text; }
+                { DateExport = DateColumn.Text; }
 
                 var directoriesPath = assemblyLocation + "\\Required_Files\\Settings\\Directories_Convert.txt";
                 string[] directoriesLines =
                 {
-                Saves_Directory.Text,   //1
-                File_Name.Text,         //2
-                Data_File_Source.Text,  //3
+                SavesDirectory.Text,   //1
+                FileName.Text,         //2
+                DataFileSource.Text,  //3
                 (Convert.ToInt32(TopToBottom.IsChecked)).ToString(), //1
                 ColumnIndex.ToString(), //2
                 DateExport,     //3
@@ -540,8 +540,8 @@ namespace LIBSVM_GUI_Template_test
                 C4Export,       //7
                 C5Export,       //8
                 C6Export,       //9
-                (Convert.ToInt32(Has_Labels.IsChecked)).ToString(),   //10
-                (Convert.ToInt32(Scale_Selected.IsChecked)).ToString(), //11
+                (Convert.ToInt32(HasLabels.IsChecked)).ToString(),   //10
+                (Convert.ToInt32(ScaleSelected.IsChecked)).ToString(), //11
 
             };
                 File.WriteAllLines(directoriesPath, directoriesLines);
@@ -552,59 +552,59 @@ namespace LIBSVM_GUI_Template_test
                 await Helper.RunDatamanagement(assemblyLocation + "\\Required_Files\\");
 
                 //Update Prepared File Location
-                Prepared_File_Location.Text = Saves_Directory.Text + "\\Saves\\" + File_Name.Text + "_Data_Converted";
-                Prepared_File_Location.ScrollToHorizontalOffset(double.PositiveInfinity);
+                PreparedFileLocation.Text = SavesDirectory.Text + "\\Saves\\" + FileName.Text + "_Data_Converted";
+                PreparedFileLocation.ScrollToHorizontalOffset(double.PositiveInfinity);
 
                 ConvertRunning = 0;
                 //Convert_gif1.Visibility = Visibility.Hidden;
-                Convert_Button.Background = new SolidColorBrush(Colors.DarkTurquoise);
-                Convert_Button_text.Text = "Convert to LIBSVM-Ready File";
+                ConvertButton.Background = new SolidColorBrush(Colors.DarkTurquoise);
+                ConvertButtonText.Text = "Convert to LIBSVM-Ready File";
             }
         }
 
         public void Converted_To_Split_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrEmpty(Prepared_File_Location.Text))
+            if (string.IsNullOrEmpty(PreparedFileLocation.Text))
             {
                 System.Windows.Forms.MessageBox.Show(@"No file to send");
             }
             else
             {
-                Data_Split_Location.Text = Prepared_File_Location.Text;
-                Data_Split_Location.ScrollToHorizontalOffset(double.PositiveInfinity);
+                DataSplitLocation.Text = PreparedFileLocation.Text;
+                DataSplitLocation.ScrollToHorizontalOffset(double.PositiveInfinity);
             }
         }
 
         public void Converted_To_Train_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrEmpty(Prepared_File_Location.Text))
+            if (string.IsNullOrEmpty(PreparedFileLocation.Text))
             {
                 System.Windows.Forms.MessageBox.Show(@"No file to send");
             }
             else
             {
-                Training_Data_Location.Text = Prepared_File_Location.Text;
-                Training_Data_Location.ScrollToHorizontalOffset(double.PositiveInfinity);
+                TrainingDataLocation.Text = PreparedFileLocation.Text;
+                TrainingDataLocation.ScrollToHorizontalOffset(double.PositiveInfinity);
             }
         }
 
         public void Converted_To_Test_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrEmpty(Prepared_File_Location.Text))
+            if (string.IsNullOrEmpty(PreparedFileLocation.Text))
             {
                 System.Windows.Forms.MessageBox.Show(@"No file to send");
             }
             else
             {
-                Testing_Data_Location.Text = Prepared_File_Location.Text;
-                Testing_Data_Location.ScrollToHorizontalOffset(double.PositiveInfinity);
+                TestingDataLocation.Text = PreparedFileLocation.Text;
+                TestingDataLocation.ScrollToHorizontalOffset(double.PositiveInfinity);
             }
         }
 
         public void Data_To_Split_Button_Click(object sender, RoutedEventArgs e)
         {
-            FilePicker.Matlab(Data_Split_Location);
-            Data_Split_Location.ScrollToHorizontalOffset(double.PositiveInfinity);
+            FilePicker.Matlab(DataSplitLocation);
+            DataSplitLocation.ScrollToHorizontalOffset(double.PositiveInfinity);
         }
 
         public async void Split_Button_Click(object sender, RoutedEventArgs e)
@@ -618,15 +618,15 @@ namespace LIBSVM_GUI_Template_test
             }
 
             // Check if the split data and save directory folder exist
-            else if (File.Exists(Helper.AddExtension(Data_Split_Location.Text, ".mat")) == false & Directory.Exists(Saves_Directory.Text) == false)
+            else if (File.Exists(Helper.AddExtension(DataSplitLocation.Text, ".mat")) == false & Directory.Exists(SavesDirectory.Text) == false)
             {
                 System.Windows.Forms.MessageBox.Show(@"Please select a valid saves directory and data to split");
             }
-            else if (File.Exists(Helper.AddExtension(Data_Split_Location.Text, ".mat")) == false)
+            else if (File.Exists(Helper.AddExtension(DataSplitLocation.Text, ".mat")) == false)
             {
                 System.Windows.Forms.MessageBox.Show(@"Please select valid data to split");
             }
-            else if (Directory.Exists(Saves_Directory.Text) == false)
+            else if (Directory.Exists(SavesDirectory.Text) == false)
             {
                 System.Windows.Forms.MessageBox.Show(@"Please select a valid saves directory");
             }
@@ -647,14 +647,14 @@ namespace LIBSVM_GUI_Template_test
                     RepeatBehavior = RepeatBehavior.Forever,
                     AutoReverse = true
                 };
-                Split_Button.Background = new SolidColorBrush(Colors.DarkTurquoise);
-                Split_Button.Background.BeginAnimation(SolidColorBrush.ColorProperty, animation);
-                Split_Button_text.Text = "Splitting";
+                SplitButton.Background = new SolidColorBrush(Colors.DarkTurquoise);
+                SplitButton.Background.BeginAnimation(SolidColorBrush.ColorProperty, animation);
+                SplitButtonText.Text = "Splitting";
 
                 #endregion
 
                 // Create Saves folder if it doesn't exist
-                Directory.CreateDirectory(Saves_Directory.Text + "\\Saves");
+                Directory.CreateDirectory(SavesDirectory.Text + "\\Saves");
 
                 // Exports Directories
                 #region Export Split Settings
@@ -662,10 +662,10 @@ namespace LIBSVM_GUI_Template_test
                 var directoriesPath = assemblyLocation + "\\Required_Files\\Settings\\Settings_Split.txt";
                 string[] directoriesLines =
                 {
-                    Saves_Directory.Text,       // 1
-                    File_Name.Text,             // 2
-                    Data_Split_Location.Text,   // 3
-                    Percentage_Split.Text,      // 1
+                    SavesDirectory.Text,       // 1
+                    FileName.Text,             // 2
+                    DataSplitLocation.Text,   // 3
+                    PercentageSplit.Text,      // 1
                 };
                 File.WriteAllLines(directoriesPath, directoriesLines);
 
@@ -675,66 +675,66 @@ namespace LIBSVM_GUI_Template_test
                 await Helper.RunSplit(assemblyLocation + "\\Required_Files\\");
 
                 //Update Portion File Locations
-                First_Portion_Location.Text = Saves_Directory.Text + "\\Saves\\" + File_Name.Text + "_Data_First_Portion";
-                Second_Portion_Location.Text = Saves_Directory.Text + "\\Saves\\" + File_Name.Text + "_Data_Second_Portion";
-                First_Portion_Location.ScrollToHorizontalOffset(double.PositiveInfinity);
-                Second_Portion_Location.ScrollToHorizontalOffset(double.PositiveInfinity);
+                FirstPortionLocation.Text = SavesDirectory.Text + "\\Saves\\" + FileName.Text + "_Data_First_Portion";
+                SecondPortionLocation.Text = SavesDirectory.Text + "\\Saves\\" + FileName.Text + "_Data_Second_Portion";
+                FirstPortionLocation.ScrollToHorizontalOffset(double.PositiveInfinity);
+                SecondPortionLocation.ScrollToHorizontalOffset(double.PositiveInfinity);
 
                 SplitRunning = 0;
-                Split_Button.Background = new SolidColorBrush(Colors.DarkTurquoise);
-                Split_Button_text.Text = "Split";
+                SplitButton.Background = new SolidColorBrush(Colors.DarkTurquoise);
+                SplitButtonText.Text = "Split";
             }
         }
 
         public void First_To_Training_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrEmpty(First_Portion_Location.Text))
+            if (string.IsNullOrEmpty(FirstPortionLocation.Text))
             {
                 System.Windows.Forms.MessageBox.Show(@"No file to send");
             }
             else
             {
-                Training_Data_Location.Text = First_Portion_Location.Text;
-                Training_Data_Location.ScrollToHorizontalOffset(double.PositiveInfinity);
+                TrainingDataLocation.Text = FirstPortionLocation.Text;
+                TrainingDataLocation.ScrollToHorizontalOffset(double.PositiveInfinity);
             }
         }
 
         public void First_To_Testing_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrEmpty(First_Portion_Location.Text))
+            if (string.IsNullOrEmpty(FirstPortionLocation.Text))
             {
                 System.Windows.Forms.MessageBox.Show(@"No file to send");
             }
             else
             {
-                Testing_Data_Location.Text = First_Portion_Location.Text;
-                Testing_Data_Location.ScrollToHorizontalOffset(double.PositiveInfinity);
+                TestingDataLocation.Text = FirstPortionLocation.Text;
+                TestingDataLocation.ScrollToHorizontalOffset(double.PositiveInfinity);
             }
         }
 
         public void Second_To_Training_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrEmpty(Second_Portion_Location.Text))
+            if (string.IsNullOrEmpty(SecondPortionLocation.Text))
             {
                 System.Windows.Forms.MessageBox.Show(@"No file to send");
             }
             else
             {
-                Training_Data_Location.Text = Second_Portion_Location.Text;
-                Training_Data_Location.ScrollToHorizontalOffset(double.PositiveInfinity);
+                TrainingDataLocation.Text = SecondPortionLocation.Text;
+                TrainingDataLocation.ScrollToHorizontalOffset(double.PositiveInfinity);
             }
         }
 
         public void Second_To_Testing_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrEmpty(Second_Portion_Location.Text))
+            if (string.IsNullOrEmpty(SecondPortionLocation.Text))
             {
                 System.Windows.Forms.MessageBox.Show(@"No file to send");
             }
             else
             {
-                Testing_Data_Location.Text = Second_Portion_Location.Text;
-                Testing_Data_Location.ScrollToHorizontalOffset(double.PositiveInfinity);
+                TestingDataLocation.Text = SecondPortionLocation.Text;
+                TestingDataLocation.ScrollToHorizontalOffset(double.PositiveInfinity);
             }
         }
 
@@ -744,7 +744,7 @@ namespace LIBSVM_GUI_Template_test
 
             IfAttributeIndexAll();
 
-            if (Link_CheckBox.IsChecked == true)
+            if (LinkCheckBox.IsChecked == true)
             {
                 TAttributeMinus_Click(sender, e);
             }
@@ -758,7 +758,7 @@ namespace LIBSVM_GUI_Template_test
 
             IfAttributeIndexAll();
 
-            if (Link_CheckBox.IsChecked == true)
+            if (LinkCheckBox.IsChecked == true)
             {
                 TAttributePlus_Click(sender, e);
             }
@@ -768,14 +768,14 @@ namespace LIBSVM_GUI_Template_test
 
         public void Parameter_Selection_Button_Click(object sender, RoutedEventArgs e)
         {
-            Gamma_Text.Text = G_Result_Text.Text;
-            Cost_Text.Text = C_Result_Text.Text;
+            GammaText.Text = GResultText.Text;
+            CostText.Text = CResultText.Text;
         }
 
         public void Feature_Selection_Button_Click(object sender, RoutedEventArgs e)
         {
-            Attribute1Text.Text = Att1_Result_Text.Text;
-            Attribute2Text.Text = Att2_Result_Text.Text;
+            Attribute1Text.Text = Att1ResultText.Text;
+            Attribute2Text.Text = Att2ResultText.Text;
         }
 
         public async void Run_Search_Button_Click(object sender, RoutedEventArgs e)
@@ -784,7 +784,7 @@ namespace LIBSVM_GUI_Template_test
 
             // Sets nfoldint to 1 if n-fold value is an integer
             var nfoldint = 0;
-            if (int.TryParse(n_fold_Text.Text, out _))
+            if (int.TryParse(NFoldText.Text, out _))
             {
                 nfoldint = 1;
             }
@@ -796,21 +796,21 @@ namespace LIBSVM_GUI_Template_test
             }
 
             // Check if the training data and save directory folder exist
-            else if (File.Exists(Helper.AddExtension(Training_Data_Location.Text, ".mat")) == false & Directory.Exists(Saves_Directory.Text) == false)
+            else if (File.Exists(Helper.AddExtension(TrainingDataLocation.Text, ".mat")) == false & Directory.Exists(SavesDirectory.Text) == false)
             {
                 System.Windows.Forms.MessageBox.Show(@"Please select a valid saves directory and training data");
             }
-            else if (File.Exists(Helper.AddExtension(Training_Data_Location.Text, ".mat")) == false)
+            else if (File.Exists(Helper.AddExtension(TrainingDataLocation.Text, ".mat")) == false)
             {
                 System.Windows.Forms.MessageBox.Show(@"Please select valid training data");
             }
-            else if (Directory.Exists(Saves_Directory.Text) == false)
+            else if (Directory.Exists(SavesDirectory.Text) == false)
             {
                 System.Windows.Forms.MessageBox.Show(@"Please select a valid saves directory");
             }
 
             // Check if None is selected, if so say "Select a Grid Search method"
-            else if (Feature_Selected.IsChecked == false & Parameter_Selected.IsChecked == false)
+            else if (FeatureSelected.IsChecked == false & ParameterSelected.IsChecked == false)
             {
                 System.Windows.Forms.MessageBox.Show(@"Select a Grid Search method");
             }
@@ -820,35 +820,35 @@ namespace LIBSVM_GUI_Template_test
             {
                 System.Windows.Forms.MessageBox.Show(@"n-fold value must be an integer greater than 1");
             }
-            else if (float.Parse(n_fold_Text.Text) < 2)
+            else if (float.Parse(NFoldText.Text) < 2)
             {
                 System.Windows.Forms.MessageBox.Show(@"n-fold value must be an integer greater than 1");
             }
 
             // Checks if the upper values aren't greater than the lower values by at least one step
-            else if (Parameter_Selected.IsChecked == true & (float.Parse(GUpper_Text.Text) - float.Parse(GLower_Text.Text) < float.Parse(GStep_Text.Text)) 
-                & (float.Parse(CUpper_Text.Text) - float.Parse(CLower_Text.Text) < float.Parse(CStep_Text.Text)))
+            else if (ParameterSelected.IsChecked == true & (float.Parse(GUpperText.Text) - float.Parse(GLowerText.Text) < float.Parse(GStepText.Text)) 
+                & (float.Parse(CUpperText.Text) - float.Parse(CLowerText.Text) < float.Parse(CStepText.Text)))
             {
                 System.Windows.Forms.MessageBox.Show(@"C and G upper values must be greater than their lower values by at least one step respectively");
             }
-            else if (Parameter_Selected.IsChecked == true & (float.Parse(CUpper_Text.Text) - float.Parse(CLower_Text.Text) < float.Parse(CStep_Text.Text)))
+            else if (ParameterSelected.IsChecked == true & (float.Parse(CUpperText.Text) - float.Parse(CLowerText.Text) < float.Parse(CStepText.Text)))
             {
                 System.Windows.Forms.MessageBox.Show(@"C upper value must be greater than the lower value by at least one step");
             }
-            else if (Parameter_Selected.IsChecked == true & (float.Parse(GUpper_Text.Text) - float.Parse(GLower_Text.Text) < float.Parse(GStep_Text.Text)))
+            else if (ParameterSelected.IsChecked == true & (float.Parse(GUpperText.Text) - float.Parse(GLowerText.Text) < float.Parse(GStepText.Text)))
             {
                 System.Windows.Forms.MessageBox.Show(@"G upper value must be greater than the lower value by at least one step");
             }
-            else if (Feature_Selected.IsChecked == true & (float.Parse(Att1Upper_Text.Text) - float.Parse(Att1Lower_Text.Text) < float.Parse(Att1Step_Text.Text)) & 
-                (float.Parse(Att2Upper_Text.Text) - float.Parse(Att2Lower_Text.Text) < float.Parse(Att2Step_Text.Text)))
+            else if (FeatureSelected.IsChecked == true & (float.Parse(Att1UpperText.Text) - float.Parse(Att1LowerText.Text) < float.Parse(Att1StepText.Text)) & 
+                (float.Parse(Att2UpperText.Text) - float.Parse(Att2LowerText.Text) < float.Parse(Att2StepText.Text)))
             {
                 System.Windows.Forms.MessageBox.Show(@"Attribute upper values must be greater than their lower values by at least one step respectively");
             }
-            else if (Feature_Selected.IsChecked == true & (float.Parse(Att1Upper_Text.Text) - float.Parse(Att1Lower_Text.Text) < float.Parse(Att1Step_Text.Text)))
+            else if (FeatureSelected.IsChecked == true & (float.Parse(Att1UpperText.Text) - float.Parse(Att1LowerText.Text) < float.Parse(Att1StepText.Text)))
             {
                 System.Windows.Forms.MessageBox.Show(@"Attribute 1 upper value must be greater than the lower value by at least one step");
             }
-            else if (Feature_Selected.IsChecked == true & (float.Parse(Att2Upper_Text.Text) - float.Parse(Att2Lower_Text.Text) < float.Parse(Att2Step_Text.Text)))
+            else if (FeatureSelected.IsChecked == true & (float.Parse(Att2UpperText.Text) - float.Parse(Att2LowerText.Text) < float.Parse(Att2StepText.Text)))
             {
                 System.Windows.Forms.MessageBox.Show(@"Attribute 2 upper value must be greater than the lower value by at least one step");
             }
@@ -869,14 +869,14 @@ namespace LIBSVM_GUI_Template_test
                     RepeatBehavior = RepeatBehavior.Forever,
                     AutoReverse = true
                 };
-                Run_Search_Button.Background = new SolidColorBrush(Colors.DarkTurquoise);
-                Run_Search_Button.Background.BeginAnimation(SolidColorBrush.ColorProperty, animation);
-                Run_Search_text.Text = "Searching";
+                RunSearchButton.Background = new SolidColorBrush(Colors.DarkTurquoise);
+                RunSearchButton.Background.BeginAnimation(SolidColorBrush.ColorProperty, animation);
+                RunSearchText.Text = "Searching";
 
                 #endregion
 
                 // Create Plots folder if it doesn't exist
-                Directory.CreateDirectory(Saves_Directory.Text + "\\Plots");
+                Directory.CreateDirectory(SavesDirectory.Text + "\\Plots");
 
                 // Export Settings
                 #region Export Settings
@@ -933,17 +933,17 @@ namespace LIBSVM_GUI_Template_test
                         break;
                 }
 
-                if (false | Length_Text.Text == "" | Length_Text.Text == " ")
+                if (false | LengthText.Text == "" | LengthText.Text == " ")
                 { lengthTextExport = "0"; }
-                else { lengthTextExport = Length_Text.Text; }
+                else { lengthTextExport = LengthText.Text; }
 
                 File.Delete(assemblyLocation + "\\Required_Files\\Settings\\Settings_Text.txt");
                 var settingsPath = assemblyLocation + "\\Required_Files\\Settings\\Settings_Text.txt";
                 string[] settingsLines =
                 {
-                    "Start- 01, " + Start_Text.Text + " ,",
+                    "Start- 01, " + StartText.Text + " ,",
                     "Length 02, " + lengthTextExport + " ,",
-                    "AccTyp 03, " + Accuracy_ComboBox.SelectedIndex + " ,",
+                    "AccTyp 03, " + AccuracyComboBox.SelectedIndex + " ,",
                     "Att1Ft 04, " + A1Export + " ,",
                     "Att2Ft 05, " + A2Export + " ,",
                     "Att3Ft 06, " + A3Export + " ,",
@@ -952,36 +952,36 @@ namespace LIBSVM_GUI_Template_test
                     "Att6Ft 09, " + A6Export + " ,",
                     "AttInx 10, " + AttributeIndex + " ,",
                     "",
-                    "SVMTyp 11, " + SVM_ComboBox.SelectedIndex + " ,",
-                    "Kernel 12, " + Kernel_ComboBox.SelectedIndex + " ,",
-                    "Gamma- 13, " + Gamma_Text.Text + " ,",
-                    "Degree 14, " + Degree_Text.Text + " ,",
-                    "R----- 15, " + R_Text.Text + " ,",
-                    "Cost-- 16, " + Cost_Text.Text + " ,",
-                    "Nu---- 17, " + Nu_Text.Text + " ,",
-                    "Ep---- 18, " + Ep_Text.Text + " ,",
-                    "Ee---- 19, " + Ee_Text.Text + " ,",
+                    "SVMTyp 11, " + SvmComboBox.SelectedIndex + " ,",
+                    "Kernel 12, " + KernelComboBox.SelectedIndex + " ,",
+                    "Gamma- 13, " + GammaText.Text + " ,",
+                    "Degree 14, " + DegreeText.Text + " ,",
+                    "R----- 15, " + RText.Text + " ,",
+                    "Cost-- 16, " + CostText.Text + " ,",
+                    "Nu---- 17, " + NuTextInput.Text + " ,",
+                    "Ep---- 18, " + EpText.Text + " ,",
+                    "Ee---- 19, " + EeText.Text + " ,",
                     "",
                     "Select 20, " + optimiseValue + " ,", // OptimiseValue for Search, 3 for Train
-                    "CLower 21, " + CLower_Text.Text + " ,",
-                    "CUpper 22, " + CUpper_Text.Text + " ,",
-                    "C_Step 23, " + CStep_Text.Text + " ,",
-                    "GLower 24, " + GLower_Text.Text + " ,",
-                    "GUpper 25, " + GUpper_Text.Text + " ,",
-                    "G_Step 26, " + GStep_Text.Text + " ,",
-                    "At1Low 27, " + Att1Lower_Text.Text + " ,",
-                    "At1Upp 28, " + Att1Upper_Text.Text + " ,",
-                    "At1Stp 29, " + Att1Step_Text.Text + " ,",
-                    "At2Low 30, " + Att2Lower_Text.Text + " ,",
-                    "At2Upp 31, " + Att2Upper_Text.Text + " ,",
-                    "At2Stp 32, " + Att2Step_Text.Text + " ,",
-                    "nfold- 33, " + n_fold_Text.Text + " ,",
-                    "Scale- 34, " + Convert.ToInt32(Scale_Selected.IsChecked) + " ,",
+                    "CLower 21, " + CLowerText.Text + " ,",
+                    "CUpper 22, " + CUpperText.Text + " ,",
+                    "C_Step 23, " + CStepText.Text + " ,",
+                    "GLower 24, " + GLowerText.Text + " ,",
+                    "GUpper 25, " + GUpperText.Text + " ,",
+                    "G_Step 26, " + GStepText.Text + " ,",
+                    "At1Low 27, " + Att1LowerText.Text + " ,",
+                    "At1Upp 28, " + Att1UpperText.Text + " ,",
+                    "At1Stp 29, " + Att1StepText.Text + " ,",
+                    "At2Low 30, " + Att2LowerText.Text + " ,",
+                    "At2Upp 31, " + Att2UpperText.Text + " ,",
+                    "At2Stp 32, " + Att2StepText.Text + " ,",
+                    "nfold- 33, " + NFoldText.Text + " ,",
+                    "Scale- 34, " + Convert.ToInt32(ScaleSelected.IsChecked) + " ,",
                     "Projec 35, " + ProjectionTrain.Text + " ,",
-                    "Step-- 36, " + Step_Text.Text + " ,",
-                    "Cache- 37, " + Cache_text.Text + " ,",
-                    "Shrink 38, " + Convert.ToInt32(Shrinking_Selected.IsChecked) + " ,",
-                    "Split- 39, " + Split_Preference.Text + " ,",
+                    "Step-- 36, " + StepText.Text + " ,",
+                    "Cache- 37, " + CacheText.Text + " ,",
+                    "Shrink 38, " + Convert.ToInt32(ShrinkingSelected.IsChecked) + " ,",
+                    "Split- 39, " + SplitPreference.Text + " ,",
 
                 };
                 File.WriteAllLines(settingsPath, settingsLines);
@@ -994,9 +994,9 @@ namespace LIBSVM_GUI_Template_test
                 var directoriesPath = assemblyLocation + "\\Required_Files\\Settings\\Directories_SearchAndTraining.txt";
                 string[] directoriesLines =
                 {
-                    Saves_Directory.Text,
-                    File_Name.Text,
-                    Training_Data_Location.Text,
+                    SavesDirectory.Text,
+                    FileName.Text,
+                    TrainingDataLocation.Text,
                 };
                 File.WriteAllLines(directoriesPath, directoriesLines);
 
@@ -1009,46 +1009,46 @@ namespace LIBSVM_GUI_Template_test
                 // Update Image for Grid Search and Best Prediction
                 #region Display Contour and Prediction Plots
 
-                Grid_Search_Contour_Image.Source = null;
-                Grid_Search_Contour_Image.UpdateLayout();
+                GridSearchContourImage.Source = null;
+                GridSearchContourImage.UpdateLayout();
                 GC.Collect();
 
-                if (File.Exists(Saves_Directory.Text + "\\Plots\\" + File_Name.Text + "_Grid_Search_Contour.jpg"))
+                if (File.Exists(SavesDirectory.Text + "\\Plots\\" + FileName.Text + "_Grid_Search_Contour.jpg"))
                 {
-                    File.Delete(Saves_Directory.Text + "\\Plots\\" + File_Name.Text + "_Grid_Search_Contour.jpg"); 
+                    File.Delete(SavesDirectory.Text + "\\Plots\\" + FileName.Text + "_Grid_Search_Contour.jpg"); 
                 }
-                if (File.Exists(Saves_Directory.Text + "\\Plots\\" + File_Name.Text + "_Grid_Search_Contour_cache.jpg"))
+                if (File.Exists(SavesDirectory.Text + "\\Plots\\" + FileName.Text + "_Grid_Search_Contour_cache.jpg"))
                 {
-                    File.Move(Saves_Directory.Text + "\\Plots\\" + File_Name.Text + "_Grid_Search_Contour_cache.jpg", Saves_Directory.Text + "\\Plots\\" + File_Name.Text + "_Grid_Search_Contour.jpg");
-                    var plotContourLocation = Saves_Directory.Text + "\\Plots\\" + File_Name.Text + "_Grid_Search_Contour.jpg";
+                    File.Move(SavesDirectory.Text + "\\Plots\\" + FileName.Text + "_Grid_Search_Contour_cache.jpg", SavesDirectory.Text + "\\Plots\\" + FileName.Text + "_Grid_Search_Contour.jpg");
+                    var plotContourLocation = SavesDirectory.Text + "\\Plots\\" + FileName.Text + "_Grid_Search_Contour.jpg";
                     var bitmapContour = new BitmapImage();
                     bitmapContour.BeginInit();
                     bitmapContour.CacheOption = BitmapCacheOption.OnLoad;
                     bitmapContour.UriSource = new Uri(plotContourLocation);
                     bitmapContour.EndInit();
-                    Grid_Search_Contour_Image.Source = bitmapContour;
+                    GridSearchContourImage.Source = bitmapContour;
                     bitmapContour.UriSource = null;
                     GC.Collect();
                 }
 
-                Grid_Search_Prediction_Image.Source = null;
-                Grid_Search_Prediction_Image.UpdateLayout();
+                GridSearchPredictionImage.Source = null;
+                GridSearchPredictionImage.UpdateLayout();
                 GC.Collect();
 
-                if (File.Exists(Saves_Directory.Text + "\\Plots\\" + File_Name.Text + "_Grid_Search_Prediction.jpg"))
+                if (File.Exists(SavesDirectory.Text + "\\Plots\\" + FileName.Text + "_Grid_Search_Prediction.jpg"))
                 {
-                    File.Delete(Saves_Directory.Text + "\\Plots\\" + File_Name.Text + "_Grid_Search_Prediction.jpg");
+                    File.Delete(SavesDirectory.Text + "\\Plots\\" + FileName.Text + "_Grid_Search_Prediction.jpg");
                 }
-                if (File.Exists(Saves_Directory.Text + "\\Plots\\" + File_Name.Text + "_Grid_Search_Prediction_cache.jpg"))
+                if (File.Exists(SavesDirectory.Text + "\\Plots\\" + FileName.Text + "_Grid_Search_Prediction_cache.jpg"))
                 {
-                    File.Move(Saves_Directory.Text + "\\Plots\\" + File_Name.Text + "_Grid_Search_Prediction_cache.jpg", Saves_Directory.Text + "\\Plots\\" + File_Name.Text + "_Grid_Search_Prediction.jpg");
-                    var plotPredictionLocation = Saves_Directory.Text + "\\Plots\\" + File_Name.Text + "_Grid_Search_Prediction.jpg";
+                    File.Move(SavesDirectory.Text + "\\Plots\\" + FileName.Text + "_Grid_Search_Prediction_cache.jpg", SavesDirectory.Text + "\\Plots\\" + FileName.Text + "_Grid_Search_Prediction.jpg");
+                    var plotPredictionLocation = SavesDirectory.Text + "\\Plots\\" + FileName.Text + "_Grid_Search_Prediction.jpg";
                     var bitmapPrediction = new BitmapImage();
                     bitmapPrediction.BeginInit();
                     bitmapPrediction.CacheOption = BitmapCacheOption.OnLoad;
                     bitmapPrediction.UriSource = new Uri(plotPredictionLocation);
                     bitmapPrediction.EndInit();
-                    Grid_Search_Prediction_Image.Source = bitmapPrediction;
+                    GridSearchPredictionImage.Source = bitmapPrediction;
                     bitmapPrediction.UriSource = null;
                     GC.Collect();
 
@@ -1057,23 +1057,23 @@ namespace LIBSVM_GUI_Template_test
                 // Update Grid Search Results
                 #region Update Grid Search Results
 
-                if (Parameter_Selected.IsChecked == true)
+                if (ParameterSelected.IsChecked == true)
                 {
                     using (TextReader reader = File.OpenText(assemblyLocation + "\\Required_Files\\MatlabOutputText\\Best_CandG"))
                     {
-                        C_Result_Text.Text = decimal.Parse(await reader.ReadLineAsync() ?? string.Empty).Normalize().ToString();
-                        G_Result_Text.Text = decimal.Parse(await reader.ReadLineAsync() ?? string.Empty).Normalize().ToString();
+                        CResultText.Text = decimal.Parse(await reader.ReadLineAsync() ?? string.Empty).Normalize().ToString();
+                        GResultText.Text = decimal.Parse(await reader.ReadLineAsync() ?? string.Empty).Normalize().ToString();
                     }
                     //string Best_CandG = System.IO.File.ReadAllText(Saves_Directory.Text + "\\MatlabOutputText\\" + "Best_CandG");
                     //C_Result_Text.Text = Helper.Normalize( ToDecimal(Helper.ReadLine(Best_CandG, 1));
                     //G_Result_Text.Text = Helper.ReadLine(Best_CandG, 2);
                 }
-                else if (Feature_Selected.IsChecked == true)
+                else if (FeatureSelected.IsChecked == true)
                 {
                     using (TextReader reader = File.OpenText(assemblyLocation + "\\Required_Files\\MatlabOutputText\\Best_Features"))
                     {
-                        Att1_Result_Text.Text = decimal.Parse(await reader.ReadLineAsync() ?? string.Empty).Normalize().ToString();
-                        Att2_Result_Text.Text = decimal.Parse(await reader.ReadLineAsync() ?? string.Empty).Normalize().ToString();
+                        Att1ResultText.Text = decimal.Parse(await reader.ReadLineAsync() ?? string.Empty).Normalize().ToString();
+                        Att2ResultText.Text = decimal.Parse(await reader.ReadLineAsync() ?? string.Empty).Normalize().ToString();
                     }
                 }
 
@@ -1083,8 +1083,8 @@ namespace LIBSVM_GUI_Template_test
                 #region Update Best Prediction Accuracy
 
                 var accuracyLines = File.ReadAllText(assemblyLocation + "\\Required_Files\\MatlabOutputText\\Grid_Search_Accuracy");
-                GridSearch_MSE_text.Text = Helper.ReadLine(accuracyLines, 2);
-                GridSearch_SCC_text.Text = Helper.ReadLine(accuracyLines, 3);
+                GridSearchMseText.Text = Helper.ReadLine(accuracyLines, 2);
+                GridSearchSccText.Text = Helper.ReadLine(accuracyLines, 3);
 
                 }
                 else
@@ -1095,15 +1095,15 @@ namespace LIBSVM_GUI_Template_test
                 #endregion
 
                 GridSearchRunning = 0;
-                Run_Search_Button.Background = new SolidColorBrush(Colors.DarkTurquoise);
-                Run_Search_text.Text = "Run Search";
+                RunSearchButton.Background = new SolidColorBrush(Colors.DarkTurquoise);
+                RunSearchText.Text = "Run Search";
             }
         }
 
         public void Training_Data_Button_Click(object sender, RoutedEventArgs e)
         {
-            FilePicker.Matlab(Training_Data_Location);
-            Training_Data_Location.ScrollToHorizontalOffset(double.PositiveInfinity);
+            FilePicker.Matlab(TrainingDataLocation);
+            TrainingDataLocation.ScrollToHorizontalOffset(double.PositiveInfinity);
         }
 
         public async void Train_Model_Button_Click(object sender, RoutedEventArgs e)
@@ -1116,15 +1116,15 @@ namespace LIBSVM_GUI_Template_test
             }
 
             // Check if the training data and save directory folder exist
-            else if (File.Exists(Helper.AddExtension(Training_Data_Location.Text, ".mat")) == false & Directory.Exists(Saves_Directory.Text) == false)
+            else if (File.Exists(Helper.AddExtension(TrainingDataLocation.Text, ".mat")) == false & Directory.Exists(SavesDirectory.Text) == false)
             {
                 System.Windows.Forms.MessageBox.Show(@"Please select a valid saves directory and training data");
             }
-            else if (File.Exists(Helper.AddExtension(Training_Data_Location.Text, ".mat")) == false)
+            else if (File.Exists(Helper.AddExtension(TrainingDataLocation.Text, ".mat")) == false)
             {
                 System.Windows.Forms.MessageBox.Show(@"Please select valid training data");
             }
-            else if (Directory.Exists(Saves_Directory.Text) == false)
+            else if (Directory.Exists(SavesDirectory.Text) == false)
             {
                 System.Windows.Forms.MessageBox.Show(@"Please select a valid saves directory");
             }
@@ -1145,14 +1145,14 @@ namespace LIBSVM_GUI_Template_test
                     RepeatBehavior = RepeatBehavior.Forever,
                     AutoReverse = true
                 };
-                Train_Model_Button.Background = new SolidColorBrush(Colors.DarkTurquoise);
-                Train_Model_Button.Background.BeginAnimation(SolidColorBrush.ColorProperty, animation);
-                Train_Model_text.Text = "Training";
+                TrainModelButton.Background = new SolidColorBrush(Colors.DarkTurquoise);
+                TrainModelButton.Background.BeginAnimation(SolidColorBrush.ColorProperty, animation);
+                TrainModelText.Text = "Training";
 
                 #endregion
 
                 // Create Saves folder if it doesn't exist
-                Directory.CreateDirectory(Saves_Directory.Text + "\\Saves");
+                Directory.CreateDirectory(SavesDirectory.Text + "\\Saves");
 
                 // Export Settings
                 #region Export Settings
@@ -1209,17 +1209,17 @@ namespace LIBSVM_GUI_Template_test
                         break;
                 }
 
-                if (false | Length_Text.Text == "" | Length_Text.Text == " ")
+                if (false | LengthText.Text == "" | LengthText.Text == " ")
                 { lengthTextExport = "0"; }
-                else { lengthTextExport = Length_Text.Text; }
+                else { lengthTextExport = LengthText.Text; }
 
                 File.Delete(assemblyLocation + "\\Required_Files\\Settings\\Settings_Text.txt");
                 var settingsPath = assemblyLocation + "\\Required_Files\\Settings\\Settings_Text.txt";
                 string[] settingsLines =
                 {
-                    "Start- 01, " + Start_Text.Text + " ,",
+                    "Start- 01, " + StartText.Text + " ,",
                     "Length 02, " + lengthTextExport + " ,",
-                    "AccTyp 03, " + Accuracy_ComboBox.SelectedIndex + " ,",
+                    "AccTyp 03, " + AccuracyComboBox.SelectedIndex + " ,",
                     "Att1Ft 04, " + A1Export + " ,",
                     "Att2Ft 05, " + A2Export + " ,",
                     "Att3Ft 06, " + A3Export + " ,",
@@ -1228,36 +1228,36 @@ namespace LIBSVM_GUI_Template_test
                     "Att6Ft 09, " + A6Export + " ,",
                     "AttInx 10, " + AttributeIndex + " ,",
                     "",
-                    "SVMTyp 11, " + SVM_ComboBox.SelectedIndex + " ,",
-                    "Kernel 12, " + Kernel_ComboBox.SelectedIndex + " ,",
-                    "Gamma- 13, " + Gamma_Text.Text + " ,",
-                    "Degree 14, " + Degree_Text.Text + " ,",
-                    "R----- 15, " + R_Text.Text + " ,",
-                    "Cost-- 16, " + Cost_Text.Text + " ,",
-                    "Nu---- 17, " + Nu_Text.Text + " ,",
-                    "Ep---- 18, " + Ep_Text.Text + " ,",
-                    "Ee---- 19, " + Ee_Text.Text + " ,",
+                    "SVMTyp 11, " + SvmComboBox.SelectedIndex + " ,",
+                    "Kernel 12, " + KernelComboBox.SelectedIndex + " ,",
+                    "Gamma- 13, " + GammaText.Text + " ,",
+                    "Degree 14, " + DegreeText.Text + " ,",
+                    "R----- 15, " + RText.Text + " ,",
+                    "Cost-- 16, " + CostText.Text + " ,",
+                    "Nu---- 17, " + NuTextInput.Text + " ,",
+                    "Ep---- 18, " + EpText.Text + " ,",
+                    "Ee---- 19, " + EeText.Text + " ,",
                     "",
                     "Select 20, " + optimiseValue + " ,", // OptimiseValue for Search, 3 for Train
-                    "CLower 21, " + CLower_Text.Text + " ,",
-                    "CUpper 22, " + CUpper_Text.Text + " ,",
-                    "C_Step 23, " + CStep_Text.Text + " ,",
-                    "GLower 24, " + GLower_Text.Text + " ,",
-                    "GUpper 25, " + GUpper_Text.Text + " ,",
-                    "G_Step 26, " + GStep_Text.Text + " ,",
-                    "At1Low 27, " + Att1Lower_Text.Text + " ,",
-                    "At1Upp 28, " + Att1Upper_Text.Text + " ,",
-                    "At1Stp 29, " + Att1Step_Text.Text + " ,",
-                    "At2Low 30, " + Att2Lower_Text.Text + " ,",
-                    "At2Upp 31, " + Att2Upper_Text.Text + " ,",
-                    "At2Stp 32, " + Att2Step_Text.Text + " ,",
-                    "nfold- 33, " + n_fold_Text.Text + " ,",
-                    "Scale- 34, " + Convert.ToInt32(Scale_Selected.IsChecked) + " ,",
+                    "CLower 21, " + CLowerText.Text + " ,",
+                    "CUpper 22, " + CUpperText.Text + " ,",
+                    "C_Step 23, " + CStepText.Text + " ,",
+                    "GLower 24, " + GLowerText.Text + " ,",
+                    "GUpper 25, " + GUpperText.Text + " ,",
+                    "G_Step 26, " + GStepText.Text + " ,",
+                    "At1Low 27, " + Att1LowerText.Text + " ,",
+                    "At1Upp 28, " + Att1UpperText.Text + " ,",
+                    "At1Stp 29, " + Att1StepText.Text + " ,",
+                    "At2Low 30, " + Att2LowerText.Text + " ,",
+                    "At2Upp 31, " + Att2UpperText.Text + " ,",
+                    "At2Stp 32, " + Att2StepText.Text + " ,",
+                    "nfold- 33, " + NFoldText.Text + " ,",
+                    "Scale- 34, " + Convert.ToInt32(ScaleSelected.IsChecked) + " ,",
                     "Projec 35, " + ProjectionTrain.Text + " ,",
-                    "Step-- 36, " + Step_Text.Text + " ,",
-                    "cache- 37, " + Cache_text.Text + " ,",
-                    "Shrink 38, " + Convert.ToInt32(Shrinking_Selected.IsChecked) + " ,",
-                    "Split- 39, " + Split_Preference.Text + " ,",
+                    "Step-- 36, " + StepText.Text + " ,",
+                    "cache- 37, " + CacheText.Text + " ,",
+                    "Shrink 38, " + Convert.ToInt32(ShrinkingSelected.IsChecked) + " ,",
+                    "Split- 39, " + SplitPreference.Text + " ,",
                  };
                 File.WriteAllLines(settingsPath, settingsLines);
                 #endregion
@@ -1268,9 +1268,9 @@ namespace LIBSVM_GUI_Template_test
                 var directoriesPath = assemblyLocation + "\\Required_Files\\Settings\\Directories_SearchAndTraining.txt";
                 string[] directoriesLines =
                 {
-                    Saves_Directory.Text,
-                    File_Name.Text,
-                    Training_Data_Location.Text,
+                    SavesDirectory.Text,
+                    FileName.Text,
+                    TrainingDataLocation.Text,
                 };
                 File.WriteAllLines(directoriesPath, directoriesLines);
 
@@ -1283,41 +1283,41 @@ namespace LIBSVM_GUI_Template_test
                 #region Import Model Stats
 
                 var modelStatsLines = File.ReadAllText(assemblyLocation + "\\Required_Files\\MatlabOutputText\\Model_Stats");
-                iter_text.Text = string.Concat(Helper.ReadLine(modelStatsLines, 2).Where(c => !char.IsWhiteSpace(c))).Split('=').Last();
-                nu_text.Text = decimal.Round(decimal.Parse(string.Concat(Helper.ReadLine(modelStatsLines, 3).Where(c => !char.IsWhiteSpace(c))).Split('=').Last()), 3, MidpointRounding.AwayFromZero).ToString();
-                obj_text.Text = decimal.Round(decimal.Parse(string.Concat(Helper.ReadLine(modelStatsLines, 4).Where(c => !char.IsWhiteSpace(c))).UntilComma().Split('=').Last()), 3, MidpointRounding.AwayFromZero).ToString();
-                rho_text.Text = decimal.Round(decimal.Parse(string.Concat(Helper.ReadLine(modelStatsLines, 4).Where(c => !char.IsWhiteSpace(c))).Split(',').Last().Split('=').Last()), 3, MidpointRounding.AwayFromZero).ToString();
-                nSV_text.Text = string.Concat(Helper.ReadLine(modelStatsLines, 5).Where(c => !char.IsWhiteSpace(c))).UntilComma().Split('=').Last();
-                nBSV_text.Text = string.Concat(Helper.ReadLine(modelStatsLines, 5).Where(c => !char.IsWhiteSpace(c))).Split(',').Last().Split('=').Last();
+                IterText.Text = string.Concat(Helper.ReadLine(modelStatsLines, 2).Where(c => !char.IsWhiteSpace(c))).Split('=').Last();
+                NuText.Text = decimal.Round(decimal.Parse(string.Concat(Helper.ReadLine(modelStatsLines, 3).Where(c => !char.IsWhiteSpace(c))).Split('=').Last()), 3, MidpointRounding.AwayFromZero).ToString();
+                ObjText.Text = decimal.Round(decimal.Parse(string.Concat(Helper.ReadLine(modelStatsLines, 4).Where(c => !char.IsWhiteSpace(c))).UntilComma().Split('=').Last()), 3, MidpointRounding.AwayFromZero).ToString();
+                RhoText.Text = decimal.Round(decimal.Parse(string.Concat(Helper.ReadLine(modelStatsLines, 4).Where(c => !char.IsWhiteSpace(c))).Split(',').Last().Split('=').Last()), 3, MidpointRounding.AwayFromZero).ToString();
+                NSvText.Text = string.Concat(Helper.ReadLine(modelStatsLines, 5).Where(c => !char.IsWhiteSpace(c))).UntilComma().Split('=').Last();
+                NBsvText.Text = string.Concat(Helper.ReadLine(modelStatsLines, 5).Where(c => !char.IsWhiteSpace(c))).Split(',').Last().Split('=').Last();
 
                 #endregion
 
                 //Update Model Output location
-                Model_Output_Location.Text = Saves_Directory.Text + "\\Saves\\" + File_Name.Text + "_Model";
-                Model_Output_Location.ScrollToHorizontalOffset(double.PositiveInfinity);
+                ModelOutputLocation.Text = SavesDirectory.Text + "\\Saves\\" + FileName.Text + "_Model";
+                ModelOutputLocation.ScrollToHorizontalOffset(double.PositiveInfinity);
 
                 TrainRunning = 0;
-                Train_Model_Button.Background = new SolidColorBrush(Colors.DarkTurquoise);
-                Train_Model_text.Text = "Train Model";
+                TrainModelButton.Background = new SolidColorBrush(Colors.DarkTurquoise);
+                TrainModelText.Text = "Train Model";
             }
         }
 
         public void Send_To_Test_Button_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrEmpty(Model_Output_Location.Text))
+            if (string.IsNullOrEmpty(ModelOutputLocation.Text))
             {
                 System.Windows.Forms.MessageBox.Show(@"No file to send");
             }
             else
             {
-                Model_File_Location.Text = Model_Output_Location.Text;
-                Model_File_Location.ScrollToHorizontalOffset(double.PositiveInfinity);
+                ModelFileLocation.Text = ModelOutputLocation.Text;
+                ModelFileLocation.ScrollToHorizontalOffset(double.PositiveInfinity);
             }
         }
 
         public void TAttributeMinus_Click(object sender, RoutedEventArgs e)
         {
-            if (Link_CheckBox.IsChecked == true)
+            if (LinkCheckBox.IsChecked == true)
             {
                 tAttributeIndex = AttributeIndex;
             }
@@ -1333,7 +1333,7 @@ namespace LIBSVM_GUI_Template_test
 
         public void TAttributePlus_Click(object sender, RoutedEventArgs e)
         {
-            if (Link_CheckBox.IsChecked == true)
+            if (LinkCheckBox.IsChecked == true)
             {
                 tAttributeIndex = AttributeIndex;
             }
@@ -1350,14 +1350,14 @@ namespace LIBSVM_GUI_Template_test
 
         public void Testing_Data_Button_Click(object sender, RoutedEventArgs e)
         {
-            FilePicker.Matlab(Testing_Data_Location);
-            Testing_Data_Location.ScrollToHorizontalOffset(double.PositiveInfinity);
+            FilePicker.Matlab(TestingDataLocation);
+            TestingDataLocation.ScrollToHorizontalOffset(double.PositiveInfinity);
         }
 
         public void Model_Location_Button_Click(object sender, RoutedEventArgs e)
         {
-            FilePicker.Matlab(Model_File_Location);
-            Model_File_Location.ScrollToHorizontalOffset(double.PositiveInfinity);
+            FilePicker.Matlab(ModelFileLocation);
+            ModelFileLocation.ScrollToHorizontalOffset(double.PositiveInfinity);
         }
 
         public async void Test_Model_Button_Click(object sender, RoutedEventArgs e)
@@ -1371,19 +1371,19 @@ namespace LIBSVM_GUI_Template_test
             }
 
             // Check if the testing and training data and save directory folder exist
-            else if (File.Exists(Helper.AddExtension(Testing_Data_Location.Text, ".mat")) == false & Directory.Exists(Saves_Directory.Text) == false)
+            else if (File.Exists(Helper.AddExtension(TestingDataLocation.Text, ".mat")) == false & Directory.Exists(SavesDirectory.Text) == false)
             {
                 System.Windows.Forms.MessageBox.Show(@"Please select a valid saves directory, testing data, and model file");
             }
-            else if (Directory.Exists(Saves_Directory.Text) == false)
+            else if (Directory.Exists(SavesDirectory.Text) == false)
             {
                 System.Windows.Forms.MessageBox.Show(@"Please select a valid saves directory");
             }
-            else if (File.Exists(Helper.AddExtension(Testing_Data_Location.Text, ".mat")) == false)
+            else if (File.Exists(Helper.AddExtension(TestingDataLocation.Text, ".mat")) == false)
             {
                 System.Windows.Forms.MessageBox.Show(@"Please select valid testing data");
             }
-            else if (File.Exists(Helper.AddExtension(Model_File_Location.Text, ".mat")) == false)
+            else if (File.Exists(Helper.AddExtension(ModelFileLocation.Text, ".mat")) == false)
             {
                 System.Windows.Forms.MessageBox.Show(@"Please select a valid model file");
             }
@@ -1404,15 +1404,15 @@ namespace LIBSVM_GUI_Template_test
                     RepeatBehavior = RepeatBehavior.Forever,
                     AutoReverse = true
                 };
-                Test_Model_Button.Background = new SolidColorBrush(Colors.DarkTurquoise);
-                Test_Model_Button.Background.BeginAnimation(SolidColorBrush.ColorProperty, animation);
-                Test_Model_text.Text = "Testing";
+                TestModelButton.Background = new SolidColorBrush(Colors.DarkTurquoise);
+                TestModelButton.Background.BeginAnimation(SolidColorBrush.ColorProperty, animation);
+                TestModelText.Text = "Testing";
 
                 #endregion
 
                 // Create Saves and Plots folders if they don't exist
-                Directory.CreateDirectory(Saves_Directory.Text + "\\Saves");
-                Directory.CreateDirectory(Saves_Directory.Text + "\\Plots");
+                Directory.CreateDirectory(SavesDirectory.Text + "\\Saves");
+                Directory.CreateDirectory(SavesDirectory.Text + "\\Plots");
 
                 // Update directories file with: Saves location, File Name, Testing Data Location, Model File Location
                 #region Directories Export Testing
@@ -1420,10 +1420,10 @@ namespace LIBSVM_GUI_Template_test
                 var directoriesPath = assemblyLocation + "\\Required_Files\\Settings\\Directories_Export_Testing.txt";
                 string[] directoriesLines =
                 {
-                    Saves_Directory.Text,
-                    File_Name.Text,
-                    Testing_Data_Location.Text,
-                    Model_File_Location.Text,
+                    SavesDirectory.Text,
+                    FileName.Text,
+                    TestingDataLocation.Text,
+                    ModelFileLocation.Text,
                 };
 
                 File.WriteAllLines(directoriesPath, directoriesLines);
@@ -1485,15 +1485,15 @@ namespace LIBSVM_GUI_Template_test
                         break;
                 }
 
-                if (false | TLength_Text.Text == "" | TLength_Text.Text == " ")
+                if (false | TLengthText.Text == "" | TLengthText.Text == " ")
                 { tLengthTextExport = "0"; }
-                else { tLengthTextExport = TLength_Text.Text; }
+                else { tLengthTextExport = TLengthText.Text; }
 
                 File.Delete(assemblyLocation + "\\Required_Files\\Settings\\Settings_Testing.txt");
                 var settingsPath = assemblyLocation + "\\Required_Files\\Settings\\Settings_Testing.txt";
                 string[] settingsLines =
                 {
-                "Start- 01, " + TStart_Text.Text + " ,",
+                "Start- 01, " + TStartText.Text + " ,",
                 "Length 02, " + tLengthTextExport + " ,",
                 "Projec 03, " + ProjectionTest.Text + " ,",
                 "Att1Ft 04, " + tA1Export + " ,",
@@ -1503,8 +1503,8 @@ namespace LIBSVM_GUI_Template_test
                 "Att5Ft 08, " + tA5Export + " ,",
                 "Att6Ft 09, " + tA6Export + " ,",
                 "AttInx 10, " + tAttributeIndex + " ,",
-                "Step-- 11, " + TStep_Text.Text + " ,",
-                "Output 12, " + File_Type.SelectedIndex + " ,",
+                "Step-- 11, " + TStepText.Text + " ,",
+                "Output 12, " + FileType.SelectedIndex + " ,",
                 };
                 File.WriteAllLines(settingsPath, settingsLines);
 
@@ -1514,37 +1514,37 @@ namespace LIBSVM_GUI_Template_test
                 await Helper.RunTesting(assemblyLocation + "\\Required_Files\\");
 
                 // Update the prediction file location
-                Prediction_File_Location.Text = Saves_Directory.Text + "\\Saves\\" + File_Name.Text + "_Prediction";
-                Prediction_File_Location.ScrollToHorizontalOffset(double.PositiveInfinity);
+                PredictionFileLocation.Text = SavesDirectory.Text + "\\Saves\\" + FileName.Text + "_Prediction";
+                PredictionFileLocation.ScrollToHorizontalOffset(double.PositiveInfinity);
 
                 // Update Plot and Accuracy Text
                 #region Display Plot + Text
 
-                Plot_Image.Source = null;
-                Plot_Image.UpdateLayout();
+                PlotImage.Source = null;
+                PlotImage.UpdateLayout();
                 GC.Collect();
 
-                if (File.Exists(Saves_Directory.Text + "\\Plots\\" + File_Name.Text + "_Plot.jpg"))
+                if (File.Exists(SavesDirectory.Text + "\\Plots\\" + FileName.Text + "_Plot.jpg"))
                 {
-                    File.Delete(Saves_Directory.Text + "\\Plots\\" + File_Name.Text + "_Plot.jpg");
+                    File.Delete(SavesDirectory.Text + "\\Plots\\" + FileName.Text + "_Plot.jpg");
                 }
-                if (File.Exists(Saves_Directory.Text + "\\Plots\\" + File_Name.Text + "_Plot_cache.jpg"))
+                if (File.Exists(SavesDirectory.Text + "\\Plots\\" + FileName.Text + "_Plot_cache.jpg"))
                 {
-                    File.Move(Saves_Directory.Text + "\\Plots\\" + File_Name.Text + "_Plot_cache.jpg", Saves_Directory.Text + "\\Plots\\" + File_Name.Text + "_Plot.jpg");
-                    var plotLocation = Saves_Directory.Text + "\\Plots\\" + File_Name.Text + "_Plot.jpg";
+                    File.Move(SavesDirectory.Text + "\\Plots\\" + FileName.Text + "_Plot_cache.jpg", SavesDirectory.Text + "\\Plots\\" + FileName.Text + "_Plot.jpg");
+                    var plotLocation = SavesDirectory.Text + "\\Plots\\" + FileName.Text + "_Plot.jpg";
                     var bitmap = new BitmapImage();
                     bitmap.BeginInit();
                     bitmap.CacheOption = BitmapCacheOption.OnLoad;
                     bitmap.UriSource = new Uri(plotLocation);
                     bitmap.EndInit();
-                    Plot_Image.Source = bitmap;
+                    PlotImage.Source = bitmap;
                     bitmap.UriSource = null;
                     GC.Collect();
 
 
                 var accuracyLines = File.ReadAllText(assemblyLocation + "\\Required_Files\\MatlabOutputText\\" + "Accuracy");
-                MSE_text.Text = Helper.ReadLine(accuracyLines, 2);
-                SCC_text.Text = Helper.ReadLine(accuracyLines, 3);
+                MseText.Text = Helper.ReadLine(accuracyLines, 2);
+                SccText.Text = Helper.ReadLine(accuracyLines, 3);
 
                 }
                 else
@@ -1555,8 +1555,8 @@ namespace LIBSVM_GUI_Template_test
                 #endregion
 
                 TestRunning = 0;
-                Test_Model_Button.Background = new SolidColorBrush(Colors.DarkTurquoise);
-                Test_Model_text.Text = "Test Model";
+                TestModelButton.Background = new SolidColorBrush(Colors.DarkTurquoise);
+                TestModelText.Text = "Test Model";
             }
         }
 
@@ -1574,32 +1574,32 @@ namespace LIBSVM_GUI_Template_test
             }
 
             // Check if the testing and training data and save directory folder exist
-            else if (File.Exists(Helper.AddExtension(Training_Data_Location.Text, ".mat")) == false & File.Exists(Helper.AddExtension(Testing_Data_Location.Text, ".mat")) == false
-                & Directory.Exists(Saves_Directory.Text) == false)
+            else if (File.Exists(Helper.AddExtension(TrainingDataLocation.Text, ".mat")) == false & File.Exists(Helper.AddExtension(TestingDataLocation.Text, ".mat")) == false
+                & Directory.Exists(SavesDirectory.Text) == false)
             {
                 System.Windows.Forms.MessageBox.Show(@"Please select a valid saves directory, training data, and testing data");
             }
-            else if (File.Exists(Helper.AddExtension(Training_Data_Location.Text, ".mat")) == false & File.Exists(Helper.AddExtension(Testing_Data_Location.Text, ".mat")) == false)
+            else if (File.Exists(Helper.AddExtension(TrainingDataLocation.Text, ".mat")) == false & File.Exists(Helper.AddExtension(TestingDataLocation.Text, ".mat")) == false)
             {
                 System.Windows.Forms.MessageBox.Show(@"Please select valid training and testing data");
             }
-            else if (File.Exists(Helper.AddExtension(Training_Data_Location.Text, ".mat")) == false & Directory.Exists(Saves_Directory.Text) == false)
+            else if (File.Exists(Helper.AddExtension(TrainingDataLocation.Text, ".mat")) == false & Directory.Exists(SavesDirectory.Text) == false)
             {
                 System.Windows.Forms.MessageBox.Show(@"Please select a valid saves directory and training data");
             }
-            else if (File.Exists(Helper.AddExtension(Testing_Data_Location.Text, ".mat")) == false & Directory.Exists(Saves_Directory.Text) == false)
+            else if (File.Exists(Helper.AddExtension(TestingDataLocation.Text, ".mat")) == false & Directory.Exists(SavesDirectory.Text) == false)
             {
                 System.Windows.Forms.MessageBox.Show(@"Please select a valid saves directory and testing data");
             }
-            else if (File.Exists(Helper.AddExtension(Training_Data_Location.Text, ".mat")) == false)
+            else if (File.Exists(Helper.AddExtension(TrainingDataLocation.Text, ".mat")) == false)
             {
                 System.Windows.Forms.MessageBox.Show(@"Please select valid training data");
             }
-            else if (File.Exists(Helper.AddExtension(Testing_Data_Location.Text, ".mat")) == false)
+            else if (File.Exists(Helper.AddExtension(TestingDataLocation.Text, ".mat")) == false)
             {
                 System.Windows.Forms.MessageBox.Show(@"Please select valid testing data");
             }
-            else if (Directory.Exists(Saves_Directory.Text) == false)
+            else if (Directory.Exists(SavesDirectory.Text) == false)
             {
                 System.Windows.Forms.MessageBox.Show(@"Please select a valid saves directory");
             }
@@ -1622,14 +1622,14 @@ namespace LIBSVM_GUI_Template_test
                     RepeatBehavior = RepeatBehavior.Forever,
                     AutoReverse = true
                 };
-                Train_Model_Button.Background = new SolidColorBrush(Colors.DarkTurquoise);
-                Train_Model_Button.Background.BeginAnimation(SolidColorBrush.ColorProperty, animation);
-                Train_Model_text.Text = "Training";
+                TrainModelButton.Background = new SolidColorBrush(Colors.DarkTurquoise);
+                TrainModelButton.Background.BeginAnimation(SolidColorBrush.ColorProperty, animation);
+                TrainModelText.Text = "Training";
 
                 #endregion
 
                 // Create Saves folder if it doesn't exist
-                Directory.CreateDirectory(Saves_Directory.Text + "\\Saves");
+                Directory.CreateDirectory(SavesDirectory.Text + "\\Saves");
 
                 // Export Settings
                 #region Export Settings
@@ -1686,17 +1686,17 @@ namespace LIBSVM_GUI_Template_test
                         break;
                 }
 
-                if (false | Length_Text.Text == "" | Length_Text.Text == " ")
+                if (false | LengthText.Text == "" | LengthText.Text == " ")
                 { lengthTextExport = "0"; }
-                else { lengthTextExport = Length_Text.Text; }
+                else { lengthTextExport = LengthText.Text; }
 
                 File.Delete(assemblyLocation + "\\Required_Files\\Settings\\Settings_Text.txt");
                 var settingsPathTraining = assemblyLocation + "\\Required_Files\\Settings\\Settings_Text.txt";
                 string[] settingsLinesTraining =
                 {
-                    "Start- 01, " + Start_Text.Text + " ,",
+                    "Start- 01, " + StartText.Text + " ,",
                     "Length 02, " + lengthTextExport + " ,",
-                    "AccTyp 03, " + Accuracy_ComboBox.SelectedIndex + " ,",
+                    "AccTyp 03, " + AccuracyComboBox.SelectedIndex + " ,",
                     "Att1Ft 04, " + A1Export + " ,",
                     "Att2Ft 05, " + A2Export + " ,",
                     "Att3Ft 06, " + A3Export + " ,",
@@ -1705,36 +1705,36 @@ namespace LIBSVM_GUI_Template_test
                     "Att6Ft 09, " + A6Export + " ,",
                     "AttInx 10, " + AttributeIndex + " ,",
                     "",
-                    "SVMTyp 11, " + SVM_ComboBox.SelectedIndex + " ,",
-                    "Kernel 12, " + Kernel_ComboBox.SelectedIndex + " ,",
-                    "Gamma- 13, " + Gamma_Text.Text + " ,",
-                    "Degree 14, " + Degree_Text.Text + " ,",
-                    "R----- 15, " + R_Text.Text + " ,",
-                    "Cost-- 16, " + Cost_Text.Text + " ,",
-                    "Nu---- 17, " + Nu_Text.Text + " ,",
-                    "Ep---- 18, " + Ep_Text.Text + " ,",
-                    "Ee---- 19, " + Ee_Text.Text + " ,",
+                    "SVMTyp 11, " + SvmComboBox.SelectedIndex + " ,",
+                    "Kernel 12, " + KernelComboBox.SelectedIndex + " ,",
+                    "Gamma- 13, " + GammaText.Text + " ,",
+                    "Degree 14, " + DegreeText.Text + " ,",
+                    "R----- 15, " + RText.Text + " ,",
+                    "Cost-- 16, " + CostText.Text + " ,",
+                    "Nu---- 17, " + NuTextInput.Text + " ,",
+                    "Ep---- 18, " + EpText.Text + " ,",
+                    "Ee---- 19, " + EeText.Text + " ,",
                     "",
                     "Select 20, " + optimiseValue + " ,", // OptimiseValue for Search, 3 for Train
-                    "CLower 21, " + CLower_Text.Text + " ,",
-                    "CUpper 22, " + CUpper_Text.Text + " ,",
-                    "C_Step 23, " + CStep_Text.Text + " ,",
-                    "GLower 24, " + GLower_Text.Text + " ,",
-                    "GUpper 25, " + GUpper_Text.Text + " ,",
-                    "G_Step 26, " + GStep_Text.Text + " ,",
-                    "At1Low 27, " + Att1Lower_Text.Text + " ,",
-                    "At1Upp 28, " + Att1Upper_Text.Text + " ,",
-                    "At1Stp 29, " + Att1Step_Text.Text + " ,",
-                    "At2Low 30, " + Att2Lower_Text.Text + " ,",
-                    "At2Upp 31, " + Att2Upper_Text.Text + " ,",
-                    "At2Stp 32, " + Att2Step_Text.Text + " ,",
-                    "nfold- 33, " + n_fold_Text.Text + " ,",
-                    "Scale- 34, " + Convert.ToInt32(Scale_Selected.IsChecked) + " ,",
+                    "CLower 21, " + CLowerText.Text + " ,",
+                    "CUpper 22, " + CUpperText.Text + " ,",
+                    "C_Step 23, " + CStepText.Text + " ,",
+                    "GLower 24, " + GLowerText.Text + " ,",
+                    "GUpper 25, " + GUpperText.Text + " ,",
+                    "G_Step 26, " + GStepText.Text + " ,",
+                    "At1Low 27, " + Att1LowerText.Text + " ,",
+                    "At1Upp 28, " + Att1UpperText.Text + " ,",
+                    "At1Stp 29, " + Att1StepText.Text + " ,",
+                    "At2Low 30, " + Att2LowerText.Text + " ,",
+                    "At2Upp 31, " + Att2UpperText.Text + " ,",
+                    "At2Stp 32, " + Att2StepText.Text + " ,",
+                    "nfold- 33, " + NFoldText.Text + " ,",
+                    "Scale- 34, " + Convert.ToInt32(ScaleSelected.IsChecked) + " ,",
                     "Projec 35, " + ProjectionTrain.Text + " ,",
-                    "Step-- 36, " + Step_Text.Text + " ,",
-                    "cache- 37, " + Cache_text.Text + " ,",
-                    "Shrink 38, " + Convert.ToInt32(Shrinking_Selected.IsChecked) + " ,",
-                    "Split- 39, " + Split_Preference.Text + " ,",
+                    "Step-- 36, " + StepText.Text + " ,",
+                    "cache- 37, " + CacheText.Text + " ,",
+                    "Shrink 38, " + Convert.ToInt32(ShrinkingSelected.IsChecked) + " ,",
+                    "Split- 39, " + SplitPreference.Text + " ,",
                  };
                 File.WriteAllLines(settingsPathTraining, settingsLinesTraining);
                 #endregion
@@ -1745,9 +1745,9 @@ namespace LIBSVM_GUI_Template_test
                 var directoriesPathTraining = assemblyLocation + "\\Required_Files\\Settings\\Directories_SearchAndTraining.txt";
                 string[] directoriesLinesTraining =
                 {
-                        Saves_Directory.Text,
-                        File_Name.Text,
-                        Training_Data_Location.Text,
+                        SavesDirectory.Text,
+                        FileName.Text,
+                        TrainingDataLocation.Text,
                     };
                 File.WriteAllLines(directoriesPathTraining, directoriesLinesTraining);
 
@@ -1760,26 +1760,26 @@ namespace LIBSVM_GUI_Template_test
                 #region Import Model Stats
 
                 var modelStatsLines = File.ReadAllText(assemblyLocation + "\\Required_Files\\MatlabOutputText\\Model_Stats");
-                iter_text.Text = string.Concat(Helper.ReadLine(modelStatsLines, 2).Where(c => !char.IsWhiteSpace(c))).Split('=').Last();
-                nu_text.Text = decimal.Round(decimal.Parse(string.Concat(Helper.ReadLine(modelStatsLines, 3).Where(c => !char.IsWhiteSpace(c))).Split('=').Last()), 3, MidpointRounding.AwayFromZero).ToString();
-                obj_text.Text = decimal.Round(decimal.Parse(string.Concat(Helper.ReadLine(modelStatsLines, 4).Where(c => !char.IsWhiteSpace(c))).UntilComma().Split('=').Last()), 3, MidpointRounding.AwayFromZero).ToString();
-                rho_text.Text = decimal.Round(decimal.Parse(string.Concat(Helper.ReadLine(modelStatsLines, 4).Where(c => !char.IsWhiteSpace(c))).Split(',').Last().Split('=').Last()), 3, MidpointRounding.AwayFromZero).ToString();
-                nSV_text.Text = string.Concat(Helper.ReadLine(modelStatsLines, 5).Where(c => !char.IsWhiteSpace(c))).UntilComma().Split('=').Last();
-                nBSV_text.Text = string.Concat(Helper.ReadLine(modelStatsLines, 5).Where(c => !char.IsWhiteSpace(c))).Split(',').Last().Split('=').Last();
+                IterText.Text = string.Concat(Helper.ReadLine(modelStatsLines, 2).Where(c => !char.IsWhiteSpace(c))).Split('=').Last();
+                NuText.Text = decimal.Round(decimal.Parse(string.Concat(Helper.ReadLine(modelStatsLines, 3).Where(c => !char.IsWhiteSpace(c))).Split('=').Last()), 3, MidpointRounding.AwayFromZero).ToString();
+                ObjText.Text = decimal.Round(decimal.Parse(string.Concat(Helper.ReadLine(modelStatsLines, 4).Where(c => !char.IsWhiteSpace(c))).UntilComma().Split('=').Last()), 3, MidpointRounding.AwayFromZero).ToString();
+                RhoText.Text = decimal.Round(decimal.Parse(string.Concat(Helper.ReadLine(modelStatsLines, 4).Where(c => !char.IsWhiteSpace(c))).Split(',').Last().Split('=').Last()), 3, MidpointRounding.AwayFromZero).ToString();
+                NSvText.Text = string.Concat(Helper.ReadLine(modelStatsLines, 5).Where(c => !char.IsWhiteSpace(c))).UntilComma().Split('=').Last();
+                NBsvText.Text = string.Concat(Helper.ReadLine(modelStatsLines, 5).Where(c => !char.IsWhiteSpace(c))).Split(',').Last().Split('=').Last();
 
                 #endregion
 
                 //Update Model Output location
-                Model_Output_Location.Text = Saves_Directory.Text + "\\Saves\\" + File_Name.Text + "_Model";
-                Model_Output_Location.ScrollToHorizontalOffset(double.PositiveInfinity);
+                ModelOutputLocation.Text = SavesDirectory.Text + "\\Saves\\" + FileName.Text + "_Model";
+                ModelOutputLocation.ScrollToHorizontalOffset(double.PositiveInfinity);
 
                 TrainRunning = 0;
-                Train_Model_Button.Background = new SolidColorBrush(Colors.DarkTurquoise);
-                Train_Model_text.Text = "Train Model";
+                TrainModelButton.Background = new SolidColorBrush(Colors.DarkTurquoise);
+                TrainModelText.Text = "Train Model";
 
                 // Update Model File Location
-                Model_File_Location.Text = Saves_Directory.Text + "\\Saves\\" + File_Name.Text + "_Model";
-                Model_File_Location.ScrollToHorizontalOffset(double.PositiveInfinity);
+                ModelFileLocation.Text = SavesDirectory.Text + "\\Saves\\" + FileName.Text + "_Model";
+                ModelFileLocation.ScrollToHorizontalOffset(double.PositiveInfinity);
 
                 #endregion
 
@@ -1789,15 +1789,15 @@ namespace LIBSVM_GUI_Template_test
                 #region Set Up Testing
 
                 TestRunning = 1;
-                Test_Model_Button.Background = new SolidColorBrush(Colors.DarkTurquoise);
-                Test_Model_Button.Background.BeginAnimation(SolidColorBrush.ColorProperty, animation);
-                Test_Model_text.Text = "Testing";
+                TestModelButton.Background = new SolidColorBrush(Colors.DarkTurquoise);
+                TestModelButton.Background.BeginAnimation(SolidColorBrush.ColorProperty, animation);
+                TestModelText.Text = "Testing";
 
                 #endregion
 
                 // Create Saves and Plots folders if they don't exist
-                Directory.CreateDirectory(Saves_Directory.Text + "\\Saves");
-                Directory.CreateDirectory(Saves_Directory.Text + "\\Plots");
+                Directory.CreateDirectory(SavesDirectory.Text + "\\Saves");
+                Directory.CreateDirectory(SavesDirectory.Text + "\\Plots");
 
                 // Update directories file with: Saves location, File Name, Testing Data Location, Model File Location
                 #region Directories Export Testing
@@ -1805,10 +1805,10 @@ namespace LIBSVM_GUI_Template_test
                 var directoriesPathTesting = assemblyLocation + "\\Required_Files\\Settings\\Directories_Export_Testing.txt";
                 string[] directoriesLinesTesting =
                 {
-                    Saves_Directory.Text,
-                    File_Name.Text,
-                    Testing_Data_Location.Text,
-                    Model_File_Location.Text,
+                    SavesDirectory.Text,
+                    FileName.Text,
+                    TestingDataLocation.Text,
+                    ModelFileLocation.Text,
                 };
                 File.WriteAllLines(directoriesPathTesting, directoriesLinesTesting);
 
@@ -1869,15 +1869,15 @@ namespace LIBSVM_GUI_Template_test
                         break;
                 }
 
-                if (false | TLength_Text.Text == "" | TLength_Text.Text == " ")
+                if (false | TLengthText.Text == "" | TLengthText.Text == " ")
                 { tLengthTextExport = "0"; }
-                else { tLengthTextExport = TLength_Text.Text; }
+                else { tLengthTextExport = TLengthText.Text; }
 
                 File.Delete(assemblyLocation + "\\Required_Files\\Settings\\Settings_Testing.txt");
                 var settingsPathTesting = assemblyLocation + "\\Required_Files\\Settings\\Settings_Testing.txt";
                 string[] settingsLinesTesting =
                 {
-                    "Start- 01, " + TStart_Text.Text + " ,",
+                    "Start- 01, " + TStartText.Text + " ,",
                     "Length 02, " + tLengthTextExport + " ,",
                     "Projec 03, " + ProjectionTest.Text + " ,",
                     "Att1Ft 04, " + tA1Export + " ,",
@@ -1887,8 +1887,8 @@ namespace LIBSVM_GUI_Template_test
                     "Att5Ft 08, " + tA5Export + " ,",
                     "Att6Ft 09, " + tA6Export + " ,",
                     "AttInx 10, " + tAttributeIndex + " ,",
-                    "Step-- 11, " + TStep_Text.Text + " ,",
-                    "Output 12, " + File_Type.SelectedIndex + " ,",
+                    "Step-- 11, " + TStepText.Text + " ,",
+                    "Output 12, " + FileType.SelectedIndex + " ,",
                 };
                 File.WriteAllLines(settingsPathTesting, settingsLinesTesting);
 
@@ -1898,37 +1898,37 @@ namespace LIBSVM_GUI_Template_test
                 await Helper.RunTesting(assemblyLocation + "\\Required_Files\\");
 
                 // Update the prediction file location
-                Prediction_File_Location.Text = Saves_Directory.Text + "\\Saves\\" + File_Name.Text + "_Prediction";
-                Prediction_File_Location.ScrollToHorizontalOffset(double.PositiveInfinity);
+                PredictionFileLocation.Text = SavesDirectory.Text + "\\Saves\\" + FileName.Text + "_Prediction";
+                PredictionFileLocation.ScrollToHorizontalOffset(double.PositiveInfinity);
 
                 // Update Plot and Accuracy Text
                 #region Display Plot + Text
 
-                Plot_Image.Source = null;
-                Plot_Image.UpdateLayout();
+                PlotImage.Source = null;
+                PlotImage.UpdateLayout();
                 GC.Collect();
 
-                if (File.Exists(Saves_Directory.Text + "\\Plots\\" + File_Name.Text + "_Plot.jpg"))
+                if (File.Exists(SavesDirectory.Text + "\\Plots\\" + FileName.Text + "_Plot.jpg"))
                 {
-                    File.Delete(Saves_Directory.Text + "\\Plots\\" + File_Name.Text + "_Plot.jpg");
+                    File.Delete(SavesDirectory.Text + "\\Plots\\" + FileName.Text + "_Plot.jpg");
                 }
-                if (File.Exists(Saves_Directory.Text + "\\Plots\\" + File_Name.Text + "_Plot_cache.jpg"))
+                if (File.Exists(SavesDirectory.Text + "\\Plots\\" + FileName.Text + "_Plot_cache.jpg"))
                 {
-                    File.Move(Saves_Directory.Text + "\\Plots\\" + File_Name.Text + "_Plot_cache.jpg", Saves_Directory.Text + "\\Plots\\" + File_Name.Text + "_Plot.jpg");
-                    var plotLocation = Saves_Directory.Text + "\\Plots\\" + File_Name.Text + "_Plot.jpg";
+                    File.Move(SavesDirectory.Text + "\\Plots\\" + FileName.Text + "_Plot_cache.jpg", SavesDirectory.Text + "\\Plots\\" + FileName.Text + "_Plot.jpg");
+                    var plotLocation = SavesDirectory.Text + "\\Plots\\" + FileName.Text + "_Plot.jpg";
                     var bitmap = new BitmapImage();
                     bitmap.BeginInit();
                     bitmap.CacheOption = BitmapCacheOption.OnLoad;
                     bitmap.UriSource = new Uri(plotLocation);
                     bitmap.EndInit();
-                    Plot_Image.Source = bitmap;
+                    PlotImage.Source = bitmap;
                     bitmap.UriSource = null;
                     GC.Collect();
 
                     // Accuracy Text
                     var accuracyLines = File.ReadAllText(assemblyLocation + "\\Required_Files\\MatlabOutputText\\" + "Accuracy");
-                    MSE_text.Text = Helper.ReadLine(accuracyLines, 2);
-                    SCC_text.Text = Helper.ReadLine(accuracyLines, 3);
+                    MseText.Text = Helper.ReadLine(accuracyLines, 2);
+                    SccText.Text = Helper.ReadLine(accuracyLines, 3);
 
                 }
                 else
@@ -1939,8 +1939,8 @@ namespace LIBSVM_GUI_Template_test
                 #endregion
 
                 TestRunning = 0;
-                Test_Model_Button.Background = new SolidColorBrush(Colors.DarkTurquoise);
-                Test_Model_text.Text = "Test Model";
+                TestModelButton.Background = new SolidColorBrush(Colors.DarkTurquoise);
+                TestModelText.Text = "Test Model";
 
                 #endregion
             }
@@ -2085,88 +2085,88 @@ namespace LIBSVM_GUI_Template_test
 
         private void Save_Preset_Click(object sender, RoutedEventArgs e)
         {
-            var presetPath = assemblyLocation + "\\Required_Files\\Presets\\" + Preset_Name.Text;
+            var presetPath = assemblyLocation + "\\Required_Files\\Presets\\" + PresetName.Text;
             string[] presetLines =
             {
-                Saves_Directory.Text,
-                File_Name.Text,
-                Data_File_Source.Text,
+                SavesDirectory.Text,
+                FileName.Text,
+                DataFileSource.Text,
                 Column1Text.Text,
                 Column2Text.Text,
                 Column3Text.Text,
                 Column4Text.Text,
                 Column5Text.Text,
                 Column6Text.Text,
-                Date_Column.Text,
+                DateColumn.Text,
                 TopToBottom.IsChecked.ToString(),
-                Has_Labels.IsChecked.ToString(),
-                Scale_Selected.IsChecked.ToString(),
-                Prepared_File_Location.Text,
-                Data_Split_Location.Text,
-                Percentage_Split.Text,
-                First_Portion_Location.Text,
-                Second_Portion_Location.Text,
-                Start_Text.Text,
-                Length_Text.Text,
+                HasLabels.IsChecked.ToString(),
+                ScaleSelected.IsChecked.ToString(),
+                PreparedFileLocation.Text,
+                DataSplitLocation.Text,
+                PercentageSplit.Text,
+                FirstPortionLocation.Text,
+                SecondPortionLocation.Text,
+                StartText.Text,
+                LengthText.Text,
                 ProjectionTrain.Text,
-                Step_Text.Text,
+                StepText.Text,
                 Attribute1Text.Text,
                 Attribute2Text.Text,
                 Attribute3Text.Text,
                 Attribute4Text.Text,
                 Attribute5Text.Text,
                 Attribute6Text.Text,
-                Accuracy_ComboBox.SelectedIndex.ToString(),
-                SVM_ComboBox.SelectedIndex.ToString(),
-                Cost_Text.Text,
-                Ee_Text.Text,
-                Ep_Text.Text,
-                Nu_Text.Text,
-                Kernel_ComboBox.SelectedIndex.ToString(),
-                Gamma_Text.Text,
-                R_Text.Text,
-                Degree_Text.Text,
-                Parameter_Selected.IsChecked.ToString(),
-                CLower_Text.Text,
-                CUpper_Text.Text,
-                CStep_Text.Text,
-                GLower_Text.Text,
-                GUpper_Text.Text,
-                GStep_Text.Text,
-                Feature_Selected.IsChecked.ToString(),
-                Att1Lower_Text.Text,
-                Att1Upper_Text.Text,
-                Att1Step_Text.Text,
-                Att2Lower_Text.Text,
-                Att2Upper_Text.Text,
-                Att2Step_Text.Text,
-                C_Result_Text.Text,
-                G_Result_Text.Text,
-                Att1_Result_Text.Text,
-                Att2_Result_Text.Text,
-                Training_Data_Location.Text,
-                Model_Output_Location.Text,
-                Testing_Data_Location.Text,
-                Model_File_Location.Text,
+                AccuracyComboBox.SelectedIndex.ToString(),
+                SvmComboBox.SelectedIndex.ToString(),
+                CostText.Text,
+                EeText.Text,
+                EpText.Text,
+                NuTextInput.Text,
+                KernelComboBox.SelectedIndex.ToString(),
+                GammaText.Text,
+                RText.Text,
+                DegreeText.Text,
+                ParameterSelected.IsChecked.ToString(),
+                CLowerText.Text,
+                CUpperText.Text,
+                CStepText.Text,
+                GLowerText.Text,
+                GUpperText.Text,
+                GStepText.Text,
+                FeatureSelected.IsChecked.ToString(),
+                Att1LowerText.Text,
+                Att1UpperText.Text,
+                Att1StepText.Text,
+                Att2LowerText.Text,
+                Att2UpperText.Text,
+                Att2StepText.Text,
+                CResultText.Text,
+                GResultText.Text,
+                Att1ResultText.Text,
+                Att2ResultText.Text,
+                TrainingDataLocation.Text,
+                ModelOutputLocation.Text,
+                TestingDataLocation.Text,
+                ModelFileLocation.Text,
                 TAttribute1Text.Text,
                 TAttribute2Text.Text,
                 TAttribute3Text.Text,
                 TAttribute4Text.Text,
                 TAttribute5Text.Text,
                 TAttribute6Text.Text,
-                TStart_Text.Text,
-                TLength_Text.Text,
+                TStartText.Text,
+                TLengthText.Text,
                 ProjectionTest.Text,
-                TStep_Text.Text,
-                Prediction_File_Location.Text,
-                Link_CheckBox.IsChecked.ToString(),
+                TStepText.Text,
+                PredictionFileLocation.Text,
+                LinkCheckBox.IsChecked.ToString(),
                 ColumnIndex.ToString(),
                 AttributeIndex.ToString(),
                 tAttributeIndex.ToString(),
-                Shrinking_Selected.IsChecked.ToString(),
-                Cache_text.Text,
-                Split_Preference.Text,
-                File_Type.SelectedIndex.ToString(),
+                ShrinkingSelected.IsChecked.ToString(),
+                CacheText.Text,
+                SplitPreference.Text,
+                FileType.SelectedIndex.ToString(),
             };
             File.WriteAllLines(presetPath, presetLines);
         }
@@ -2178,85 +2178,85 @@ namespace LIBSVM_GUI_Template_test
             if (results.Item1 == "1")
             {
                 var presetLines = File.ReadAllText(results.Item2);
-                Saves_Directory.Text = Helper.ReadLine(presetLines, 1);
-                File_Name.Text = Helper.ReadLine(presetLines, 2);
-                Data_File_Source.Text = Helper.ReadLine(presetLines, 3);
+                SavesDirectory.Text = Helper.ReadLine(presetLines, 1);
+                FileName.Text = Helper.ReadLine(presetLines, 2);
+                DataFileSource.Text = Helper.ReadLine(presetLines, 3);
                 Column1Text.Text = Helper.ReadLine(presetLines, 4);
                 Column2Text.Text = Helper.ReadLine(presetLines, 5);
                 Column3Text.Text = Helper.ReadLine(presetLines, 6);
                 Column4Text.Text = Helper.ReadLine(presetLines, 7);
                 Column5Text.Text = Helper.ReadLine(presetLines, 8);
                 Column6Text.Text = Helper.ReadLine(presetLines, 9);
-                Date_Column.Text = Helper.ReadLine(presetLines, 10);
+                DateColumn.Text = Helper.ReadLine(presetLines, 10);
                 TopToBottom.IsChecked = Convert.ToBoolean(Helper.ReadLine(presetLines, 11));
-                Has_Labels.IsChecked = Convert.ToBoolean(Helper.ReadLine(presetLines, 12));
-                Scale_Selected.IsChecked = Convert.ToBoolean(Helper.ReadLine(presetLines, 13));
-                Prepared_File_Location.Text = Helper.ReadLine(presetLines, 14);
-                Data_Split_Location.Text = Helper.ReadLine(presetLines, 15);
-                Percentage_Split.Text = Helper.ReadLine(presetLines, 16);
-                First_Portion_Location.Text = Helper.ReadLine(presetLines, 17);
-                Second_Portion_Location.Text = Helper.ReadLine(presetLines, 18);
-                Start_Text.Text = Helper.ReadLine(presetLines, 19);
-                Length_Text.Text = Helper.ReadLine(presetLines, 20);
+                HasLabels.IsChecked = Convert.ToBoolean(Helper.ReadLine(presetLines, 12));
+                ScaleSelected.IsChecked = Convert.ToBoolean(Helper.ReadLine(presetLines, 13));
+                PreparedFileLocation.Text = Helper.ReadLine(presetLines, 14);
+                DataSplitLocation.Text = Helper.ReadLine(presetLines, 15);
+                PercentageSplit.Text = Helper.ReadLine(presetLines, 16);
+                FirstPortionLocation.Text = Helper.ReadLine(presetLines, 17);
+                SecondPortionLocation.Text = Helper.ReadLine(presetLines, 18);
+                StartText.Text = Helper.ReadLine(presetLines, 19);
+                LengthText.Text = Helper.ReadLine(presetLines, 20);
                 ProjectionTrain.Text = Helper.ReadLine(presetLines, 21);
-                Step_Text.Text = Helper.ReadLine(presetLines, 22);
+                StepText.Text = Helper.ReadLine(presetLines, 22);
                 Attribute1Text.Text = Helper.ReadLine(presetLines, 23);
                 Attribute2Text.Text = Helper.ReadLine(presetLines, 24);
                 Attribute3Text.Text = Helper.ReadLine(presetLines, 25);
                 Attribute4Text.Text = Helper.ReadLine(presetLines, 26);
                 Attribute5Text.Text = Helper.ReadLine(presetLines, 27);
                 Attribute6Text.Text = Helper.ReadLine(presetLines, 28);
-                Accuracy_ComboBox.SelectedIndex = int.Parse(Helper.ReadLine(presetLines, 29));
-                SVM_ComboBox.SelectedIndex = int.Parse(Helper.ReadLine(presetLines, 30));
-                Cost_Text.Text = Helper.ReadLine(presetLines, 31);
-                Ee_Text.Text = Helper.ReadLine(presetLines, 32);
-                Ep_Text.Text = Helper.ReadLine(presetLines, 33);
-                Nu_Text.Text = Helper.ReadLine(presetLines, 34);
-                Kernel_ComboBox.SelectedIndex = int.Parse(Helper.ReadLine(presetLines, 35));
-                Gamma_Text.Text = Helper.ReadLine(presetLines, 36);
-                R_Text.Text = Helper.ReadLine(presetLines, 37);
-                Degree_Text.Text = Helper.ReadLine(presetLines, 38);
-                Parameter_Selected.IsChecked = Convert.ToBoolean(Helper.ReadLine(presetLines, 39));
-                CLower_Text.Text = Helper.ReadLine(presetLines, 40);
-                CUpper_Text.Text = Helper.ReadLine(presetLines, 41);
-                CStep_Text.Text = Helper.ReadLine(presetLines, 42);
-                GLower_Text.Text = Helper.ReadLine(presetLines, 43);
-                GUpper_Text.Text = Helper.ReadLine(presetLines, 44);
-                GStep_Text.Text = Helper.ReadLine(presetLines, 45);
-                Feature_Selected.IsChecked = Convert.ToBoolean(Helper.ReadLine(presetLines, 46));
-                Att1Lower_Text.Text = Helper.ReadLine(presetLines, 47);
-                Att1Upper_Text.Text = Helper.ReadLine(presetLines, 48);
-                Att1Step_Text.Text = Helper.ReadLine(presetLines, 49);
-                Att2Lower_Text.Text = Helper.ReadLine(presetLines, 50);
-                Att2Upper_Text.Text = Helper.ReadLine(presetLines, 51);
-                Att2Step_Text.Text = Helper.ReadLine(presetLines, 52);
-                C_Result_Text.Text = Helper.ReadLine(presetLines, 53);
-                G_Result_Text.Text = Helper.ReadLine(presetLines, 54);
-                Att1_Result_Text.Text = Helper.ReadLine(presetLines, 55);
-                Att2_Result_Text.Text = Helper.ReadLine(presetLines, 56);
-                Training_Data_Location.Text = Helper.ReadLine(presetLines, 57);
-                Model_Output_Location.Text = Helper.ReadLine(presetLines, 58);
-                Testing_Data_Location.Text = Helper.ReadLine(presetLines, 59);
-                Model_File_Location.Text = Helper.ReadLine(presetLines, 60);
+                AccuracyComboBox.SelectedIndex = int.Parse(Helper.ReadLine(presetLines, 29));
+                SvmComboBox.SelectedIndex = int.Parse(Helper.ReadLine(presetLines, 30));
+                CostText.Text = Helper.ReadLine(presetLines, 31);
+                EeText.Text = Helper.ReadLine(presetLines, 32);
+                EpText.Text = Helper.ReadLine(presetLines, 33);
+                NuTextInput.Text = Helper.ReadLine(presetLines, 34);
+                KernelComboBox.SelectedIndex = int.Parse(Helper.ReadLine(presetLines, 35));
+                GammaText.Text = Helper.ReadLine(presetLines, 36);
+                RText.Text = Helper.ReadLine(presetLines, 37);
+                DegreeText.Text = Helper.ReadLine(presetLines, 38);
+                ParameterSelected.IsChecked = Convert.ToBoolean(Helper.ReadLine(presetLines, 39));
+                CLowerText.Text = Helper.ReadLine(presetLines, 40);
+                CUpperText.Text = Helper.ReadLine(presetLines, 41);
+                CStepText.Text = Helper.ReadLine(presetLines, 42);
+                GLowerText.Text = Helper.ReadLine(presetLines, 43);
+                GUpperText.Text = Helper.ReadLine(presetLines, 44);
+                GStepText.Text = Helper.ReadLine(presetLines, 45);
+                FeatureSelected.IsChecked = Convert.ToBoolean(Helper.ReadLine(presetLines, 46));
+                Att1LowerText.Text = Helper.ReadLine(presetLines, 47);
+                Att1UpperText.Text = Helper.ReadLine(presetLines, 48);
+                Att1StepText.Text = Helper.ReadLine(presetLines, 49);
+                Att2LowerText.Text = Helper.ReadLine(presetLines, 50);
+                Att2UpperText.Text = Helper.ReadLine(presetLines, 51);
+                Att2StepText.Text = Helper.ReadLine(presetLines, 52);
+                CResultText.Text = Helper.ReadLine(presetLines, 53);
+                GResultText.Text = Helper.ReadLine(presetLines, 54);
+                Att1ResultText.Text = Helper.ReadLine(presetLines, 55);
+                Att2ResultText.Text = Helper.ReadLine(presetLines, 56);
+                TrainingDataLocation.Text = Helper.ReadLine(presetLines, 57);
+                ModelOutputLocation.Text = Helper.ReadLine(presetLines, 58);
+                TestingDataLocation.Text = Helper.ReadLine(presetLines, 59);
+                ModelFileLocation.Text = Helper.ReadLine(presetLines, 60);
                 TAttribute1Text.Text = Helper.ReadLine(presetLines, 61);
                 TAttribute2Text.Text = Helper.ReadLine(presetLines, 62);
                 TAttribute3Text.Text = Helper.ReadLine(presetLines, 63);
                 TAttribute4Text.Text = Helper.ReadLine(presetLines, 64);
                 TAttribute5Text.Text = Helper.ReadLine(presetLines, 65);
                 TAttribute6Text.Text = Helper.ReadLine(presetLines, 66);
-                TStart_Text.Text = Helper.ReadLine(presetLines, 67);
-                TLength_Text.Text = Helper.ReadLine(presetLines, 68);
+                TStartText.Text = Helper.ReadLine(presetLines, 67);
+                TLengthText.Text = Helper.ReadLine(presetLines, 68);
                 ProjectionTest.Text = Helper.ReadLine(presetLines, 69);
-                TStep_Text.Text = Helper.ReadLine(presetLines, 70);
-                Prediction_File_Location.Text = Helper.ReadLine(presetLines, 71);
-                Link_CheckBox.IsChecked = Convert.ToBoolean(Helper.ReadLine(presetLines, 72));
+                TStepText.Text = Helper.ReadLine(presetLines, 70);
+                PredictionFileLocation.Text = Helper.ReadLine(presetLines, 71);
+                LinkCheckBox.IsChecked = Convert.ToBoolean(Helper.ReadLine(presetLines, 72));
                 ColumnIndex = int.Parse(Helper.ReadLine(presetLines, 73));
                 AttributeIndex = int.Parse(Helper.ReadLine(presetLines, 74));
                 tAttributeIndex = int.Parse(Helper.ReadLine(presetLines, 75));
-                Shrinking_Selected.IsChecked = Convert.ToBoolean(Helper.ReadLine(presetLines, 76));
-                Cache_text.Text = Helper.ReadLine(presetLines, 77);
-                Split_Preference.Text = Helper.ReadLine(presetLines, 78);
-                File_Type.SelectedIndex = int.Parse(Helper.ReadLine(presetLines, 79));
+                ShrinkingSelected.IsChecked = Convert.ToBoolean(Helper.ReadLine(presetLines, 76));
+                CacheText.Text = Helper.ReadLine(presetLines, 77);
+                SplitPreference.Text = Helper.ReadLine(presetLines, 78);
+                FileType.SelectedIndex = int.Parse(Helper.ReadLine(presetLines, 79));
 
                 var presetPath = Path.GetFileName(results.Item2);
                 System.Windows.Forms.MessageBox.Show(@"Loaded " + presetPath);
@@ -2278,20 +2278,20 @@ namespace LIBSVM_GUI_Template_test
 
         public void Training_Data_Location_Loaded(object sender, RoutedEventArgs e)
         {
-            Training_Data_Location.ScrollToHorizontalOffset(double.PositiveInfinity);
-            Training_Data_Location.UpdateLayout();
+            TrainingDataLocation.ScrollToHorizontalOffset(double.PositiveInfinity);
+            TrainingDataLocation.UpdateLayout();
         }
 
         public void Testing_Data_Location_Loaded(object sender, RoutedEventArgs e)
         {
-            Testing_Data_Location.ScrollToHorizontalOffset(double.PositiveInfinity);
-            Testing_Data_Location.UpdateLayout();
+            TestingDataLocation.ScrollToHorizontalOffset(double.PositiveInfinity);
+            TestingDataLocation.UpdateLayout();
         }
 
         private void Model_File_Location_Loaded(object sender, RoutedEventArgs e)
         {
-            Model_File_Location.ScrollToHorizontalOffset(double.PositiveInfinity);
-            Model_File_Location.UpdateLayout();
+            ModelFileLocation.ScrollToHorizontalOffset(double.PositiveInfinity);
+            ModelFileLocation.UpdateLayout();
         }
 
         #endregion

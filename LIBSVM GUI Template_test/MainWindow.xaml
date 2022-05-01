@@ -3,10 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:LIBSVM_GUI_Template_test"
-        xmlns:src="clr-namespace:LIBSVM_GUI_Template_test"
-        xmlns:VM="clr-namespace:LIBSVM_GUI_Template_test.Properties"
-        xmlns:gif="http://wpfanimatedgif.codeplex.com" 
         mc:Ignorable="d"
         Title="MainWindow" Height="713" Width="1016"
         WindowStyle="None"
@@ -15,8 +11,6 @@
 
         <!--<DataTemplate DataType="{x:Type src:MainWindow}">
         </DataTemplate>-->
-
-        <src:Features x:Key="featuresDataSource" x:Name="featuresDataSource"/>
         <Style TargetType="CheckBox" x:Key="ElementCheckbox" >
             <Setter Property="IsChecked" Value="{Binding IsChecked ,Mode=TwoWay}"  />
             <Setter Property="Margin" Value="100 3 0 0"/>
@@ -45,7 +39,6 @@
             <Setter Property="Background" Value="DarkTurquoise"/>
             <Setter Property="Padding" Value="0 0 0 1"/>
         </Style>
-        <FontFamily x:Key="Regular">pack://Window:,,,/Fonts/#Regular</FontFamily>
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -69,10 +62,10 @@
             </Grid.ColumnDefinitions>
             
             <Rectangle Grid.Column="0" HorizontalAlignment="Left" Width="1" Height="26" Fill="MidnightBlue" Panel.ZIndex="1"/>
-            <Rectangle Grid.Column="7" HorizontalAlignment="Right" Width="1" Height="26" Fill="MidnightBlue" Panel.ZIndex="1"/>
-            <Rectangle Grid.ColumnSpan="7" VerticalAlignment="Top" Width="1015" Height="1" Fill="MidnightBlue" Panel.ZIndex="1"/>
+            <Rectangle Grid.Column="6" HorizontalAlignment="Right" Width="1" Height="26" Fill="MidnightBlue" Panel.ZIndex="1"/>
+            <Rectangle Grid.ColumnSpan="7" Grid.Column="0" VerticalAlignment="Top" Width="1015" Height="1" Fill="MidnightBlue" Panel.ZIndex="1"/>
 
-            <TextBlock Text="LIBSVM GUI" Foreground="MintCream" FontWeight="Bold"
+            <TextBlock Grid.Column="0" Text="LIBSVM GUI" Foreground="MintCream" FontWeight="Bold"
                        VerticalAlignment="Center" HorizontalAlignment="Center"/>
             <!--<Button Grid.Column="4" Margin="2 5 1 5">
                 <Button.Resources>
@@ -89,7 +82,7 @@
                     </Style>
                 </Button.Resources>
             </Button>
-            <Button x:Name="Close_Button" Click="Close_Button_Click" Grid.Column="6" Margin="1 5 5 4"
+            <Button x:Name="CloseButton" Click="Close_Button_Click" Grid.Column="6" Margin="1 5 5 4"
                     Content="✕" Padding="0 -1.5 0 0" Background="MintCream">
                 <Button.Resources>
                     <Style TargetType="Border">
@@ -99,7 +92,7 @@
             </Button>
         </Grid>
         
-        <Border Grid.Row="1" Grid.ColumnSpan="2" Padding="0 0 0 0">
+        <Border Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0" Padding="0 0 0 0">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="508"/>
@@ -109,9 +102,9 @@
                     <RowDefinition Height="687"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                    <Rectangle Grid.Column="0" HorizontalAlignment="Left" Width="1" Height="687" Fill="Gray" Panel.ZIndex="1"/>
-                    <Rectangle Grid.Column="1" HorizontalAlignment="Right" Width="1" Height="687" Fill="Gray" Panel.ZIndex="1"/>
-                    <Rectangle Grid.ColumnSpan="2" VerticalAlignment="Bottom" Width="1015" Height="1" Fill="Gray" Panel.ZIndex="1"/>
+                    <Rectangle Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" Width="1" Height="687" Fill="Gray" Panel.ZIndex="1"/>
+                    <Rectangle Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" Width="1" Height="687" Fill="Gray" Panel.ZIndex="1"/>
+                    <Rectangle Grid.Row="0" Grid.ColumnSpan="2" Grid.Column="0" VerticalAlignment="Bottom" Width="1015" Height="1" Fill="Gray" Panel.ZIndex="1"/>
 
                 <Grid Grid.Column="0" Grid.Row="0" Grid.RowSpan="2">
                     <Grid.ColumnDefinitions>
@@ -138,15 +131,15 @@
                             <TextBlock Text="Saves Directory " ToolTip="Choose a directory for the output files and plots to be stored in"
                                        Grid.Row="0" Grid.Column="0" Padding="5 0 5 0"
                                        Height="20" VerticalAlignment="Top"/>
-                            <TextBox x:Name="Saves_Directory" Text=""
+                            <TextBox x:Name="SavesDirectory" Text=""
                                      Grid.Row="0" Grid.Column="1" Margin="1 1 27 1" Grid.ColumnSpan="2" Background="Azure"/>
-                            <Button x:Name="Saves_Directory_Button" Click="Saves_Directory_Button_Click"
+                            <Button x:Name="SavesDirectoryButton" Click="Saves_Directory_Button_Click"
                                     Grid.Row="0" Grid.Column="2" Width="20"  Background="PowderBlue"
                                     HorizontalAlignment="Right" Margin="1 1 4 1" FontSize="10">...</Button>
 
                             <TextBlock Text="File Name" ToolTip="Choose a name for the output files and plots to use"
                                        Grid.Row="1" Grid.Column="0" Padding="5 0 5 0"/>
-                            <TextBox x:Name="File_Name" Text="File_Name" Grid.ColumnSpan="2" Background="Azure"
+                            <TextBox x:Name="FileName" Text="File_Name" Grid.ColumnSpan="2" Background="Azure"
                                      Grid.Row="1" Grid.Column="1" Margin="1 1 4 1" Padding="1"/>
 
                         </Grid>
@@ -198,9 +191,9 @@
 
                                     <TextBlock Text="Data File Source" ToolTip="Select a CSV file to convert to a LIBSVM-ready format"
                                                Grid.Row="1" Grid.Column="0" Padding="5 2 5 0"/>
-                                    <TextBox x:Name="Data_File_Source" Text="" 
+                                    <TextBox x:Name="DataFileSource" Text="" 
                                                Grid.Row="1" Grid.Column="1" Margin="1,1,23,1" Background="Azure"/>
-                                    <Button x:Name="Data_File_Source_Button" Click="Data_File_Source_Button_Click"
+                                    <Button x:Name="DataFileSourceButton" Click="Data_File_Source_Button_Click"
                                             Grid.Row="1" Grid.Column="1" Width="20" HorizontalAlignment="Right" 
                                             Margin="1,1,1,1" FontSize="10" Background="PowderBlue">...</Button>
 
@@ -279,7 +272,7 @@
 
                                     <TextBlock Text="Time" ToolTip="Set which column of the table containing&#x0a;the time the data was recorded at if&#x0a;there is one, if not leave blank or 0"
                                                Grid.Row="5" Grid.Column="0" Padding="5 2 0 2"/>
-                                    <TextBox x:Name="Date_Column" Text="1" Grid.Row="5" Grid.Column="1" TextAlignment="Center"
+                                    <TextBox x:Name="DateColumn" Text="1" Grid.Row="5" Grid.Column="1" TextAlignment="Center"
                                              Margin="1" Padding="1 0" Width="20" HorizontalAlignment="Left"/>
 
                                     <TextBlock Text="Table Properties" 
@@ -294,32 +287,32 @@
 
                                     <TextBlock Text="Has Labels" ToolTip="Select if the table has&#x0a;labels for its attributes"
                                                Grid.Row="8" Grid.Column="0" Padding="5 2 0 2" />
-                                    <CheckBox x:Name="Has_Labels" Grid.Row="8" Grid.Column="1"
+                                    <CheckBox x:Name="HasLabels" Grid.Row="8" Grid.Column="1"
                                               VerticalAlignment="Center" HorizontalAlignment="Left"/>
 
                                     <TextBlock Text="Scale Data" ToolTip="Select if you wish to scale the data for&#x0a;training and testing, this generally greatly&#x0a;increases prediction accuracy"
                                                Grid.Row="9" Grid.Column="0" Padding="5 2 5 0"/>
-                                    <CheckBox x:Name="Scale_Selected" Grid.Row="9" Grid.Column="1"
+                                    <CheckBox x:Name="ScaleSelected" Grid.Row="9" Grid.Column="1"
                                               VerticalAlignment="Center" HorizontalAlignment="Left"/>
 
-                                    <Button x:Name="Convert_Button" Click="Convert_Button_Click"
-                                            Grid.Row="10" Grid.Column="1" Grid.ColumnSpan="1" Margin="1,3,1,1">
+                                    <Button x:Name="ConvertButton" Click="Convert_Button_Click"
+                                            Grid.Row="10" Grid.Column="1" Margin="1,3,1,1">
                                         <Button.Resources>
                                             <Style TargetType="Border">
                                                 <Setter Property="CornerRadius" Value="5"/>
                                             </Style>
                                         </Button.Resources>
-                                        <TextBlock x:Name="Convert_Button_text"
+                                        <TextBlock x:Name="ConvertButtonText"
                                                        Text="Convert to LIBSVM-Ready File" TextAlignment="Center"/>
                                     </Button>
 
                                     <TextBlock Text="Prepared File" ToolTip="This is the location of the converted file is"
                                                Grid.Row="11" Grid.Column="0" Padding="5 2 0 2"/>
-                                    <TextBox x:Name="Prepared_File_Location" Text="" 
+                                    <TextBox x:Name="PreparedFileLocation" Text="" 
                                              Grid.Row="11" Grid.Column="1" Margin="1,1,1,1" Padding="1" IsReadOnly="True"
                                              Background="PowderBlue"/>
 
-                                    <Button x:Name="Converted_To_Split" Click="Converted_To_Split_Click" Content="Send to Split" 
+                                    <Button x:Name="ConvertedToSplit" Click="Converted_To_Split_Click" Content="Send to Split" 
                                             Grid.Row="12" Grid.Column="1" FontSize="10"
                                             Width="98" Margin="1,1,0,1" HorizontalAlignment="Left" Background="LightCyan">
                                         <Button.Resources>
@@ -328,7 +321,7 @@
                                             </Style>
                                         </Button.Resources>
                                     </Button>
-                                    <Button x:Name="Converted_To_Train" Click="Converted_To_Train_Click" FontSize="10"
+                                    <Button x:Name="ConvertedToTrain" Click="Converted_To_Train_Click" FontSize="10"
                                             Content="Send to Train" Grid.Row="12" Grid.Column="1" Margin="0,1,0,1"
                                             Width="98" HorizontalAlignment="Center" Background="LightCyan">
                                         <Button.Resources>
@@ -337,7 +330,7 @@
                                             </Style>
                                         </Button.Resources>
                                     </Button>
-                                    <Button x:Name="Converted_To_Test" Click="Converted_To_Test_Click" Content="Send to Test" 
+                                    <Button x:Name="ConvertedToTest" Click="Converted_To_Test_Click" Content="Send to Test" 
                                             Grid.Row="12" Grid.Column="1" Margin="201,1,0,1" FontSize="10"
                                             Width="98" HorizontalAlignment="Left" Background="LightCyan">
                                         <Button.Resources>
@@ -354,19 +347,19 @@
 
                                     <TextBlock Text="Data to split" ToolTip="Select a converted file to split&#x0a;into two portions chronologically"
                                            Grid.Row="14" Grid.Column="0" Padding="5 2 5 0"/>
-                                    <TextBox x:Name="Data_Split_Location" HorizontalAlignment="Left" Background="Azure"
+                                    <TextBox x:Name="DataSplitLocation" HorizontalAlignment="Left" Background="Azure"
                                              Text="" Width="276"
                                              Grid.Row="14" Grid.Column="1" Margin="1,1,23,1" TextAlignment="Right"/>
-                                    <Button x:Name="Data_To_Split_Button" Click="Data_To_Split_Button_Click"
+                                    <Button x:Name="DataToSplitButton" Click="Data_To_Split_Button_Click"
                                             Grid.Row="14" Grid.Column="1" Width="20" HorizontalAlignment="Right" 
                                             Margin="1" FontSize="10" Content="..." Background="PowderBlue"/>
 
                                     <TextBlock Text="Percentage Split" ToolTip="Set how much of the data will be in the first portion,&#x0a;the rest will be in the second portion"
                                            Grid.Row="15" Grid.Column="0" Padding="5 2 0 2"/>
-                                    <TextBox x:Name="Percentage_Split" Text="75" Width="27" HorizontalAlignment="Left"
+                                    <TextBox x:Name="PercentageSplit" Text="75" Width="27" HorizontalAlignment="Left"
                                          Grid.Row="15" Grid.Column="1" Margin="1" Padding="1 0"  TextAlignment="Center"/>
                                     <TextBlock Text="%" Grid.Row="15"  Margin="32 0 0 0"  Grid.Column="1" Padding="0 2"/>
-                                    <Button x:Name="Split_Button" Click="Split_Button_Click"
+                                    <Button x:Name="SplitButton" Click="Split_Button_Click"
                                         Grid.Row="15" Grid.Column="1" Width="148" HorizontalAlignment="Center" 
                                         Margin="1">
                                         <Button.Resources>
@@ -374,18 +367,18 @@
                                                 <Setter Property="CornerRadius" Value="5"/>
                                             </Style>
                                         </Button.Resources>
-                                        <TextBlock x:Name="Split_Button_text" Text="Split" 
+                                        <TextBlock x:Name="SplitButtonText" Text="Split" 
                                                        TextAlignment="Center"/>
                                     </Button>
 
                                     <TextBlock Text="First Portion"
                                                Grid.Row="16" Grid.Column="0" Padding="0" 
                                                Margin="5 2 0 0"/>
-                                    <TextBox x:Name="First_Portion_Location"
+                                    <TextBox x:Name="FirstPortionLocation"
                                              Grid.Row="16" Grid.Column="1" Margin="1" Padding="1" IsReadOnly="True" 
                                              Background="PowderBlue"/>
 
-                                    <Button x:Name="First_To_Training" Click="First_To_Training_Click" 
+                                    <Button x:Name="FirstToTraining" Click="First_To_Training_Click" 
                                             Grid.Row="17" Grid.Column="1" Width="148" HorizontalAlignment="Left" 
                                             Margin="1" FontSize="10" Content="Send to Training" Background="LightCyan">
                                         <Button.Resources>
@@ -394,7 +387,7 @@
                                             </Style>
                                         </Button.Resources>
                                     </Button>
-                                    <Button x:Name="First_To_Testing" Click="First_To_Testing_Click" 
+                                    <Button x:Name="FirstToTesting" Click="First_To_Testing_Click" 
                                             Grid.Row="17" Grid.Column="1" Width="148" HorizontalAlignment="Right" 
                                             Margin="1" FontSize="10" Content="Send to Testing" Background="LightCyan">
                                         <Button.Resources>
@@ -405,11 +398,11 @@
                                     </Button>
 
                                     <TextBlock Text="Second Portion" Grid.Row="18"  Grid.Column="0" Margin="5 2 0 2"/>
-                                    <TextBox x:Name="Second_Portion_Location" Text="" 
+                                    <TextBox x:Name="SecondPortionLocation" Text="" 
                                              Grid.Row="18" Grid.Column="1" Margin="1" Padding="1" IsReadOnly="True"
                                              Background="PowderBlue"/>
 
-                                    <Button x:Name="Second_To_Training" Click="Second_To_Training_Click"
+                                    <Button x:Name="SecondToTraining" Click="Second_To_Training_Click"
                                             Grid.Row="19" Grid.Column="1" Width="148" HorizontalAlignment="Left" 
                                             Margin="1" FontSize="10" Content="Send to Training" Background="LightCyan">
                                         <Button.Resources>
@@ -418,7 +411,7 @@
                                             </Style>
                                         </Button.Resources>
                                     </Button>
-                                    <Button x:Name="Second_To_Testing" Click="Second_To_Testing_Click"
+                                    <Button x:Name="SecondToTesting" Click="Second_To_Testing_Click"
                                             Grid.Row="19" Grid.Column="1" Width="148" HorizontalAlignment="Right"
                                             Margin="1" FontSize="10" Content="Send to Testing" Background="LightCyan">
                                         <Button.Resources>
@@ -497,22 +490,22 @@
 
                                         <TextBlock Text="Start" ToolTip="Set the start point of the data used in training"
                                                    Grid.Row="1" Grid.Column="0" Padding="0 2 5 0"/>
-                                        <TextBox x:Name="Start_Text" Text="1" 
+                                        <TextBox x:Name="StartText" Text="1" 
                                                  Grid.Row="1" Grid.Column="1" Margin="1" Padding="1 0" Width="50" 
                                                  HorizontalAlignment="Left"/>
 
                                         <TextBlock Text="Length" ToolTip="Set the number of data points used in training"
                                                    Grid.Row="1" Grid.Column="2" Padding="0 2 5 0"/>
-                                        <TextBox x:Name="Length_Text" Text="1000" Grid.Row="1" Grid.Column="3" 
+                                        <TextBox x:Name="LengthText" Text="1000" Grid.Row="1" Grid.Column="3" 
                                                  Margin="1" Padding="1 0" Width="50" HorizontalAlignment="Left"/>
 
                                         <TextBlock Text="Step" ToolTip="Set how frequently data points are used in training the model"
                                                    Grid.Row="2" Grid.Column="2" Padding="0 2 5 0"/>
-                                        <TextBox x:Name="Step_Text" Text="1" HorizontalAlignment="Left"
+                                        <TextBox x:Name="StepText" Text="1" HorizontalAlignment="Left"
                                                  Grid.Row="2" Grid.Column="3" Margin="1" Padding="1 0" Width="50"/>
 
                                         <TextBlock Text="Projection" ToolTip="Set how many points in advance the&#x0a;model is being trained to predict"
-                                                   Grid.Row="2" Grid.ColumnSpan="2" Padding="0 2 5 0"/>
+                                                   Grid.Row="2" Grid.ColumnSpan="2" Grid.Column="0" Padding="0 2 5 0"/>
                                         <TextBox x:Name="ProjectionTrain" Text="1" Grid.Row="2" Grid.Column="1"
                                                  Margin="1" Padding="1 0" Width="50" HorizontalAlignment="Left"/>
 
@@ -520,7 +513,7 @@
                                                    Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="4" 
                                                    Padding="0 2 5 0"/>
 
-                                        <CheckBox x:Name="Link_CheckBox" Checked="Link_CheckBox_Checked"
+                                        <CheckBox x:Name="LinkCheckBox" Checked="Link_CheckBox_Checked"
                                                   ToolTip="Link to set the number of features per&#x0a;attribute for the testing data to be the&#x0a;same as that of the testing data"
                                               Unchecked="Link_CheckBox_Unchecked" Width="26"
                                               Style="{StaticResource ElementCheckbox}" 
@@ -607,7 +600,7 @@
 
                                         <TextBlock Text="SVM Type" ToolTip="Set the SVM type"
                                                    Grid.Row="6" Grid.Column="0" Padding="0 2 5 0"/>
-                                        <ComboBox x:Name="SVM_ComboBox" SelectionChanged="SVM_SelectionChanged"
+                                        <ComboBox x:Name="SvmComboBox" SelectionChanged="SVM_SelectionChanged"
                                                   Grid.Row="6" Grid.Column="1" Margin="1,1,0,1" Padding="4 2 4 2"
                                                   Width="148" Grid.ColumnSpan="3" HorizontalAlignment="Left">
                                             <ComboBoxItem IsSelected="True">epsilon-SVR</ComboBoxItem>
@@ -616,32 +609,32 @@
 
                                         <TextBlock x:Name="Cost" Text="C (Cost)" ToolTip="Parameter C of espilon-SVR&#x0a;and nu-SVR (default 1)"
                                                    Grid.Row="7" Grid.Column="0" Padding="0 2 5 0"/>
-                                        <TextBox x:Name="Cost_Text" Text="1" 
+                                        <TextBox x:Name="CostText" Text="1" 
                                                  Grid.Row="7" Grid.Column="1" Margin="1" Padding="1 0" Width="50"
                                                  HorizontalAlignment="Left"/>
 
                                         <TextBlock Text="Ee" ToolTip="The tolerence of termination&#x0a;criterion (default 0.001)"
                                                Grid.Row="7" Grid.Column="2" Padding="0 2 5 0"/>
-                                        <TextBox x:Name="Ee_Text" Text="0.001" 
+                                        <TextBox x:Name="EeText" Text="0.001" 
                                                  Grid.Row="7" Grid.Column="3" Margin="1" Padding="1 0" Width="50"
                                                  HorizontalAlignment="Left"/>
                                         
                                         <TextBlock x:Name="Nu" Text="Nu" ToolTip="Parameter nu of nu-SVR&#x0a;(default 0.5)"
                                                    Grid.Row="8" Grid.Column="2" Padding="0 2 5 0"/>
-                                        <TextBox x:Name="Nu_Text" Text="0.5" 
+                                        <TextBox x:Name="NuTextInput" Text="0.5" 
                                                  Grid.Row="8" Grid.Column="3" Margin="1" Padding="1 0" Width="50"
                                                  HorizontalAlignment="Left"/>
 
                                         <TextBlock x:Name="Ep" Text="Ep" ToolTip="Epsilon in loss function of&#x0a;espilon-SVR (default 0.1)"
                                                    Grid.Row="8" Grid.Column="0" Padding="0 2 5 0"/>
-                                        <TextBox x:Name="Ep_Text" Text="0.1" 
+                                        <TextBox x:Name="EpText" Text="0.1" 
                                                  Grid.Row="8" Grid.Column="1" Margin="1" Padding="1 0" Width="50"
                                                  HorizontalAlignment="Left"/>
                                         
                                         <TextBlock Text="Kernel Type" 
                                                    ToolTip="Set the kernel type&#x0a;linear: u'*v&#x0a;polynomial: (gamma*u'*v + coef0)^degree&#x0a;radial basis function: exp(-gamma*|u-v|^2)&#x0a;sigmoid: tanh(gamma*u'*v + coef0)"
                                                    Grid.Row="9" Grid.Column="0" Padding="0 2 5 0"/>
-                                        <ComboBox x:Name="Kernel_ComboBox" SelectionChanged="Kernel_SelectionChanged" 
+                                        <ComboBox x:Name="KernelComboBox" SelectionChanged="Kernel_SelectionChanged" 
                                                   Grid.Row="9" Grid.Column="1" Margin="1,1,0,1" Padding="4 2 4 2"  
                                                   Width="148" Grid.ColumnSpan="3" HorizontalAlignment="Left">
                                             <ComboBoxItem>linear</ComboBoxItem>
@@ -652,19 +645,19 @@
 
                                         <TextBlock x:Name="Gamma" Text="G (Gamma)" ToolTip="Parameter Gamma in the kernel function&#x0a;(default 1/k, k is the number of&#x0a;attributes in the input data)"
                                                Grid.Row="10" Grid.Column="0" Padding="0 2 5 0"/>
-                                        <TextBox x:Name="Gamma_Text" Text="0.5" 
+                                        <TextBox x:Name="GammaText" Text="0.5" 
                                              Grid.Row="10" Grid.Column="1" Margin="1" Padding="1 0" Width="50"
                                              HorizontalAlignment="Left"/>
 
                                         <TextBlock x:Name="R" Text="Coef 0" ToolTip="Coef 0 in kernel function (default 0)"
                                                Grid.Row="10" Grid.Column="2" Padding="0 2 5 0"/>
-                                        <TextBox x:Name="R_Text" Text="0" 
+                                        <TextBox x:Name="RText" Text="0" 
                                              Grid.Row="10" Grid.Column="3" Margin="1" Padding="1 0" Width="50"
                                              HorizontalAlignment="Left"/>
 
                                         <TextBlock x:Name="Degree" Text="Degree" ToolTip="Degree in the polynomial kernel function&#x0a;(default 3)"
                                                Grid.Row="11" Grid.Column="0" Padding="0 2 5 0"/>
-                                        <TextBox x:Name="Degree_Text" Text="3" 
+                                        <TextBox x:Name="DegreeText" Text="3" 
                                              Grid.Row="11" Grid.Column="1" Margin="1" Padding="1 0" Width="50"
                                              HorizontalAlignment="Left"/>
 
@@ -672,8 +665,8 @@
                                         
                                         <TextBlock Text="Accuracy" ToolTip="Choose which accuracy type the grid search is testing for" 
                                                    Grid.Row="13" Grid.Column="0" Padding="0 2 5 0"/>
-                                        <ComboBox Name="Accuracy_ComboBox" Grid.Row="13" Grid.Column="1" 
-                                                  SelectionChanged="Accuracy_SelectionChanged" Margin="1,1,0,1" Padding="4 2 4 2" 
+                                        <ComboBox Name="AccuracyComboBox" Grid.Row="13" Grid.Column="1" 
+                                                  Margin="1,1,0,1" Padding="4 2 4 2" 
                                                   Width="148" Grid.ColumnSpan="3" HorizontalAlignment="Left">
                                             <ComboBoxItem Content="Mean Squared Error" IsSelected="True"></ComboBoxItem>
                                             <ComboBoxItem Content="Squared Correlation Coefficient"></ComboBoxItem>
@@ -713,9 +706,9 @@
 
                                                 <TextBlock Text="Grid Search" 
                                                        Grid.Row="0" Grid.Column="1" Padding="0 5 0 2" 
-                                                       Grid.ColumnSpan="2" FontWeight="Medium"/>
+                                                       FontWeight="Medium"/>
 
-                                                <CheckBox x:Name="Parameter_Selected" Checked="Parameter_Checked"
+                                                <CheckBox x:Name="ParameterSelected" Checked="Parameter_Checked"
                                                       Grid.Row="1" Grid.Column="0" Margin="0 0 0 0"
                                                       VerticalAlignment="Center" HorizontalAlignment="Center"/>
                                                 <TextBlock Text="Parameter Selection" ToolTip="Run through the given C and G values to&#x0a;find the best values for the given accuracy"
@@ -742,33 +735,33 @@
 
                                                     <TextBlock Text="log(C)"
                                                            Grid.Row="0" Grid.Column="0" Padding="0 2 5 0"/>
-                                                    <TextBox x:Name="CLower_Text" Text="-2" 
+                                                    <TextBox x:Name="CLowerText" Text="-2" 
                                                              Grid.Row="0" Grid.Column="1" Margin="1" Padding="1 0" 
                                                              Width="25" HorizontalAlignment="Left"/>
                                                     <TextBlock Text="to"
                                                            Grid.Row="0" Grid.Column="2" Padding="0 2 5 0"/>
-                                                    <TextBox x:Name="CUpper_Text" Text="2" 
+                                                    <TextBox x:Name="CUpperText" Text="2" 
                                                              Grid.Row="0" Grid.Column="3" Margin="1" Padding="1 0" 
                                                              Width="25" HorizontalAlignment="Left"/>
                                                     <TextBlock Text="step"
                                                            Grid.Row="0" Grid.Column="4" Padding="0 2 5 0"/>
-                                                    <TextBox x:Name="CStep_Text" Text="1" 
+                                                    <TextBox x:Name="CStepText" Text="1" 
                                                              Grid.Row="0" Grid.Column="5" Margin="1" Padding="1 0" 
                                                              Width="25" HorizontalAlignment="Left"/>
 
                                                     <TextBlock Text="log(G)"
                                                            Grid.Row="1" Grid.Column="0" Padding="0 2 5 0"/>
-                                                    <TextBox x:Name="GLower_Text" Text="-2" 
+                                                    <TextBox x:Name="GLowerText" Text="-2" 
                                                              Grid.Row="1" Grid.Column="1" Margin="1" Padding="1 0" 
                                                              Width="25" HorizontalAlignment="Left"/>
                                                     <TextBlock Text="to"
                                                                Grid.Row="1" Grid.Column="2" Padding="0 2 5 0"/>
-                                                    <TextBox x:Name="GUpper_Text" Text="2" 
+                                                    <TextBox x:Name="GUpperText" Text="2" 
                                                              Grid.Row="1" Grid.Column="3" Margin="1" Padding="1 0" 
                                                              Width="25" HorizontalAlignment="Left"/>
                                                     <TextBlock Text="step"
                                                                Grid.Row="1" Grid.Column="4" Padding="0 2 5 0"/>
-                                                    <TextBox x:Name="GStep_Text" Text="1" 
+                                                    <TextBox x:Name="GStepText" Text="1" 
                                                              Grid.Row="1" Grid.Column="5" Margin="1" Padding="1 0" 
                                                              Width="25" HorizontalAlignment="Left"/>
 
@@ -779,48 +772,48 @@
 
                                                     <TextBlock Text="Attribute 1"
                                                                Grid.Row="3" Grid.Column="0" Padding="0 2 5 0"/>
-                                                    <TextBox x:Name="Att1Lower_Text" Text="0" 
+                                                    <TextBox x:Name="Att1LowerText" Text="0" 
                                                              Grid.Row="3" Grid.Column="1" Margin="1" Padding="1 0" 
                                                              Width="25" HorizontalAlignment="Left"/>
                                                     <TextBlock Text="to"
                                                                Grid.Row="3" Grid.Column="2" Padding="0 2 5 0"/>
-                                                    <TextBox x:Name="Att1Upper_Text" Text="5" 
+                                                    <TextBox x:Name="Att1UpperText" Text="5" 
                                                              Grid.Row="3" Grid.Column="3" Margin="1" Padding="1 0" 
                                                              Width="25" HorizontalAlignment="Left"/>
                                                     <TextBlock Text="step"
                                                                Grid.Row="3" Grid.Column="4" Padding="0 2 5 0"/>
-                                                    <TextBox x:Name="Att1Step_Text" Text="1" 
+                                                    <TextBox x:Name="Att1StepText" Text="1" 
                                                              Grid.Row="3" Grid.Column="5" Margin="1" Padding="1 0" 
                                                              Width="25" HorizontalAlignment="Left"/>
 
                                                     <TextBlock Text="Attribute 2"
                                                                Grid.Row="4" Grid.Column="0" Padding="0 2 5 0"/>
-                                                    <TextBox x:Name="Att2Lower_Text" Text="0" 
+                                                    <TextBox x:Name="Att2LowerText" Text="0" 
                                                              Grid.Row="4" Grid.Column="1" Margin="1" Padding="1 0" 
                                                              Width="25" HorizontalAlignment="Left"/>
                                                     <TextBlock Text="to"
                                                                Grid.Row="4" Grid.Column="2" Padding="0 2 5 0"/>
-                                                    <TextBox x:Name="Att2Upper_Text" Text="5" 
+                                                    <TextBox x:Name="Att2UpperText" Text="5" 
                                                              Grid.Row="4" Grid.Column="3" Margin="1" Padding="1 0" 
                                                              Width="25" HorizontalAlignment="Left"/>
                                                     <TextBlock Text="step"
                                                                Grid.Row="4" Grid.Column="4" Padding="0 2 5 0"/>
-                                                    <TextBox x:Name="Att2Step_Text" Text="1" 
+                                                    <TextBox x:Name="Att2StepText" Text="1" 
                                                              Grid.Row="4" Grid.Column="5" Margin="1" Padding="1 0" 
                                                              Width="25" HorizontalAlignment="Left"/>
 
                                                     <TextBlock Text="Cross-Validation n-fold Value"
                                                                Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="6" Padding="0 2 5 0"/>
-                                                    <TextBox x:Name="n_fold_Text" Text="4" 
+                                                    <TextBox x:Name="NFoldText" Text="4" 
                                                              Grid.Row="5" Grid.Column="5" Margin="1" Padding="1 0" 
                                                              Width="25" HorizontalAlignment="Left"/>
                                                 </Grid>
 
-                                                <CheckBox x:Name="Feature_Selected" Checked="Feature_Checked"
+                                                <CheckBox x:Name="FeatureSelected" Checked="Feature_Checked"
                                                           Grid.Row="4" Grid.Column="0" Margin="0 0 0 0"
                                                           VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
-                                                <Button Click="Run_Search_Button_Click" x:Name="Run_Search_Button"
+                                                <Button Click="Run_Search_Button_Click" x:Name="RunSearchButton"
                                                         Grid.Row="8" Grid.Column="1" Width="193" HorizontalAlignment="Left" 
                                                         Margin="1" Padding="0 0 0 1">
                                                     <Button.Resources>
@@ -828,7 +821,7 @@
                                                             <Setter Property="CornerRadius" Value="5"/>
                                                         </Style>
                                                     </Button.Resources>
-                                                    <TextBlock x:Name="Run_Search_text" Text="Run Search" 
+                                                    <TextBlock x:Name="RunSearchText" Text="Run Search" 
                                                                    TextAlignment="Center"/>
                                                 </Button>
 
@@ -836,9 +829,9 @@
                                                 
                                                 <TextBlock Text="Grid Search Results" 
                                                        Grid.Row="9" Grid.Column="1" Padding="0 5 0 0" 
-                                                       Grid.ColumnSpan="2" FontWeight="Medium"/>
+                                                       FontWeight="Medium"/>
 
-                                                <Button Click="Parameter_Selection_Button_Click" x:Name="Parameter_Selection_Button"
+                                                <Button Click="Parameter_Selection_Button_Click" x:Name="ParameterSelectionButton"
                                                         Grid.Row="11" Grid.Column="1" Width="193" HorizontalAlignment="Left" 
                                                         Margin="1" FontSize="10" Background="LightCyan">Send Values to Settings
                                                     <Button.Resources>
@@ -848,7 +841,7 @@
                                                     </Button.Resources>
                                                 </Button>
 
-                                                <Button Click="Feature_Selection_Button_Click" x:Name="Feature_Selection_Button"
+                                                <Button Click="Feature_Selection_Button_Click" x:Name="FeatureSelectionButton"
                                                         Grid.Row="13" Grid.Column="1" Width="193" HorizontalAlignment="Left" 
                                                         Margin="1 1 1 1" FontSize="10" Background="LightCyan"
                                                         >Send Values to Settings
@@ -875,33 +868,30 @@
 
                                                     <TextBlock Text="C"
                                                                Grid.Row="0" Grid.Column="0" Padding="0 2 5 0"/>
-                                                    <TextBox x:Name="C_Result_Text" Text="0" 
+                                                    <TextBox x:Name="CResultText" Text="0" 
                                                              Grid.Row="0" Grid.Column="1" Margin="1" Padding="1 0" 
                                                              Width="58" HorizontalAlignment="Left" IsReadOnly="True"
                                                              Background="#eee"/>
                                                     <TextBlock Text="G"
                                                                Grid.Row="0" Grid.Column="2" Padding="0 2 5 0"/>
-                                                    <TextBox x:Name="G_Result_Text" Text="0" IsReadOnly="True"
+                                                    <TextBox x:Name="GResultText" Text="0" IsReadOnly="True"
                                                              Grid.Row="0" Grid.Column="3" Margin="1" Padding="1 0" 
                                                              Width="58" HorizontalAlignment="Left" Background="#eee"/>
 
                                                     <TextBlock Text="Attribute 1" Grid.ColumnSpan="2"
                                                                Grid.Row="2" Grid.Column="0" Padding="0 2 5 0"/>
-                                                    <TextBox x:Name="Att1_Result_Text" Text="0" IsReadOnly="True"
+                                                    <TextBox x:Name="Att1ResultText" Text="0" IsReadOnly="True"
                                                              Grid.Row="2" Grid.Column="1" Margin="26 1 1 1" Padding="1 0" 
                                                              Width="33" HorizontalAlignment="Left" Background="#eee"/>
                                                     <TextBlock Text="Attribute 2" Grid.ColumnSpan="2"
                                                                Grid.Row="2" Grid.Column="2" Padding="0 2 5 0"/>
-                                                    <TextBox x:Name="Att2_Result_Text" Text="0" IsReadOnly="True"
+                                                    <TextBox x:Name="Att2ResultText" Text="0" IsReadOnly="True"
                                                              Grid.Row="2" Grid.Column="3" Margin="26 1 1 1" Padding="1 0" 
                                                              Width="33" HorizontalAlignment="Left" Background="#eee"/>
                                                 </Grid>
-
-
                                             </Grid>
                                         </Grid>
                                     </Border>
-
                                 </Grid>
 
                                 <!-- Training and Testing -->
@@ -934,27 +924,27 @@
 
                                     <TextBlock Text="Training Data" ToolTip="Select the data to be used in training the model"
                                            Grid.Row="1" Grid.Column="0" Padding="5 0 0 0"/>
-                                    <TextBox x:Name="Training_Data_Location" Background="Azure"
+                                    <TextBox x:Name="TrainingDataLocation" Background="Azure"
                                              Text=""
                                              Grid.Row="1" Grid.Column="1" Margin="1 1 23 1"
                                              Loaded="Training_Data_Location_Loaded"/>
-                                    <Button x:Name="Training_Data_Button" Click="Training_Data_Button_Click"
+                                    <Button x:Name="TrainingDataButton" Click="Training_Data_Button_Click"
                                             Grid.Row="1" Grid.Column="1" Width="20" HorizontalAlignment="Right" 
                                             Margin="1" FontSize="10" Background="PowderBlue">...</Button>
 
-                                    <Button x:Name="Train_Model_Button" Click="Train_Model_Button_Click"
-                                            Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="1" Margin="1"
+                                    <Button x:Name="TrainModelButton" Click="Train_Model_Button_Click"
+                                            Grid.Row="2" Grid.Column="1" Margin="1"
                                             Width="148" HorizontalAlignment="Left">
                                         <Button.Resources>
                                             <Style TargetType="Border">
                                                 <Setter Property="CornerRadius" Value="5"/>
                                             </Style>
                                         </Button.Resources>
-                                        <TextBlock x:Name="Train_Model_text" Text="Train Model" 
-                                                       Grid.Row="8" Grid.Column="1" TextAlignment="Center"/>
+                                        <TextBlock x:Name="TrainModelText" Text="Train Model"
+                                                   TextAlignment="Center"/>
                                     </Button>
-                                    <Button x:Name="Train_and_Test_Button" Click="Train_and_Test_Button_Click"
-                                            Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="1" Margin="1"
+                                    <Button x:Name="TrainAndTestButton" Click="Train_and_Test_Button_Click"
+                                            Grid.Row="2" Grid.Column="1" Margin="1"
                                             Width="148" HorizontalAlignment="Right">
                                         Train and Test
                                         <Button.Resources>
@@ -966,10 +956,10 @@
                                     
                                     <TextBlock Text="Model Output" Margin="5 0 0 0"
                                            Grid.Row="3" Grid.Column="0" Padding="0 2"/>
-                                    <TextBox x:Name="Model_Output_Location" Text="" 
+                                    <TextBox x:Name="ModelOutputLocation" Text="" 
                                              Grid.Row="3" Grid.Column="1" Margin="1 1 66 1" Padding="1" IsReadOnly="True"
                                              Background="PowderBlue"/>
-                                    <Button x:Name="Send_To_Test_Button" Click="Send_To_Test_Button_Click"
+                                    <Button x:Name="SendToTestButton" Click="Send_To_Test_Button_Click"
                                             Grid.Row="3" Grid.Column="1" Width="63" HorizontalAlignment="Right" 
                                             Margin="1" FontSize="10" Background="LightCyan">Send to Test
                                         <Button.Resources>
@@ -987,19 +977,19 @@
 
                                     <TextBlock Text="Testing Data" ToolTip="Select the data to be used in training the model"
                                            Grid.Row="6" Grid.Column="0" Padding="5 2 5 0"/>
-                                    <TextBox x:Name="Testing_Data_Location"  Background="Azure"
+                                    <TextBox x:Name="TestingDataLocation"  Background="Azure"
                                              Text=""
                                              Grid.Row="6" Grid.Column="1" Margin="1 1 23 1 " Loaded="Testing_Data_Location_Loaded"/>
-                                    <Button x:Name="Testing_Data_Button" Click="Testing_Data_Button_Click" 
+                                    <Button x:Name="TestingDataButton" Click="Testing_Data_Button_Click" 
                                             Grid.Row="6" Grid.Column="1" Width="20" HorizontalAlignment="Right" 
                                             Margin="1" FontSize="10" Background="PowderBlue">...</Button>
 
                                     <TextBlock Text="Model" ToolTip="Select the model file to be used in testing"
                                                Margin="5 0 0 0" Grid.Row="7" Grid.Column="0" Padding="0 2"/>
-                                    <TextBox x:Name="Model_File_Location"  Loaded="Model_File_Location_Loaded" Background="Azure"
+                                    <TextBox x:Name="ModelFileLocation"  Loaded="Model_File_Location_Loaded" Background="Azure"
                                              Text=""
                                              Grid.Row="7" Grid.Column="1" Margin="1 1 23 1"/>
-                                    <Button x:Name="Model_Location_Button" Click="Model_Location_Button_Click"
+                                    <Button x:Name="ModelLocationButton" Click="Model_Location_Button_Click"
                                             Grid.Row="7" Grid.Column="1" Width="20" HorizontalAlignment="Right" 
                                             Margin="1" FontSize="10" Content="..." Background="PowderBlue"/>
 
@@ -1007,8 +997,8 @@
                                                Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="3" Padding="0 2 5 0"
                                                Margin="5 0 0 0" />
 
-                                    <StackPanel Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="3" 
-                                                Orientation="Horizontal" Margin="80,0,0,0" Grid.RowSpan="1">
+                                    <StackPanel Grid.Row="8" Grid.Column="1"
+                                                Orientation="Horizontal" Margin="80,0,0,0">
                                         <StackPanel>
                                             <Button x:Name="TAttributePlus" Click="TAttributePlus_Click" Panel.ZIndex="1"
                                                     Width="20" Height="10.5" HorizontalAlignment="Left"
@@ -1069,7 +1059,7 @@
 
                                     <TextBlock Text="Start"
                                                Grid.Row="9" Grid.Column="0" Padding="5 2 5 0"/>
-                                    <TextBox x:Name="TStart_Text" Text="1" ToolTip="Set the start point of the data used in testing"
+                                    <TextBox x:Name="TStartText" Text="1" ToolTip="Set the start point of the data used in testing"
                                              Grid.Row="9" Grid.Column="0" Margin="50 1 1 1" Padding="1 0" Width="50" 
                                              HorizontalAlignment="Left" Grid.ColumnSpan="2"/>
                                     
@@ -1084,8 +1074,8 @@
                                         </Grid.ColumnDefinitions>
 
                                         <TextBlock Text="Length" Margin="6 0 0 0" ToolTip="Set the number of data points used in testing"
-                                                   Grid.Row="9" Grid.Column="0" Padding="0 2 5 0"/>
-                                        <TextBox x:Name="TLength_Text" Text="200"  Margin="1" HorizontalAlignment="Left"
+                                                   Grid.Column="0" Padding="0 2 5 0"/>
+                                        <TextBox x:Name="TLengthText" Text="200"  Margin="1" HorizontalAlignment="Left"
                                                  Grid.Column="1" Padding="1 0" Width="50"/>
 
                                         <TextBlock Text="Projection" ToolTip="Set how many points in advance the model is testing for" 
@@ -1095,34 +1085,36 @@
 
                                         <TextBlock Text="Step" Margin="0 0 0 0" ToolTip="Set how frequently data points are used in testing the model"
                                                Grid.Column="4" Padding="0 2 5 0"/>
-                                        <TextBox x:Name="TStep_Text" Text="1" Grid.Column="5" Margin="1"
+                                        <TextBox x:Name="TStepText" Text="1" Grid.Column="5" Margin="1"
                                                  Padding="1 0" Width="50" HorizontalAlignment="Left"/>
                                     </Grid>
 
-                                    <Button x:Name="Test_Model_Button" Click="Test_Model_Button_Click" 
-                                            Grid.Row="10" Grid.Column="1" Grid.ColumnSpan="1" Margin="1 1 1 1">
+                                    <Button x:Name="TestModelButton" Click="Test_Model_Button_Click" 
+                                            Grid.Row="10" Grid.Column="1" Margin="1 1 1 1">
                                         <Button.Resources>
                                             <Style TargetType="Border">
                                                 <Setter Property="CornerRadius" Value="5"/>
                                             </Style>
                                         </Button.Resources>
-                                        <TextBlock x:Name="Test_Model_text" Text="Test Model" TextAlignment="Center"/>
+                                        <TextBlock x:Name="TestModelText" Text="Test Model" TextAlignment="Center"/>
                                     </Button>
                                     
                                     <TextBlock Text="Prediction" ToolTip="The location of the file with the predicted values"
                                            Grid.Row="11" Grid.Column="0" Padding="5 2 0 2"/>
-                                    <TextBox x:Name="Prediction_File_Location" Text="" 
+                                    <TextBox x:Name="PredictionFileLocation" Text="" 
                                          Grid.Row="11" Grid.Column="1" Margin="1" Padding="1" IsReadOnly="True"
                                          Background="PowderBlue"/>
 
-                                    <TextBlock Text="#iter" Padding="5 2 2 0" Grid.Row="4" HorizontalAlignment="Left"/>
-                                    <TextBox x:Name="iter_text" Text="" Grid.Row="4"
+                                    <TextBlock Text="#iter" Padding="5 2 2 0" Grid.Row="4" Grid.Column="0"
+                                               HorizontalAlignment="Left"/>
+                                    <TextBox x:Name="IterText" Text="" Grid.Row="4" Grid.Column="0"
                                              Margin="5 1 1 1" Padding="-2 2 0 0" TextAlignment="Center" 
                                              FontSize="10" Background="#eee" Width="40" MaxLength="6"
                                              HorizontalAlignment="Center" IsReadOnly="True"/>
-                                    <TextBlock Text="nu" Padding="2 2 2 0" Width="24" Grid.Row="4" HorizontalAlignment="Right"/>
+                                    <TextBlock Text="nu" Padding="2 2 2 0" Width="24" Grid.Row="4" Grid.Column="0"
+                                               HorizontalAlignment="Right"/>
                                     
-                                    <Grid Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="1">
+                                    <Grid Grid.Row="4" Grid.Column="1">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="2*"/>
                                             <ColumnDefinition Width="*"/>
@@ -1135,31 +1127,31 @@
                                             <ColumnDefinition Width="2*"/>
                                         </Grid.ColumnDefinitions>
 
-                                        <TextBox x:Name="nu_text" Text="" Grid.Column="0" 
+                                        <TextBox x:Name="NuText" Text="" Grid.Column="0" 
                                                  Margin="1" Padding="-2 2 0 0" TextAlignment="Center" 
                                                 FontSize="10" Background="#eee" Width="40" 
                                                 HorizontalAlignment="Left" IsReadOnly="True"/>
 
                                         <TextBlock Text="obj" Grid.Column="1" Padding="0 2 2 0"/>
-                                        <TextBox x:Name="obj_text" Grid.Column="2" Text="" 
+                                        <TextBox x:Name="ObjText" Grid.Column="2" Text="" 
                                                  Margin="1" Padding="-2 2 0 0" TextAlignment="Center" 
                                                  FontSize="10" Background="#eee" Width="40" 
                                                  HorizontalAlignment="Left" IsReadOnly="True"/>
 
                                         <TextBlock Text="rho" Grid.Column="3" Padding="2"/>
-                                        <TextBox x:Name="rho_text" Text="" Grid.Column="4" 
+                                        <TextBox x:Name="RhoText" Text="" Grid.Column="4" 
                                                  Margin="1" Padding="-2 2 0 0" TextAlignment="Center" 
                                                  FontSize="10" Background="#eee" Width="40" 
                                                  HorizontalAlignment="Left" IsReadOnly="True"/>
 
                                         <TextBlock Text="nSV" Grid.Column="5" Padding="0 2 2 0"/>
-                                        <TextBox x:Name="nSV_text" Text="" Grid.Column="6" 
+                                        <TextBox x:Name="NSvText" Text="" Grid.Column="6" 
                                                  Margin="1" Padding="-2 2 0 0" TextAlignment="Center" 
                                                  FontSize="10" Background="#eee" Width="40" 
                                                  HorizontalAlignment="Left" IsReadOnly="True"/>
 
                                         <TextBlock Text="BSV" Grid.Column="7" Padding="0 2 2 0"/>
-                                        <TextBox x:Name="nBSV_text" Text="" Grid.Column="8" 
+                                        <TextBox x:Name="NBsvText" Text="" Grid.Column="8" 
                                                  Margin="1" Padding="-2 2 0 0" TextAlignment="Center" 
                                                  FontSize="10" Background="#eee" Width="40" 
                                                  IsReadOnly="True" HorizontalAlignment="Right"/>
@@ -1213,13 +1205,13 @@
 
                                     <TextBlock Text="Apply Shrinking" ToolTip="Use the shrinking heuristics (default on),&#x0a;can make the training faster"
                                                Grid.Row="1" Grid.Column="0" Padding="0 2 5 0" Grid.ColumnSpan="2"/>
-                                    <CheckBox x:Name="Shrinking_Selected" IsChecked="True"
+                                    <CheckBox x:Name="ShrinkingSelected" IsChecked="True"
                                               Grid.Row="1" Grid.Column="2" Margin="0 0 0 0"
                                               VerticalAlignment="Center" HorizontalAlignment="Left"/>
 
                                     <TextBlock Text="Cache Size (MB)" ToolTip="Set the cache memory&#x0a;size in MB (default 40)"
                                                Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Padding="0 2 5 0"/>
-                                    <TextBox x:Name="Cache_text" Text="40" 
+                                    <TextBox x:Name="CacheText" Text="40" 
                                              Grid.Row="2" Grid.Column="2" Margin="1" Padding="1 0" Width="48"
                                              HorizontalAlignment="Left"/>
 
@@ -1227,7 +1219,7 @@
                                                ToolTip="Set the split between&#x0a;training and testing for best&#x0a;prediction in Grid Search (default 80)"
                                                Grid.ColumnSpan="2"
                                                Grid.Row="3" Grid.Column="0" Padding="0 2 5 0"/>
-                                    <TextBox x:Name="Split_Preference" Text="80" 
+                                    <TextBox x:Name="SplitPreference" Text="80" 
                                              Grid.Row="3" Grid.Column="2" Margin="1" Padding="1 0" Width="48"
                                              HorizontalAlignment="Left"/>
                                     <TextBlock Text="%" Grid.Row="3" Grid.Column="3" Padding="0 2 5 0"/>
@@ -1235,21 +1227,21 @@
                                     <TextBlock Text="Prediction File Type" Grid.Row="4" Grid.Column="0" 
                                                Grid.ColumnSpan="2" Padding="0 2 5 0" 
                                                ToolTip="Choose whether to export the prediction values as&#x0a;either a MATLAB array or CSV file"/>
-                                    <ComboBox Name="File_Type" Grid.Row="4" Grid.Column="2" Margin="1,1,0,1" 
+                                    <ComboBox Name="FileType" Grid.Row="4" Grid.Column="2" Margin="1,1,0,1" 
                                               Padding="4 2 4 2" Width="96" Grid.ColumnSpan="2" HorizontalAlignment="Left">
                                         <ComboBoxItem Content="CSV" IsSelected="True"></ComboBoxItem>
                                         <ComboBoxItem Content="MATLAB Array"></ComboBoxItem>
                                     </ComboBox>
 
-                                    <TextBlock Text="Presets" Grid.Row="6" FontWeight="Medium" />
+                                    <TextBlock Text="Presets" Grid.Row="6" Grid.Column="0" FontWeight="Medium" />
 
-                                    <TextBlock Text="Preset Name" Grid.Row="7"/>
-                                    <TextBox x:Name="Preset_Name" Text="Preset_1" ToolTip="Choose a name for a preset to be saved as"
+                                    <TextBlock Text="Preset Name" Grid.Row="7" Grid.Column="0" />
+                                    <TextBox x:Name="PresetName" Text="Preset_1" ToolTip="Choose a name for a preset to be saved as"
                                              Grid.Row="7" Grid.Column="2" Grid.ColumnSpan="2" Margin="1" Padding="1 0" Width="98"
                                              HorizontalAlignment="Left"/>
                                     
-                                    <TextBlock Text="Save Preset" Grid.Row="8" />
-                                    <Button Content="Save" x:Name="Save_Preset" Click="Save_Preset_Click"
+                                    <TextBlock Text="Save Preset" Grid.Row="8" Grid.Column="0" />
+                                    <Button Content="Save" x:Name="SavePreset" Click="Save_Preset_Click"
                                             ToolTip="Save the App's current settings and directories&#x0a;to a preset with the given preset name"
                                             Grid.Row="8" Grid.Column="2" Grid.ColumnSpan="2" Margin="1" Background="LightCyan">
                                         <Button.Resources>
@@ -1259,8 +1251,8 @@
                                         </Button.Resources>
                                     </Button>
 
-                                    <TextBlock Text="Load Preset" Grid.Row="9"/>
-                                    <Button Content="Load" x:Name="Load_Preset" Click="Load_Preset_Click"
+                                    <TextBlock Text="Load Preset" Grid.Row="9" Grid.Column="0" />
+                                    <Button Content="Load" x:Name="LoadPreset" Click="Load_Preset_Click"
                                             ToolTip="Load a preset from the Presets folder"
                                             Grid.Row="9" Grid.Column="2" Grid.ColumnSpan="2" Margin="1" Background="LightCyan">
                                         <Button.Resources>
@@ -1278,7 +1270,7 @@
                 </Grid>
 
                 <!-- Plot Page -->
-                <Grid Grid.Column="1" Grid.RowSpan="2">
+                <Grid Grid.Column="1" Grid.Row="0" Grid.RowSpan="2">
                     <Grid.RowDefinitions>
                         <!-- Total Height = 684 -->
                         <RowDefinition Height="20"/>
@@ -1294,19 +1286,19 @@
                                Grid.Row="0" Grid.Column="0" Padding="27 7 0 2" 
                                FontWeight="Medium" Panel.ZIndex="1"/>
 
-                    <Image Grid.Row="1" Name="Grid_Search_Contour_Image" MaxHeight="200" MaxWidth="500" 
+                    <Image Grid.Row="1" Name="GridSearchContourImage" MaxHeight="200" MaxWidth="500" 
                            Panel.ZIndex="0" RenderOptions.BitmapScalingMode="Fant"/>
-                    <Image Grid.Row="2" Name="Grid_Search_Prediction_Image" MaxHeight="200" MaxWidth="500"
+                    <Image Grid.Row="2" Name="GridSearchPredictionImage" MaxHeight="200" MaxWidth="500"
                            RenderOptions.BitmapScalingMode="Fant"/>
 
-                    <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center">
+                    <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center">
 
                         <TextBlock Text="Mean Squared Error" Padding="0 2 2 0" Margin="0 2 0 0"/>
-                        <TextBox x:Name="GridSearch_MSE_text" Text="" 
+                        <TextBox x:Name="GridSearchMseText" Text="" 
                                  Margin="1 3 1 1" Padding="0 0 0 0" TextAlignment="Center" 
                                  Background="#eee" Width="80" HorizontalAlignment="Left" IsReadOnly="True"/>
                         <TextBlock Padding="15 2 2 0" Text="Squared Correlation Coefficient"  Margin="0 2 0 0"/>
-                        <TextBox x:Name="GridSearch_SCC_text" Text="" Margin="1 3 1 1" Padding="0 0 0 0" TextAlignment="Center" 
+                        <TextBox x:Name="GridSearchSccText" Text="" Margin="1 3 1 1" Padding="0 0 0 0" TextAlignment="Center" 
                                  Background="#eee" Width="80" HorizontalAlignment="Left" IsReadOnly="True"/>
 
                     </StackPanel>
@@ -1314,16 +1306,16 @@
                     <TextBlock Text="Prediction Plot" Grid.Row="4" Grid.Column="0" Grid.RowSpan="2"
                                Padding="27 5 0 2" FontWeight="Medium" Panel.ZIndex="1"/>
 
-                    <Image Grid.Row="5" Name="Plot_Image" MaxHeight="200" MaxWidth="500"
+                    <Image Grid.Row="5" Name="PlotImage" MaxHeight="200" MaxWidth="500"
                            Panel.ZIndex="0"  RenderOptions.BitmapScalingMode="Fant"/>
 
-                    <StackPanel Grid.Row="6" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center">
+                    <StackPanel Grid.Row="6" Orientation="Horizontal" HorizontalAlignment="Center">
 
                         <TextBlock Text="Mean Squared Error" Margin="0 2 2 0"/>
-                        <TextBox x:Name="MSE_text" Text="" Margin="1 1 1 1" Padding="0 0 0 0" TextAlignment="Center" 
+                        <TextBox x:Name="MseText" Text="" Margin="1 1 1 1" Padding="0 0 0 0" TextAlignment="Center" 
                                  Background="#eee" Width="80" HorizontalAlignment="Left" IsReadOnly="True"/>
                         <TextBlock Margin="15 2 2 0" Text="Squared Correlation Coefficient"/>
-                        <TextBox x:Name="SCC_text" Text="" Margin="1 1 1 1" Padding="0 0 0 0" TextAlignment="Center" 
+                        <TextBox x:Name="SccText" Text="" Margin="1 1 1 1" Padding="0 0 0 0" TextAlignment="Center" 
                                  Background="#eee" Width="80" HorizontalAlignment="Left" IsReadOnly="True"/>
 
                     </StackPanel>
