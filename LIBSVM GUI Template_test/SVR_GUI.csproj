@@ -28,7 +28,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{51363D3C-8078-42B6-BA72-F0BFD1470CC3}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>LIBSVM_GUI_Template_test</RootNamespace>
+    <RootNamespace>SVR_GUI</RootNamespace>
     <AssemblyName>LIBSVM GUI</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -123,7 +123,7 @@
     <ManifestKeyFile>LIBSVM GUI Template_test_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <GenerateManifests>true</GenerateManifests>
+    <GenerateManifests>false</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
     <SignManifests>false</SignManifests>
@@ -323,9 +323,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="App_icon_128_V3.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="FodyWeavers.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

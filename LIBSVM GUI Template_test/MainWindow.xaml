@@ -1,4 +1,4 @@
-﻿<Window x:Class="LIBSVM_GUI_Template_test.MainWindow"
+﻿<Window x:Class="SVR_GUI.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -65,7 +65,7 @@
             <Rectangle Grid.Column="6" HorizontalAlignment="Right" Width="1" Height="26" Fill="MidnightBlue" Panel.ZIndex="1"/>
             <Rectangle Grid.ColumnSpan="7" Grid.Column="0" VerticalAlignment="Top" Width="1015" Height="1" Fill="MidnightBlue" Panel.ZIndex="1"/>
 
-            <TextBlock Grid.Column="0" Text="LIBSVM GUI" Foreground="MintCream" FontWeight="Bold"
+            <TextBlock Grid.Column="0" Text="SVR-GUI" Foreground="MintCream" FontWeight="Bold"
                        VerticalAlignment="Center" HorizontalAlignment="Center"/>
             <!--<Button Grid.Column="4" Margin="2 5 1 5">
                 <Button.Resources>

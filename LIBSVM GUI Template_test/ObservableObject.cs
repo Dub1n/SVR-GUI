@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace LIBSVM_GUI_Template_test
+namespace SVR_GUI
 {
     public class ObservableObject : INotifyPropertyChanged
     {

@@ -16,7 +16,7 @@ using System.Security.Principal;
 using System.Diagnostics;
 using System.Windows.Media.Animation;
 
-namespace LIBSVM_GUI_Template_test
+namespace SVR_GUI
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -3021,7 +3021,7 @@ internal class FilePicker
     }
     public (string, string) Preset()
     {
-        var main = new LIBSVM_GUI_Template_test.MainWindow();
+        var main = new SVR_GUI.MainWindow();
         var openFileDialog1 = new Microsoft.Win32.OpenFileDialog
         {
             Title = "Browse Presets",

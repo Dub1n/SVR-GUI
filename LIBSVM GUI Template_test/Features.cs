@@ -1,4 +1,4 @@
-﻿namespace LIBSVM_GUI_Template_test
+﻿namespace SVR_GUI
 {
     public class Features : ObservableObject
     {
