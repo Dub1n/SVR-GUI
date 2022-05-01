@@ -193,6 +193,8 @@ namespace SVR_GUI
 
             SavesDirectory.Text = assemblyLocation + "\\Saves";
 
+            SampleLocation.Text = assemblyLocation + "\\Sample_Data\\39001_data.csv";
+
             Folder_File_Create();
 
             #endregion
@@ -304,108 +306,7 @@ namespace SVR_GUI
         public void ColumnMinus_Click(object sender, RoutedEventArgs e)
         {
             ColumnIndex -= 1;
-            if (ColumnIndex == 1)
-            {
-                //Column1.Visibility = Visibility.Visible;
-                Column2.Visibility = Visibility.Collapsed;
-                Column3.Visibility = Visibility.Collapsed;
-                Column4.Visibility = Visibility.Collapsed;
-                Column5.Visibility = Visibility.Collapsed;
-                Column6.Visibility = Visibility.Collapsed;
-                Column1Text.Visibility = Visibility.Visible;
-                Column2Text.Visibility = Visibility.Collapsed;
-                Column3Text.Visibility = Visibility.Collapsed;
-                Column4Text.Visibility = Visibility.Collapsed;
-                Column5Text.Visibility = Visibility.Collapsed;
-                Column6Text.Visibility = Visibility.Collapsed;
-                ColumnMinus.IsEnabled = false;
-                ColumnPlus.IsEnabled = true;
-            }
-            if (ColumnIndex == 2)
-            {
-                //Column1.Visibility = Visibility.Visible;
-                Column2.Visibility = Visibility.Visible;
-                Column3.Visibility = Visibility.Collapsed;
-                Column4.Visibility = Visibility.Collapsed;
-                Column5.Visibility = Visibility.Collapsed;
-                Column6.Visibility = Visibility.Collapsed;
-                Column1Text.Visibility = Visibility.Visible;
-                Column2Text.Visibility = Visibility.Visible;
-                Column3Text.Visibility = Visibility.Collapsed;
-                Column4Text.Visibility = Visibility.Collapsed;
-                Column5Text.Visibility = Visibility.Collapsed;
-                Column6Text.Visibility = Visibility.Collapsed;
-                ColumnMinus.IsEnabled = true;
-                ColumnPlus.IsEnabled = true;
-            }
-            if (ColumnIndex == 3)
-            {
-                //Column1.Visibility = Visibility.Visible;
-                Column2.Visibility = Visibility.Visible;
-                Column3.Visibility = Visibility.Visible;
-                Column4.Visibility = Visibility.Collapsed;
-                Column5.Visibility = Visibility.Collapsed;
-                Column6.Visibility = Visibility.Collapsed;
-                Column1Text.Visibility = Visibility.Visible;
-                Column2Text.Visibility = Visibility.Visible;
-                Column3Text.Visibility = Visibility.Visible;
-                Column4Text.Visibility = Visibility.Collapsed;
-                Column5Text.Visibility = Visibility.Collapsed;
-                Column6Text.Visibility = Visibility.Collapsed;
-                ColumnMinus.IsEnabled = true;
-                ColumnPlus.IsEnabled = true;
-            }
-            if (ColumnIndex == 4)
-            {
-                //Column1.Visibility = Visibility.Visible;
-                Column2.Visibility = Visibility.Visible;
-                Column3.Visibility = Visibility.Visible;
-                Column4.Visibility = Visibility.Visible;
-                Column5.Visibility = Visibility.Collapsed;
-                Column6.Visibility = Visibility.Collapsed;
-                Column1Text.Visibility = Visibility.Visible;
-                Column2Text.Visibility = Visibility.Visible;
-                Column3Text.Visibility = Visibility.Visible;
-                Column4Text.Visibility = Visibility.Visible;
-                Column5Text.Visibility = Visibility.Collapsed;
-                Column6Text.Visibility = Visibility.Collapsed;
-                ColumnMinus.IsEnabled = true;
-                ColumnPlus.IsEnabled = true;
-            }
-            if (ColumnIndex == 5)
-            {
-                //Column1.Visibility = Visibility.Visible;
-                Column2.Visibility = Visibility.Visible;
-                Column3.Visibility = Visibility.Visible;
-                Column4.Visibility = Visibility.Visible;
-                Column5.Visibility = Visibility.Visible;
-                Column6.Visibility = Visibility.Collapsed;
-                Column1Text.Visibility = Visibility.Visible;
-                Column2Text.Visibility = Visibility.Visible;
-                Column3Text.Visibility = Visibility.Visible;
-                Column4Text.Visibility = Visibility.Visible;
-                Column5Text.Visibility = Visibility.Visible;
-                Column6Text.Visibility = Visibility.Collapsed;
-                ColumnMinus.IsEnabled = true;
-                ColumnPlus.IsEnabled = true;
-            }
-            if (ColumnIndex == 6)
-            {
-                //Column1.Visibility = Visibility.Visible;
-                Column2.Visibility = Visibility.Visible;
-                Column3.Visibility = Visibility.Visible;
-                Column4.Visibility = Visibility.Visible;
-                Column5.Visibility = Visibility.Visible;
-                Column6.Visibility = Visibility.Visible;
-                Column1Text.Visibility = Visibility.Visible;
-                Column2Text.Visibility = Visibility.Visible;
-                Column3Text.Visibility = Visibility.Visible;
-                Column4Text.Visibility = Visibility.Visible;
-                Column5Text.Visibility = Visibility.Visible;
-                Column6Text.Visibility = Visibility.Visible;
-                ColumnMinus.IsEnabled = true;
-                ColumnPlus.IsEnabled = false;
-            }
+            IfColumnIndex();
             UpdateLayout();
         }
 
@@ -2169,6 +2070,8 @@ namespace SVR_GUI
                 FileType.SelectedIndex.ToString(),
             };
             File.WriteAllLines(presetPath, presetLines);
+
+            System.Windows.Forms.MessageBox.Show(@"Create Preset " + PresetName.Text);
         }
 
         private void Load_Preset_Click(object sender, RoutedEventArgs e)
@@ -2273,6 +2176,107 @@ namespace SVR_GUI
                 System.Windows.Forms.MessageBox.Show(@"Preset not found");
             }
         }
+        private void SampleLocationButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            FilePicker.Csv(SampleLocation);
+            SampleLocation.ScrollToHorizontalOffset(double.PositiveInfinity);
+        }
+
+        private void CreateSamplePreset_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (File.Exists(Helper.AddExtension(SampleLocation.Text, ".csv")) != true)
+            {
+                System.Windows.Forms.MessageBox.Show(@"Could not find sample data");
+            }
+            else
+            {
+                var presetPath = assemblyLocation + "\\Required_Files\\Presets\\SamplePreset";
+                string[] presetLines =
+                {
+                    SavesDirectory.Text,
+                    "SampleFile",
+                    SampleLocation.Text,
+                    "6",
+                    "2",
+                    "4",
+                    "5",
+                    "6",
+                    "7",
+                    "1",
+                    "True",
+                    "True",
+                    "True",
+                    "",
+                    "",
+                    "75",
+                    "",
+                    "",
+                    "1",
+                    "1000",
+                    "1",
+                    "1",
+                    "1",
+                    "2",
+                    "1",
+                    "1",
+                    "1",
+                    "1",
+                    "0",
+                    "0",
+                    "1",
+                    "0.001",
+                    "0.1",
+                    "0.5",
+                    "2",
+                    "0.5",
+                    "0",
+                    "3",
+                    "True",
+                    "-1",
+                    "3",
+                    "1",
+                    "-2",
+                    "2",
+                    "1",
+                    "False",
+                    "0",
+                    "5",
+                    "1",
+                    "0",
+                    "5",
+                    "1",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "1",
+                    "2",
+                    "1",
+                    "1",
+                    "1",
+                    "1",
+                    "1",
+                    "200",
+                    "1",
+                    "1",
+                    "",
+                    "True",
+                    "2",
+                    "2",
+                    "2",
+                    "True",
+                    "40",
+                    "80",
+                    "0",
+                };
+                File.WriteAllLines(presetPath, presetLines);
+                System.Windows.Forms.MessageBox.Show(@"Create Sample Preset");
+            }
+        }
 
         #region On Loaded
 
@@ -2305,13 +2309,6 @@ namespace SVR_GUI
             Directory.CreateDirectory(assemblyLocation + "\\Required_Files\\MatlabOutputText");
             Directory.CreateDirectory(assemblyLocation + "\\Required_Files\\Presets");
             Directory.CreateDirectory(assemblyLocation + "\\Saves");
-            Helper.CreateEmptyFileIfNotThere(assemblyLocation + "\\Required_Files\\MatlabOutputText\\Accuracy.txt");
-            Helper.CreateEmptyFileIfNotThere(assemblyLocation + "\\Required_Files\\MatlabOutputText\\Best_CandG.txt");
-            Helper.CreateEmptyFileIfNotThere(assemblyLocation + "\\Required_Files\\MatlabOutputText\\Best_Features.txt");
-            Helper.CreateEmptyFileIfNotThere(assemblyLocation + "\\Required_Files\\MatlabOutputText\\Feature_Cross.txt");
-            Helper.CreateEmptyFileIfNotThere(assemblyLocation + "\\Required_Files\\MatlabOutputText\\Grid_Search_Accuracy.txt");
-            Helper.CreateEmptyFileIfNotThere(assemblyLocation + "\\Required_Files\\MatlabOutputText\\Model_Stats.txt");
-            Helper.CreateEmptyFileIfNotThere(assemblyLocation + "\\Required_Files\\MatlabOutputText\\Parameter_Cross.txt");
         }
 
         public void IfTAttributeIndexVisibility()
@@ -2659,12 +2656,30 @@ namespace SVR_GUI
                                  MessageBoxButtons.YesNo,
                                  MessageBoxIcon.Question);
 
-                if (result == System.Windows.Forms.DialogResult.Yes)
-                    Close();
+                if (result != System.Windows.Forms.DialogResult.Yes) return;
+                if (System.Windows.Forms.Application.MessageLoop) 
+                {
+                    // WinForms app
+                    System.Windows.Forms.Application.Exit();
+                }
+                else
+                {
+                    // Console app
+                    Environment.Exit(1);
+                }
             }
             else
             {
-                Close();
+                if (System.Windows.Forms.Application.MessageLoop) 
+                {
+                    // WinForms app
+                    System.Windows.Forms.Application.Exit();
+                }
+                else
+                {
+                    // Console app
+                    Environment.Exit(1);
+                }
             }
         }
 
@@ -2674,10 +2689,9 @@ namespace SVR_GUI
         }
 
         #endregion
+
     }
 }
-
-
 
 #region Helpers
 
@@ -2698,14 +2712,6 @@ internal static class Helper
         while (line != null && currentLineNumber < lineNumber);
 
         return (currentLineNumber == lineNumber) ? line : string.Empty;
-    }
-
-    public static string UntilEquals(this string text, string stopAt = "=")
-    {
-        if (string.IsNullOrWhiteSpace(text)) return string.Empty;
-        var charLocation = text.IndexOf(stopAt, StringComparison.Ordinal);
-
-        return charLocation > 0 ? text.Substring(0, charLocation) : string.Empty;
     }
 
     public static string UntilComma(this string text, string stopAt = ",")

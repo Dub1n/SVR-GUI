@@ -802,7 +802,7 @@
                                                              Grid.Row="4" Grid.Column="5" Margin="1" Padding="1 0" 
                                                              Width="25" HorizontalAlignment="Left"/>
 
-                                                    <TextBlock Text="Cross-Validation n-fold Value"
+                                                    <TextBlock Text="Cross-Validation n-fold Value" ToolTip="Set the precision of the cross-validation"
                                                                Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="6" Padding="0 2 5 0"/>
                                                     <TextBox x:Name="NFoldText" Text="4" 
                                                              Grid.Row="5" Grid.Column="5" Margin="1" Padding="1 0" 
@@ -868,24 +868,24 @@
 
                                                     <TextBlock Text="C"
                                                                Grid.Row="0" Grid.Column="0" Padding="0 2 5 0"/>
-                                                    <TextBox x:Name="CResultText" Text="0" 
+                                                    <TextBox x:Name="CResultText" Text="" 
                                                              Grid.Row="0" Grid.Column="1" Margin="1" Padding="1 0" 
                                                              Width="58" HorizontalAlignment="Left" IsReadOnly="True"
                                                              Background="#eee"/>
                                                     <TextBlock Text="G"
                                                                Grid.Row="0" Grid.Column="2" Padding="0 2 5 0"/>
-                                                    <TextBox x:Name="GResultText" Text="0" IsReadOnly="True"
+                                                    <TextBox x:Name="GResultText" Text="" IsReadOnly="True"
                                                              Grid.Row="0" Grid.Column="3" Margin="1" Padding="1 0" 
                                                              Width="58" HorizontalAlignment="Left" Background="#eee"/>
 
                                                     <TextBlock Text="Attribute 1" Grid.ColumnSpan="2"
                                                                Grid.Row="2" Grid.Column="0" Padding="0 2 5 0"/>
-                                                    <TextBox x:Name="Att1ResultText" Text="0" IsReadOnly="True"
+                                                    <TextBox x:Name="Att1ResultText" Text="" IsReadOnly="True"
                                                              Grid.Row="2" Grid.Column="1" Margin="26 1 1 1" Padding="1 0" 
                                                              Width="33" HorizontalAlignment="Left" Background="#eee"/>
                                                     <TextBlock Text="Attribute 2" Grid.ColumnSpan="2"
                                                                Grid.Row="2" Grid.Column="2" Padding="0 2 5 0"/>
-                                                    <TextBox x:Name="Att2ResultText" Text="0" IsReadOnly="True"
+                                                    <TextBox x:Name="Att2ResultText" Text="" IsReadOnly="True"
                                                              Grid.Row="2" Grid.Column="3" Margin="26 1 1 1" Padding="1 0" 
                                                              Width="33" HorizontalAlignment="Left" Background="#eee"/>
                                                 </Grid>
@@ -1057,9 +1057,9 @@
                                                  Margin="1 1 4 1" Padding="1 0" Width="20" HorizontalAlignment="Left"/>
                                     </StackPanel>
 
-                                    <TextBlock Text="Start"
+                                    <TextBlock Text="Start" ToolTip="Set the start point of the data used in testing"
                                                Grid.Row="9" Grid.Column="0" Padding="5 2 5 0"/>
-                                    <TextBox x:Name="TStartText" Text="1" ToolTip="Set the start point of the data used in testing"
+                                    <TextBox x:Name="TStartText" Text="1"
                                              Grid.Row="9" Grid.Column="0" Margin="50 1 1 1" Padding="1 0" Width="50" 
                                              HorizontalAlignment="Left" Grid.ColumnSpan="2"/>
                                     
@@ -1235,14 +1235,14 @@
 
                                     <TextBlock Text="Presets" Grid.Row="6" Grid.Column="0" FontWeight="Medium" />
 
-                                    <TextBlock Text="Preset Name" Grid.Row="7" Grid.Column="0" />
-                                    <TextBox x:Name="PresetName" Text="Preset_1" ToolTip="Choose a name for a preset to be saved as"
+                                    <TextBlock Text="Preset Name" Grid.Row="7" Grid.Column="0" ToolTip="Choose a name for a preset to be saved as"/>
+                                    <TextBox x:Name="PresetName" Text="Preset_1"
                                              Grid.Row="7" Grid.Column="2" Grid.ColumnSpan="2" Margin="1" Padding="1 0" Width="98"
                                              HorizontalAlignment="Left"/>
                                     
-                                    <TextBlock Text="Save Preset" Grid.Row="8" Grid.Column="0" />
+                                    <TextBlock Text="Save Preset" Grid.Row="8" Grid.Column="0" 
+                                               ToolTip="Save the App's current settings and directories&#x0a;to a preset with the given preset name"/>
                                     <Button Content="Save" x:Name="SavePreset" Click="Save_Preset_Click"
-                                            ToolTip="Save the App's current settings and directories&#x0a;to a preset with the given preset name"
                                             Grid.Row="8" Grid.Column="2" Grid.ColumnSpan="2" Margin="1" Background="LightCyan">
                                         <Button.Resources>
                                             <Style TargetType="Border">
@@ -1251,10 +1251,30 @@
                                         </Button.Resources>
                                     </Button>
 
-                                    <TextBlock Text="Load Preset" Grid.Row="9" Grid.Column="0" />
+                                    <TextBlock Text="Load Preset" Grid.Row="9" Grid.Column="0" ToolTip="Load a preset from the Presets folder"/>
                                     <Button Content="Load" x:Name="LoadPreset" Click="Load_Preset_Click"
-                                            ToolTip="Load a preset from the Presets folder"
                                             Grid.Row="9" Grid.Column="2" Grid.ColumnSpan="2" Margin="1" Background="LightCyan">
+                                        <Button.Resources>
+                                            <Style TargetType="Border">
+                                                <Setter Property="CornerRadius" Value="5"/>
+                                            </Style>
+                                        </Button.Resources>
+                                    </Button>
+
+                                    <TextBlock Text="Sample Preset" Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="2" FontWeight="Medium" />
+                                    <TextBlock Text="Sample Data" Grid.Row="11" Grid.Column="0"
+                                               ToolTip="Data file used in creating the sample preset"/>
+                                    <TextBox x:Name="SampleLocation"  Background="Azure"
+                                             Text="" Grid.ColumnSpan="2"
+                                             Grid.Row="11" Grid.Column="2" Margin="1 1 23 1 " Loaded="Testing_Data_Location_Loaded"/>
+                                    <Button x:Name="SampleLocationButton" Click="SampleLocationButton_OnClick"
+                                            Grid.Row="11" Grid.Column="3" Width="20" HorizontalAlignment="Right" 
+                                            Margin="1" FontSize="10" Background="PowderBlue">...</Button>
+
+                                    <TextBlock Text="Create Sample Preset" Grid.Row="12" Grid.Column="0" Grid.ColumnSpan="2"/>
+                                    <Button Content="Create" x:Name="CreateSamplePreset" Click="CreateSamplePreset_OnClick"
+                                            ToolTip="Load a preset from the Presets folder"
+                                            Grid.Row="12" Grid.Column="2" Grid.ColumnSpan="2" Margin="1" Background="LightCyan">
                                         <Button.Resources>
                                             <Style TargetType="Border">
                                                 <Setter Property="CornerRadius" Value="5"/>

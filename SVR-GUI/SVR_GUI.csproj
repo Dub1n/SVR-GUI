@@ -129,7 +129,7 @@
     <SignManifests>false</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>App_icon_128_V3.ico</ApplicationIcon>
+    <ApplicationIcon>v3_128.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup />
   <PropertyGroup />
@@ -300,29 +300,17 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="icon_128.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="App_icon_128.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="App_icon_128_2.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="icon_128_2.ico" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="assets\link_selected.png" />
     <Resource Include="assets\link_unselected.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="icon_V2_128.ico" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="assets\App_icon_128_V3.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="App_icon_128_V3.ico" />
+    <Resource Include="Resources\v3_128.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="v3_128.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
