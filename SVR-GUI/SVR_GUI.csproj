@@ -14,7 +14,7 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>false</MapFileExtensions>
     <SupportUrl>https://github.com/Dub1n/LIBSVM-GUI</SupportUrl>
-    <ProductName>LIBSVM GUI</ProductName>
+    <ProductName>SVR-GUI</ProductName>
     <PublisherName>Gabriel Dubin</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
     <ApplicationRevision>1</ApplicationRevision>
@@ -29,7 +29,7 @@
     <ProjectGuid>{51363D3C-8078-42B6-BA72-F0BFD1470CC3}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>SVR_GUI</RootNamespace>
-    <AssemblyName>LIBSVM GUI</AssemblyName>
+    <AssemblyName>SVR-GUI</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -267,7 +267,7 @@
     </EmbeddedResource>
     <None Include="app.manifest" />
     <None Include="app1.manifest" />
-    <None Include="LIBSVM GUI Template_test_TemporaryKey.pfx" />
+    <None Include="SVR-GUI_TemporaryKey.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
