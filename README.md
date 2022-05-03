@@ -34,7 +34,6 @@ Table of Contents
   - Grid Search
   - Training
   - Testing
-  - Other
 - Preferences
 - Arranging Data
 - Example Usage
@@ -238,14 +237,6 @@ Mean Squared Error and Squared Correlation Coefficient.
 The 'Train and Test' button does the same as pressing the 'Train Model', 'Send to 
 Test', and 'Test Model' buttons in sequence so as to save time.
 
-## Other
-
-Do not close the plots before they automatically close, otherwise they might not 
-be able to be saved or displayed in the app
-
-Try to store the application folder in a path that does not contain any 
-whitespaces (spaces in the folder names) as this may cause issues.
-
 
 Preferences
 ===========
@@ -420,6 +411,12 @@ number of values possible.
 
 Troubleshooting
 ===============
+
+Do not close the plots before they automatically close, otherwise they might not 
+be able to be saved or displayed in the app
+
+Try to store the application folder in a path that does not contain any 
+whitespaces (spaces in the folder names) as this may cause issues.
 
 Do not delete any of the .dll files from the folder the app is stored in or 
 else it won't work.
