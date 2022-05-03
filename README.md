@@ -106,6 +106,9 @@ If there are labels in the csv file ensure they are in the first row of the tabl
 and select 'Has Labels'. If there aren't labels uncheck this option and the 
 process will run the same. Time and Label features are used solely in the plots.
 
+To apply scaling to the data check the 'Scale Data' checkbox. This is recommended 
+as it usually improves prediction accuracy.
+
 Click 'Convert to LIBSVM-Ready File' to produce a file ready to be used by the 
 app for training and predicting.
 
@@ -389,8 +392,8 @@ model, and as such should be removed or substituted in an appropriate manner.
 Only .csv files are accepted as input for the conversion to a LIBSVM-ready file. 
 This is because it is a universal file format and easily used by MATLAB.
 
-The scaling applied in the conversion process scales each attribute between 0 and 
-1. This is very helpful for training and predicting as it both speeds up the 
+The scaling applied in the conversion process scales each attribute between 0 and 1. 
+This is very helpful for training and predicting as it both speeds up the 
 computation time and stops any one attribute outweighing another in training the 
 model. Scaling can be turned off before conversion. After being used for 
 predictions, the testing data and predicted data are scaled up (or down) by the 
