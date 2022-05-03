@@ -482,3 +482,19 @@ PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
 LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
 NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+CAMELS-GB
+=========
+
+Contains data supplied by Natural Environment Research Council.
+
+Coxon, G.; Addor, N.; Bloomfield, J.P.; Freer, J.; Fry, M.; Hannaford, J.; 
+Howden, N.J.K.; Lane, R.; Lewis, M.; Robinson, E.L.; Wagener, T.; Woods, R. 
+(2020). Catchment attributes and hydro-meteorological timeseries for 671 
+catchments across Great Britain (CAMELS-GB) NERC Environmental Information 
+Data Centre. https://doi.org/10.5285/8344e4f3-d2ea-44f5-8afa-86d2987543a9
+
+Earth Syst. Sci. Data, 12, 2459–2483, 2020
+https://doi.org/10.5194/essd-12-2459-2020
+© Author(s) 2020. This work is distributed under
+the Creative Commons Attribution 4.0 License.
