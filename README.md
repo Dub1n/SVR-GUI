@@ -229,7 +229,7 @@ and the settings 'Number of features per attribute', 'Start', 'Length',
 'Projection', and 'Step' do the same thing here as in the training settings.
 
 A file storing the predicted values is produced and stored in the location shown 
-by 'Prediciton', and a plot of the predicted timeseries against the actual 
+by 'Predicton', and a plot of the predicted timeseries against the actual 
 timeseries is displayed on the right panel under 'Prediction Plot'.
 
 The accuracy of the prediction is shown at the bottom of the right panel as the 
