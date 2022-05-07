@@ -452,6 +452,8 @@ load the saved preset.
 LIBSVM Copyright
 ================
 
+Chih-Chung Chang and Chih-Jen Lin, LIBSVM: a library for support vector machines, 2001. Software available at http://www.csie.ntu.edu.tw/~cjlin/libsvm.
+
 Copyright (c) 2000-2021 Chih-Chung Chang and Chih-Jen Lin
 All rights reserved.
 
