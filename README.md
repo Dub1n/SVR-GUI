@@ -289,18 +289,18 @@ timeseries values are arranged as:
   |:|&ensp;&ensp;&ensp;|:|:|:|:|:|:|: | : | : | : | : | : | : |
 
   key:	
-V: Label Vector values from Attribute 1
-1.1: First feature from Attribute 1's values
-1.2: Second feature from Attribute 1's values
-1.i: ith feature from Attribute 1's values
-2.1: First feature from Attribute 2's values
-2.2: Second feature from Attribute 2's values
-2.j: jth feature from Attribute 2's values
-n.1: First feature from Attribute n's values
-n.2: Second feature from Attribute n's values
-n.k: kth feature from Attribute n's values 
-p: projection, how far ahead the label vector is from the instance matrix
-s: step
+V: Label Vector values from Attribute 1;
+1.1: First feature from Attribute 1's values;
+1.2: Second feature from Attribute 1's values;
+1.i: ith feature from Attribute 1's values;
+2.1: First feature from Attribute 2's values;
+2.2: Second feature from Attribute 2's values;
+2.j: jth feature from Attribute 2's values;
+n.1: First feature from Attribute n's values;
+n.2: Second feature from Attribute n's values;
+n.k: kth feature from Attribute n's values;
+p: projection, how far ahead the label vector is from the instance matrix;
+s: step;
 a: start
 
 Each index here includes adding the largest number of features assigned to an 
