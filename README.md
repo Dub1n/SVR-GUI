@@ -39,6 +39,7 @@ Table of Contents
 - Example Usage
 - Info
 - Troubleshooting
+- Further Developments
 - Copyright
 
 
@@ -448,6 +449,31 @@ inputs for the grid search.
 
 Should a process take too long: save a preset, close the app, reopen it, and 
 load the saved preset.
+
+
+Furter Developments
+===================
+
+Improvements and adjustments in any and every way are very welcome. Here are the
+changes that I would make with enough time and skill
+
+•	Check if all the number inputs are not valid and not empty
+•	Force quit function
+•	Allow csv files and not just MATLAB files to be used in training and predicting
+•	Make cross-platform 
+•	Allow files to be imported that have incomplete data i.e., if some columns have fewer data points than others
+•	Remake so that it either doesn't use MATLAB at all using .NET or C# wrappers of LIBSVM
+•	Allow an unrestricted number of attributes be used in testing and training
+•	Make the plots interactive
+•	Output more informative error information, such as "not enough data for requested length"
+•	Implement the .NET or C# wrappers of LIBSVM if possible
+•	Add a preview of the exported files to the Data Management window
+•	Add LIBSVM output text to drop-down
+•	Add a way to report errors helpfully, either through app or elsewhere
+•	Add options to increase readability i.e., increased font size, high contrast.
+•	Add an option to run through the grid search automatically and iteratively
+•	Make the interface scalable, including for full screen
+•	Allow forecasting of data without comparison to a timeseries input
 
 
 LIBSVM Copyright
