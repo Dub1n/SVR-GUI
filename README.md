@@ -455,7 +455,8 @@ Furter Developments
 ===================
 
 Improvements and adjustments in any and every way are very welcome. Here are the
-changes that I would make with enough time and experience:
+changes that I would make with enough time and experience that work on would be very
+helpful and much appreciated:
 
 - Check if all the number inputs are not valid and not empty
 - Force quit function
