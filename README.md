@@ -200,9 +200,11 @@ p: projection, how far ahead the label vector is from the instance matrix\
 s: step\
 a: start
 
-Each index here includes adding the largest number of features assigned to an attribute called m (max of i, j, ..., k), and the start value.i.e., 1 would be (1 + m + start)
+Each index here includes adding the largest number of features assigned to an attribute called m (max of i, j, ..., k), and the start value.\
+i.e., 1 would be (1 + m + start)
 
-When including Step, each index value is multiplied by the step, and then subtracts the start value times the step - 1i.e., x -> x*step - start(step - 1)
+When including Step, each index value is multiplied by the step, and then subtracts the start value times the step - 1\
+i.e., x -> x*step - start(step - 1)
 
 A complete version would be:
 
