@@ -164,7 +164,7 @@ In the Preferences tab options can be found that affect the way the app function
 
 'Prediction File Type' sets which type of file to export the predicted values, either as a csv file or MATLAB array.
 
-A preset saves the current state of the inputs of app as a file stored in Sample_Data/Presets and can be loaded to restore that state. This is useful if closing the app and opening again without losing the inputs you had been using or having to reselect any files to use.
+A preset saves the current state of the inputs of app as a file stored in Required_Files/Presets and can be loaded to restore that state. This is useful if closing the app and opening again without losing the inputs you had been using or having to reselect any files to use.
 
 Save a preset with the inputted 'Preset Name' by clicking 'Save'. Load a preset by clicking 'Load'
 
@@ -174,8 +174,7 @@ Creating a sample preset with the 'Create' button creates a sample preset that c
 Arranging Data
 ==============
 
-LIBSVM requires data in to be in the format of an Instance Matrix and LabelVector. This is the case for both training and testing. The indexes of the 
-timeseries values are arranged as:
+LIBSVM requires data in to be in the format of an Instance Matrix and LabelVector. This is the case for both training and testing. The indexes of the timeseries values are arranged as:
 
   | V |   |1.1|1.2|...|1.i|2.1|2.2|...|2.j|...|n.1|n.2|...|n.k|
   |:-:| - |:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
@@ -230,7 +229,7 @@ For example, if using the values Start = 10, Length = 6, Projection = 2,and Step
 
 The Label Vector is displayed on the left and the instance matrix is displayed on the right. This shows which of the attribute's values are used with the predicted attribute's values.
 
-As shown, for each value in the Instance Matrix, the Label Vector provides the values of each attribute looking back by a defined range.
+As shown, for each value in the Label Vector, the Instance Matrix provides the values of each attribute looking back by a defined range.
 
 
 Example Usage
